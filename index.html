@@ -83,9 +83,9 @@
 
             width: 100%;
 
-            height: 100dvh;
+            height: 100svh;
 
-            min-height: 100dvh;
+            min-height: 600px;
 
             background: #281115;
 
@@ -400,28 +400,15 @@
                 ease-in-out infinite;
 
             transition:
-                opacity .5s ease,
-                visibility 0s linear .5s;
+                opacity .5s ease;
 
         }
 
 
         .cover-scene.opened
-        .touch-hint,
-        .touch-hint.hidden {
+        .touch-hint {
 
             opacity: 0;
-            visibility: hidden;
-            display: none;
-
-        }
-
-
-        .touch-hint.hidden {
-
-            opacity: 0 !important;
-            visibility: hidden !important;
-            display: none !important;
 
         }
 
@@ -496,7 +483,7 @@
 
             position: relative;
 
-            min-height: 100dvh;
+            min-height: 115svh;
 
             display: flex;
 
@@ -1340,7 +1327,7 @@
 
             .cover-scene {
 
-                min-height: 100dvh;
+                min-height: 100svh;
 
             }
 
@@ -1351,7 +1338,7 @@
             .memory-area,
             .ending-area {
 
-                min-height: 100dvh;
+                min-height: 100svh;
 
                 padding:
                     90px
@@ -2058,12 +2045,6 @@
         );
 
 
-    const touchHint =
-        document.querySelector(
-            ".touch-hint"
-        );
-
-
     const sparkleCanvas =
         document.getElementById(
             "sparkleCanvas"
@@ -2547,21 +2528,6 @@
         coverScene.classList.add(
             "opened"
         );
-
-
-        /*
-            Permanently hide the touch hint after opening.
-            This prevents it from remaining visible during
-            the rest of the invitation.
-        */
-
-        if (touchHint) {
-
-            touchHint.classList.add(
-                "hidden"
-            );
-
-        }
 
 
         /*
