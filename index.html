@@ -72,9 +72,6 @@
 
         /* =========================================================
            COVER
-
-           IMPORTANT:
-           The original cover image is displayed as-is.
         ========================================================= */
 
         .cover-scene {
@@ -83,19 +80,22 @@
 
             width: 100%;
 
-            height: 100svh;
+            /*
+                IMPORTANT FIX:
+                Use the normal viewport height instead of svh.
+                This keeps the cover at the actual visible screen
+                height on mobile browsers.
+            */
 
-            min-height: 600px;
+            height: 100vh;
+
+            min-height: 100vh;
 
             background: #281115;
 
             overflow: hidden;
 
             cursor: pointer;
-
-            /*
-                Makes touch interaction responsive.
-            */
 
             touch-action: manipulation;
 
@@ -106,13 +106,9 @@
         }
 
 
-        /*
-            ORIGINAL COVER IMAGE
-
-            Nothing is drawn into this image.
-            The seal remains exactly as it exists
-            in the uploaded image.
-        */
+        /* =========================================================
+           ORIGINAL COVER IMAGE
+        ========================================================= */
 
         .cover-image {
 
@@ -152,12 +148,9 @@
         }
 
 
-        /*
-            Underlay.
-
-            This is already behind the cover.
-            When the cover fades, the invitation is revealed.
-        */
+        /* =========================================================
+           COVER UNDERLAY
+        ========================================================= */
 
         .cover-underlay {
 
@@ -189,13 +182,9 @@
         }
 
 
-        /*
-            When opened:
-
-            cover does NOT scroll away.
-
-            It simply dissolves.
-        */
+        /* =========================================================
+           OPENED COVER
+        ========================================================= */
 
         .cover-scene.opened
         .cover-image {
@@ -400,15 +389,32 @@
                 ease-in-out infinite;
 
             transition:
-                opacity .5s ease;
+                opacity .5s ease,
+                visibility .5s ease;
 
         }
 
 
+        /*
+            IMPORTANT FIX:
+
+            The old animation was continuously changing opacity,
+            so opacity: 0 alone was not enough.
+
+            animation:none + !important guarantees that
+            TOUCH TO OPEN disappears completely after opening.
+        */
+
         .cover-scene.opened
         .touch-hint {
 
-            opacity: 0;
+            animation: none !important;
+
+            opacity: 0 !important;
+
+            visibility: hidden !important;
+
+            pointer-events: none !important;
 
         }
 
@@ -417,17 +423,23 @@
 
             0%,
             100% {
+
                 opacity: .4;
+
                 transform:
                     translateX(-50%)
                     translateY(0);
+
             }
 
             50% {
+
                 opacity: 1;
+
                 transform:
                     translateX(-50%)
                     translateY(-4px);
+
             }
 
         }
@@ -435,9 +447,6 @@
 
         /* =========================================================
            SPARKLE CANVAS
-
-           Soft luxury dust.
-           No cartoon stars.
         ========================================================= */
 
         #sparkleCanvas {
@@ -476,14 +485,21 @@
 
 
         /* =========================================================
-           CREAM SECTION
+           FIRST CREAM PAGE
         ========================================================= */
 
         .cream-area {
 
             position: relative;
 
-            min-height: 115svh;
+            /*
+                IMPORTANT FIX:
+                This is a complete screen, not a short section.
+            */
+
+            min-height: 100vh;
+
+            height: 100vh;
 
             display: flex;
 
@@ -621,10 +637,7 @@
 
 
         /* =========================================================
-           USER-CONTROLLED TRANSITION BACKGROUND
-
-           NEW IMAGE:
-           images/background-transition.jpg.jpeg
+           TRANSITION BACKGROUND
         ========================================================= */
 
         .transition-area {
@@ -1325,14 +1338,38 @@
 
         @media (max-width: 700px) {
 
+            /*
+                IMPORTANT FIX:
+                Do NOT use 100svh here.
+            */
+
             .cover-scene {
 
-                min-height: 100svh;
+                height: 100vh;
+
+                min-height: 100vh;
 
             }
 
 
-            .cream-area,
+            /*
+                The first invitation screen must itself
+                occupy the complete display.
+            */
+
+            .cream-area {
+
+                height: 100vh;
+
+                min-height: 100vh;
+
+                padding:
+                    90px
+                    18px;
+
+            }
+
+
             .transition-area,
             .burgundy-area,
             .memory-area,
@@ -1492,10 +1529,6 @@
 
 <!-- =========================================================
      COVER
-
-     IMPORTANT:
-     The cover is your actual uploaded image.
-     The seal is part of this image and remains untouched.
 ========================================================= -->
 
 <section
@@ -1513,7 +1546,7 @@
     >
 
 
-    <!-- CONTENT UNDER THE COVER -->
+    <!-- INVITATION REVEAL -->
 
     <div
             class="cover-underlay">
@@ -1585,7 +1618,7 @@
     </div>
 
 
-    <!-- TOUCH HINT -->
+    <!-- TOUCH TO OPEN -->
 
     <div
             class="touch-hint">
@@ -1598,13 +1631,8 @@
 </section>
 
 
-
 <!-- =========================================================
      MAIN INVITATION
-
-     IMPORTANT:
-     There is NO automatic scrolling.
-     The visitor controls the scroll.
 ========================================================= -->
 
 <main
@@ -1613,7 +1641,7 @@
 
 
     <!-- =====================================================
-         CREAM BACKGROUND
+         SECOND CREAM PAGE
     ===================================================== -->
 
     <section
@@ -1746,16 +1774,6 @@
     </section>
 
 
-
-    <!-- =====================================================
-         TRANSITION BACKGROUND
-
-         YOU ADD:
-         images/background-transition.jpg.jpeg
-    ===================================================== -->
-
-
-
     <!-- =====================================================
          BURGUNDY BACKGROUND
     ===================================================== -->
@@ -1872,7 +1890,6 @@
     </section>
 
 
-
     <!-- =====================================================
          CHILDHOOD MEMORY
     ===================================================== -->
@@ -1925,7 +1942,7 @@
             </div>
 
 
-            <!-- EXACT CAPTION -->
+            <!-- CAPTION -->
 
             <div
                     class="memory-caption reveal">
@@ -1940,7 +1957,6 @@
 
 
     </section>
-
 
 
     <!-- =====================================================
@@ -2027,7 +2043,6 @@
 </main>
 
 
-
 <!-- =========================================================
      JAVASCRIPT
 ========================================================= -->
@@ -2036,12 +2051,18 @@
 
 
     /* =====================================================
-       GET ELEMENTS
+       ELEMENTS
     ===================================================== */
 
     const coverScene =
         document.getElementById(
             "coverScene"
+        );
+
+
+    const touchHint =
+        document.querySelector(
+            ".touch-hint"
         );
 
 
@@ -2137,17 +2158,8 @@
         y
     ) {
 
-
         particles = [];
 
-
-        /*
-            Small particles are deliberately
-            subtle.
-
-            No stars.
-            No cartoon shapes.
-        */
 
         const particleCount =
             110;
@@ -2158,7 +2170,6 @@
             i < particleCount;
             i++
         ) {
-
 
             const angle =
                 Math.random() *
@@ -2256,7 +2267,6 @@
 
     function animateSparkles() {
 
-
         ctx.clearRect(
             0,
             0,
@@ -2271,7 +2281,6 @@
 
         particles.forEach(
             particle => {
-
 
                 if (
                     particle.delay > 0
@@ -2301,10 +2310,6 @@
                     true;
 
 
-                /*
-                    Smooth outward movement.
-                */
-
                 particle.x +=
                     (
                         particle.targetX -
@@ -2320,10 +2325,6 @@
                     ) *
                     .026;
 
-
-                /*
-                    Very slight floating motion.
-                */
 
                 particle.y +=
                     Math.sin(
@@ -2341,10 +2342,6 @@
                     particle.opacity *
                     particle.life;
 
-
-                /*
-                    Soft glow.
-                */
 
                 const glow =
                     ctx.createRadialGradient(
@@ -2387,10 +2384,8 @@
 
                 ctx.beginPath();
 
-
                 ctx.fillStyle =
                     glow;
-
 
                 ctx.arc(
                     particle.x,
@@ -2400,16 +2395,10 @@
                     Math.PI * 2
                 );
 
-
                 ctx.fill();
 
 
-                /*
-                    Tiny central point.
-                */
-
                 ctx.beginPath();
-
 
                 ctx.fillStyle =
                     `rgba(
@@ -2419,7 +2408,6 @@
                         ${alpha}
                     )`;
 
-
                 ctx.arc(
                     particle.x,
                     particle.y,
@@ -2428,9 +2416,7 @@
                     Math.PI * 2
                 );
 
-
                 ctx.fill();
-
 
             }
         );
@@ -2456,20 +2442,11 @@
 
     /* =====================================================
        OPEN INVITATION
-
-       IMPORTANT:
-       There is NO scrollIntoView() here.
-
-       Therefore:
-       Touch → animation → stop.
-
-       The visitor controls the scroll.
     ===================================================== */
 
     function openInvitation(
         event
     ) {
-
 
         if (
             invitationOpened
@@ -2483,10 +2460,6 @@
         invitationOpened =
             true;
 
-
-        /*
-            Determine where the visitor touched.
-        */
 
         let x =
             window.innerWidth / 2;
@@ -2512,7 +2485,7 @@
 
 
         /*
-            Start elegant golden dust.
+            Elegant opening dust.
         */
 
         createSparkles(
@@ -2522,7 +2495,7 @@
 
 
         /*
-            Dissolve the cover.
+            Fade cover.
         */
 
         coverScene.classList.add(
@@ -2531,7 +2504,33 @@
 
 
         /*
-            Show music control.
+            IMPORTANT FIX:
+
+            Explicitly disable the touch hint.
+            The CSS animation is also disabled with !important,
+            so the animation cannot bring the text back.
+        */
+
+        if (touchHint) {
+
+            touchHint.classList.add(
+                "hidden"
+            );
+
+            touchHint.style.animation =
+                "none";
+
+            touchHint.style.opacity =
+                "0";
+
+            touchHint.style.visibility =
+                "hidden";
+
+        }
+
+
+        /*
+            Show music button.
         */
 
         musicButton.classList.add(
@@ -2540,15 +2539,14 @@
 
 
         /*
-            Start music after user interaction.
+            KEEPING YOUR EXISTING MUSIC BEHAVIOUR.
 
-            Browser autoplay restrictions
-            allow this because this function
-            was triggered by the visitor.
+            Music only attempts to start because
+            this function was triggered by the user's tap.
         */
 
         audio.volume =
-            .32;
+            0.32;
 
 
         const musicPromise =
@@ -2556,12 +2554,14 @@
 
 
         if (
-            musicPromise !== undefined
+            musicPromise &&
+            typeof musicPromise.then ===
+                "function"
         ) {
 
             musicPromise
                 .then(
-                    () => {
+                    function() {
 
                         musicButton.classList.add(
                             "playing"
@@ -2570,13 +2570,16 @@
                     }
                 )
                 .catch(
-                    () => {
+                    function() {
 
                         /*
-                            If browser still blocks
-                            playback, the visitor can
-                            use the music button.
+                            Do not break the invitation
+                            if the browser blocks autoplay.
                         */
+
+                        musicButton.classList.remove(
+                            "playing"
+                        );
 
                     }
                 );
@@ -2584,30 +2587,21 @@
         }
 
         /*
-            VERY IMPORTANT:
+            NO AUTOMATIC SCROLL.
 
-            No automatic scrolling.
-
-            We deliberately do NOT call:
-
+            Nothing here calls:
             scrollIntoView()
-            window.scrollTo()
-            window.scrollBy()
+            scrollTo()
+            scrollBy()
 
-            The visitor decides when to scroll.
+            The user manually scrolls.
         */
 
     }
 
 
     /* =====================================================
-       COVER INTERACTION
-
-       POINTER EVENT WORKS FOR:
-       - Mouse
-       - Touch
-       - Stylus
-       - Trackpad
+       COVER POINTER
     ===================================================== */
 
     coverScene.addEventListener(
@@ -2622,12 +2616,9 @@
     );
 
 
-    /*
-        Keyboard accessibility.
-
-        Enter or Space while the cover
-        is focused can also open it.
-    */
+    /* =====================================================
+       KEYBOARD ACCESS
+    ===================================================== */
 
     coverScene.setAttribute(
         "tabindex",
@@ -2640,10 +2631,8 @@
         function(event) {
 
             if (
-                event.key ===
-                "Enter" ||
-                event.key ===
-                " "
+                event.key === "Enter" ||
+                event.key === " "
             ) {
 
                 event.preventDefault();
@@ -2712,25 +2701,30 @@
 
     musicButton.addEventListener(
         "click",
-        async function() {
+        async function(event) {
+
+            /*
+                Prevent this click from doing anything
+                to the cover interaction.
+            */
+
+            event.stopPropagation();
 
 
             if (
                 audio.paused
             ) {
 
-
                 try {
 
                     await audio.play();
-
 
                     musicButton.classList.add(
                         "playing"
                     );
 
-
-                } catch (
+                }
+                catch (
                     error
                 ) {
 
@@ -2740,17 +2734,14 @@
 
                 }
 
-
-            } else {
-
+            }
+            else {
 
                 audio.pause();
-
 
                 musicButton.classList.remove(
                     "playing"
                 );
-
 
             }
 
