@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    >
 
     <meta name="theme-color" content="#3b171c">
 
@@ -27,14 +29,19 @@
         }
 
         body {
-            background: #241113;
-            color: #f7eee5;
+            background: #2b1115;
+            color: #f8eee4;
             font-family: Georgia, "Times New Roman", serif;
             overflow-x: hidden;
         }
 
+        body.locked {
+            overflow: hidden;
+        }
+
+
         /* =========================================================
-           GLOBAL
+           COMMON
         ========================================================= */
 
         .page {
@@ -46,27 +53,17 @@
 
         .content {
             position: relative;
-            z-index: 3;
+            z-index: 5;
         }
 
         .gold {
             color: #d8b77a;
         }
 
-        .cream-text {
-            color: #f8eee3;
-        }
-
-        .small-caps {
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            font-size: 0.72rem;
-        }
-
         .ornament {
-            width: 80px;
+            width: 82px;
             height: 1px;
-            background: rgba(216, 183, 122, 0.7);
+            background: rgba(184, 139, 72, 0.65);
             margin: 22px auto;
             position: relative;
         }
@@ -76,10 +73,15 @@
             content: "";
             position: absolute;
             top: 50%;
+
             width: 5px;
             height: 5px;
-            border: 1px solid #d8b77a;
-            transform: translateY(-50%) rotate(45deg);
+
+            border: 1px solid #b88b48;
+
+            transform:
+                translateY(-50%)
+                rotate(45deg);
         }
 
         .ornament::before {
@@ -90,342 +92,819 @@
             right: -5px;
         }
 
+
         /* =========================================================
-           COVER
+           OPENING COVER
         ========================================================= */
 
-        .cover {
-            min-height: 100vh;
+        .opening {
+            position: fixed;
+            inset: 0;
+
+            z-index: 2000;
+
             background-image:
                 linear-gradient(
-                    rgba(35, 14, 17, 0.08),
-                    rgba(35, 14, 17, 0.18)
+                    rgba(35, 16, 18, 0.10),
+                    rgba(35, 16, 18, 0.10)
                 ),
-                url("images/cover.jpg.jpeg");
+                url("images/cover.jpg");
 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
 
             display: flex;
-            align-items: flex-end;
+            align-items: center;
             justify-content: center;
 
-            text-align: center;
+            transition:
+                opacity 1.2s ease,
+                visibility 1.2s ease;
         }
 
-        .cover-content {
-            width: min(90%, 650px);
-            padding: 0 20px 8vh;
-            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.35);
+
+        /*
+           Dark transparent layer makes the seal stand out
+           without destroying the artwork.
+        */
+
+        .opening::before {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(255,255,255,0.08),
+                    rgba(0,0,0,0.10)
+                );
+
+            pointer-events: none;
         }
 
-        .cover-scroll {
-            display: inline-flex;
-            flex-direction: column;
+
+        .opening-content {
+            position: relative;
+
+            width: min(90vw, 480px);
+            height: min(90vw, 650px);
+
+            display: flex;
             align-items: center;
-            gap: 9px;
+            justify-content: center;
+        }
 
-            color: #fff8ef;
-            text-decoration: none;
+
+        /* =========================================================
+           SEAL
+        ========================================================= */
+
+        .seal-area {
+            position: relative;
+
+            width: 145px;
+            height: 145px;
+
+            cursor: pointer;
+
+            z-index: 20;
+
+            filter:
+                drop-shadow(
+                    0 10px 15px rgba(0,0,0,0.28)
+                );
+
+            transition:
+                transform 0.35s ease;
+        }
+
+        .seal-area:hover {
+            transform: scale(1.04);
+        }
+
+
+        /*
+           The seal has two identical halves.
+           When opened, the halves separate.
+        */
+
+        .seal-half {
+            position: absolute;
+
+            inset: 0;
+
+            width: 145px;
+            height: 145px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle at 38% 30%,
+                    #a94a48 0%,
+                    #76252b 40%,
+                    #4b151d 75%,
+                    #341016 100%
+                );
+
+            border:
+                3px solid rgba(219, 174, 103, 0.85);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+
+            transition:
+                transform 1.1s cubic-bezier(.22,.61,.36,1),
+                opacity 0.9s ease;
+        }
+
+
+        /*
+           Left half
+        */
+
+        .seal-left {
+            clip-path:
+                polygon(
+                    0 0,
+                    50% 0,
+                    50% 100%,
+                    0 100%
+                );
+        }
+
+
+        /*
+           Right half
+        */
+
+        .seal-right {
+            clip-path:
+                polygon(
+                    50% 0,
+                    100% 0,
+                    100% 100%,
+                    50% 100%
+                );
+        }
+
+
+        /* Decorative inner seal */
+
+        .seal-left::before,
+        .seal-right::before {
+            content: "";
+
+            position: absolute;
+
+            width: 112px;
+            height: 112px;
+
+            border:
+                1px solid rgba(231, 196, 133, 0.7);
+
+            border-radius: 50%;
+        }
+
+
+        /* S&A lettering */
+
+        .seal-text {
+            position: absolute;
+
+            left: 0;
+            right: 0;
+
+            text-align: center;
+
+            color: #f2d39a;
+
+            font-size: 2rem;
+
+            letter-spacing: 3px;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-weight: normal;
+
+            pointer-events: none;
+        }
+
+
+        /*
+           Tiny decorative dots around seal
+        */
+
+        .seal-dots {
+            position: absolute;
+
+            inset: 18px;
+
+            border-radius: 50%;
+
+            border:
+                1px dashed rgba(239, 207, 150, 0.45);
+
+            pointer-events: none;
+        }
+
+
+        /* =========================================================
+           TAP MESSAGE
+        ========================================================= */
+
+        .tap-message {
+            position: absolute;
+
+            top: calc(50% + 105px);
+
+            width: 100%;
+
+            text-align: center;
+
+            color: #fff2df;
 
             font-size: 0.68rem;
+
             letter-spacing: 4px;
+
             text-transform: uppercase;
 
-            animation: gentleFloat 2.5s ease-in-out infinite;
+            opacity: 0.9;
+
+            animation:
+                tapPulse 2.2s ease-in-out infinite;
+
+            pointer-events: none;
         }
 
-        .scroll-arrow {
-            width: 24px;
-            height: 24px;
-            border-right: 1px solid #d8b77a;
-            border-bottom: 1px solid #d8b77a;
-            transform: rotate(45deg);
-        }
+        @keyframes tapPulse {
 
-        @keyframes gentleFloat {
-            0%, 100% {
+            0%,
+            100% {
+                opacity: 0.45;
                 transform: translateY(0);
             }
 
             50% {
-                transform: translateY(7px);
+                opacity: 1;
+                transform: translateY(-5px);
             }
         }
 
+
         /* =========================================================
-           INVITATION SECTION
+           SEAL OPEN STATE
+        ========================================================= */
+
+        .opening.opened .seal-left {
+            transform:
+                translateX(-120px)
+                rotate(-22deg);
+
+            opacity: 0;
+        }
+
+        .opening.opened .seal-right {
+            transform:
+                translateX(120px)
+                rotate(22deg);
+
+            opacity: 0;
+        }
+
+        .opening.opened .tap-message {
+            opacity: 0;
+        }
+
+
+        /*
+           Opening page disappears after the seal breaks.
+        */
+
+        .opening.opened {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+
+        /* =========================================================
+           LITTLE LIGHT FLASH WHEN SEAL BREAKS
+        ========================================================= */
+
+        .seal-flash {
+            position: absolute;
+
+            width: 20px;
+            height: 20px;
+
+            border-radius: 50%;
+
+            background: rgba(255, 235, 190, 0.9);
+
+            opacity: 0;
+
+            transform: scale(0);
+
+            pointer-events: none;
+
+            z-index: 30;
+        }
+
+        .opening.opened .seal-flash {
+            animation: sealFlash 0.9s ease-out forwards;
+        }
+
+        @keyframes sealFlash {
+
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+
+            25% {
+                opacity: 0.9;
+                transform: scale(2);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(18);
+            }
+        }
+
+
+        /* =========================================================
+           INVITATION / CREAM PAGE
         ========================================================= */
 
         .invitation {
             min-height: 100vh;
 
             background-image:
-                linear-gradient(
-                    rgba(250, 239, 226, 0.04),
-                    rgba(250, 239, 226, 0.04)
-                ),
-                url("images/background-cream.jpg.jpeg");
+                url(
+                    "images/background-cream.jpg.jpeg"
+                );
 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
 
             display: flex;
+
             align-items: center;
             justify-content: center;
 
-            padding: 100px 20px;
+            padding:
+                110px
+                22px
+                110px;
+
             text-align: center;
 
-            color: #3c2020;
+            color: #422326;
         }
 
         .invitation-content {
             width: min(92%, 720px);
-            padding: 60px 20px;
+
+            padding:
+                55px
+                20px;
         }
 
-        .invitation-intro {
-            font-size: 0.78rem;
-            letter-spacing: 3px;
-            line-height: 1.8;
-            text-transform: uppercase;
-            color: #79565a;
-            margin-bottom: 30px;
-        }
 
         .bismillah {
-            font-size: 1.15rem;
+            font-size: 1rem;
+
             font-style: italic;
-            margin-bottom: 28px;
-            color: #5a3033;
+
+            line-height: 1.8;
+
+            color: #5b383b;
+
+            margin-bottom: 25px;
         }
 
+
         .invite-text {
-            max-width: 580px;
-            margin: 0 auto 38px;
+            max-width: 590px;
+
+            margin: 0 auto 35px;
+
             font-size: 1rem;
-            line-height: 1.9;
-            color: #604344;
+
+            line-height: 2;
+
+            color: #64484a;
         }
+
 
         .couple-names {
             display: flex;
+
             align-items: center;
             justify-content: center;
-            gap: 18px;
+
             flex-wrap: wrap;
 
-            margin: 30px 0;
+            gap: 18px;
+
+            margin: 32px 0;
         }
+
 
         .name {
-            font-size: clamp(2.2rem, 7vw, 4.5rem);
+            font-size:
+                clamp(
+                    2.2rem,
+                    7vw,
+                    4.5rem
+                );
+
             font-weight: normal;
+
             line-height: 1.1;
-            color: #421d21;
+
+            color: #481f24;
         }
 
+
         .ampersand {
-            font-size: clamp(1.7rem, 5vw, 2.8rem);
+            font-size:
+                clamp(
+                    1.7rem,
+                    5vw,
+                    2.7rem
+                );
+
             font-style: italic;
-            color: #a67d43;
+
+            color: #a37a43;
         }
+
+
+        /* =========================================================
+           FAMILY DETAILS
+        ========================================================= */
 
         .family-details {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+
+            grid-template-columns:
+                1fr 1fr;
+
             gap: 50px;
-            max-width: 700px;
-            margin: 45px auto 0;
+
+            max-width: 720px;
+
+            margin:
+                48px auto
+                0;
         }
 
+
         .family-block {
-            padding: 0 15px;
+            padding:
+                0
+                12px;
         }
+
 
         .family-label {
             text-transform: uppercase;
-            letter-spacing: 2.5px;
-            font-size: 0.68rem;
-            color: #987b6c;
+
+            letter-spacing: 3px;
+
+            font-size: 0.65rem;
+
+            color: #98796d;
+
             margin-bottom: 14px;
         }
 
+
         .family-name {
             font-size: 1rem;
-            line-height: 1.7;
-            color: #4b292b;
+
+            line-height: 1.75;
+
+            color: #4c292d;
         }
+
 
         .family-role {
-            font-size: 0.78rem;
+            font-size: 0.76rem;
+
             line-height: 1.65;
-            color: #775e59;
-            margin-top: 5px;
+
+            color: #765b58;
+
+            margin-top: 7px;
         }
 
+
         /* =========================================================
-           EVENT SECTION
+           BURGUNDY EVENT PAGE
         ========================================================= */
 
         .event {
             min-height: 100vh;
 
             background-image:
-                linear-gradient(
-                    rgba(45, 13, 19, 0.16),
-                    rgba(45, 13, 19, 0.16)
-                ),
-                url("images/background-burgundy.jpg.jpegc");
+                url(
+                    "images/background-burgundy.jpg.jpeg"
+                );
 
             background-size: cover;
+
             background-position: center;
+
             background-repeat: no-repeat;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             text-align: center;
-            padding: 100px 20px;
+
+            padding:
+                110px
+                22px;
         }
+
 
         .event-content {
             width: min(92%, 700px);
-            padding: 50px 20px;
+
+            padding:
+                55px
+                20px;
         }
+
+
+        .event-small {
+            text-transform: uppercase;
+
+            letter-spacing: 4px;
+
+            font-size: 0.68rem;
+
+            color: #dfc087;
+        }
+
 
         .event-title {
-            font-size: clamp(2.2rem, 6vw, 4.5rem);
+            font-size:
+                clamp(
+                    2.3rem,
+                    7vw,
+                    4.5rem
+                );
+
             font-weight: normal;
-            margin: 25px 0 35px;
-            color: #f7eee4;
+
+            line-height: 1.15;
+
+            color: #fff0dd;
+
+            margin:
+                25px
+                0
+                30px;
         }
+
 
         .event-date {
-            font-size: clamp(1.2rem, 3vw, 1.65rem);
+            font-size:
+                clamp(
+                    1.2rem,
+                    3.5vw,
+                    1.65rem
+                );
+
             letter-spacing: 2px;
-            color: #e0c28c;
-            margin-bottom: 12px;
+
+            color: #e4c486;
+
+            margin-bottom: 13px;
         }
+
 
         .event-time {
-            font-size: 1rem;
+            font-size: 0.9rem;
+
             letter-spacing: 3px;
-            color: #f2ded0;
-            margin-bottom: 45px;
+
+            color: #f1ddd0;
+
+            margin-bottom: 50px;
         }
+
 
         .venue-name {
-            font-size: clamp(1.3rem, 4vw, 2rem);
+            font-size:
+                clamp(
+                    1.35rem,
+                    4vw,
+                    2rem
+                );
+
             line-height: 1.4;
-            margin-bottom: 8px;
+
             color: #fff4e8;
+
+            margin-bottom: 8px;
         }
 
+
         .venue-address {
-            color: #e5cfc3;
             font-size: 0.9rem;
+
             line-height: 1.7;
-            margin-bottom: 30px;
+
+            color: #e4cdc0;
+
+            margin-bottom: 32px;
         }
+
 
         .venue-button {
             display: inline-block;
 
-            padding: 13px 28px;
+            padding:
+                13px
+                28px;
 
-            border: 1px solid rgba(216, 183, 122, 0.8);
-            color: #f4dfbc;
+            border:
+                1px solid
+                rgba(220, 183, 112, 0.8);
+
+            color: #f2d39d;
 
             text-decoration: none;
+
             text-transform: uppercase;
+
             letter-spacing: 3px;
-            font-size: 0.68rem;
+
+            font-size: 0.66rem;
 
             transition:
-                background 0.3s ease,
-                color 0.3s ease,
-                transform 0.3s ease;
+                all 0.3s ease;
         }
 
+
         .venue-button:hover {
-            background: #d8b77a;
-            color: #3b171c;
+            background: #d7b473;
+
+            color: #35151a;
+
             transform: translateY(-2px);
         }
 
+
         .blessing {
             max-width: 500px;
-            margin: 55px auto 0;
+
+            margin:
+                55px auto
+                0;
 
             font-size: 1rem;
+
             line-height: 1.9;
+
             font-style: italic;
+
             color: #eadbd0;
         }
 
+
         /* =========================================================
-           CHILDHOOD MEMORY
+           MEMORY
         ========================================================= */
 
         .memory {
             min-height: 100vh;
-            background: #f3e7d8;
+
+            background:
+                #f1e4d4;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
-            padding: 100px 20px;
             text-align: center;
 
-            color: #3b2022;
+            padding:
+                110px
+                22px;
+
+            color: #422528;
         }
+
 
         .memory-content {
             width: min(92%, 700px);
         }
 
-        .memory-heading {
-            font-size: clamp(2rem, 6vw, 3.7rem);
-            font-weight: normal;
-            line-height: 1.2;
-            margin-bottom: 35px;
-            color: #4a2428;
+
+        .memory-small {
+            text-transform: uppercase;
+
+            letter-spacing: 4px;
+
+            font-size: 0.67rem;
+
+            color: #947468;
         }
+
+
+        .memory-heading {
+            font-size:
+                clamp(
+                    2rem,
+                    6vw,
+                    3.7rem
+                );
+
+            font-weight: normal;
+
+            line-height: 1.25;
+
+            color: #4a2529;
+
+            margin:
+                25px
+                0
+                35px;
+        }
+
 
         .photo-frame {
             width: min(100%, 560px);
+
             margin: 0 auto;
 
             padding: 12px;
 
-            background: #f8efe5;
+            background:
+                #f9f0e6;
 
             box-shadow:
-                0 18px 45px rgba(60, 30, 30, 0.15);
+                0
+                18px
+                45px
+                rgba(61, 30, 30, 0.16);
 
-            transform: rotate(-0.7deg);
+            transform:
+                rotate(-0.7deg);
         }
+
 
         .photo-frame img {
             display: block;
+
             width: 100%;
+
             height: auto;
         }
 
+
         .memory-caption {
             max-width: 600px;
-            margin: 35px auto 0;
 
-            font-size: clamp(1.15rem, 3vw, 1.55rem);
+            margin:
+                35px auto
+                0;
+
+            font-size:
+                clamp(
+                    1.15rem,
+                    3vw,
+                    1.55rem
+                );
+
             line-height: 1.6;
+
             color: #5b3336;
         }
+
 
         /* =========================================================
            ENDING
@@ -435,71 +914,127 @@
             min-height: 100vh;
 
             background-image:
-                linear-gradient(
-                    rgba(38, 17, 20, 0.12),
-                    rgba(38, 17, 20, 0.12)
-                ),
                 url("images/ending-frame.jpg");
 
             background-size: cover;
+
             background-position: center;
+
             background-repeat: no-repeat;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             text-align: center;
-            padding: 100px 20px;
+
+            padding:
+                110px
+                22px;
         }
+
 
         .ending-content {
             width: min(92%, 650px);
         }
 
+
         .ending-title {
-            font-size: clamp(1rem, 3vw, 1.35rem);
+            font-size:
+                clamp(
+                    0.9rem,
+                    3vw,
+                    1.25rem
+                );
+
             letter-spacing: 5px;
+
             text-transform: uppercase;
-            color: #f1d9b2;
-            margin-bottom: 30px;
+
+            color: #f0d5ad;
+
+            margin-bottom: 28px;
         }
 
+
         .ending-monogram {
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(4rem, 13vw, 7rem);
+            font-size:
+                clamp(
+                    4rem,
+                    13vw,
+                    7rem
+                );
+
             font-weight: normal;
-            color: #fff1df;
-            margin-bottom: 25px;
+
             letter-spacing: 5px;
+
+            color: #fff0dd;
         }
+
 
         .ending-message {
             max-width: 520px;
-            margin: 0 auto 50px;
+
+            margin:
+                0 auto
+                48px;
 
             font-size: 1rem;
+
             line-height: 1.9;
 
             color: #f4e3d5;
         }
 
-        .compliments {
-            padding-top: 30px;
 
+        .compliments {
             font-size: 0.78rem;
-            line-height: 1.8;
+
+            line-height: 1.9;
+
             letter-spacing: 1px;
 
             color: #ead1bf;
         }
 
+
         .compliments strong {
             display: block;
+
             color: #f1d29e;
+
             font-size: 0.9rem;
+
             margin-bottom: 5px;
         }
+
+
+        /* =========================================================
+           REVEAL ANIMATION
+        ========================================================= */
+
+        .reveal {
+            opacity: 0;
+
+            transform:
+                translateY(24px);
+
+            transition:
+                opacity 1s ease,
+                transform 1s ease;
+        }
+
+
+        .reveal.visible {
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
 
         /* =========================================================
            MUSIC BUTTON
@@ -508,73 +1043,82 @@
         .music-button {
             position: fixed;
 
-            top: 22px;
-            right: 22px;
+            top: 20px;
+            right: 20px;
 
-            z-index: 1000;
+            z-index: 1500;
 
-            width: 48px;
-            height: 48px;
+            width: 46px;
+            height: 46px;
 
             border-radius: 50%;
 
-            border: 1px solid rgba(239, 215, 174, 0.7);
+            border:
+                1px solid
+                rgba(237, 211, 166, 0.75);
 
-            background: rgba(47, 20, 24, 0.68);
+            background:
+                rgba(48, 19, 24, 0.72);
 
             backdrop-filter: blur(8px);
 
-            color: #f5dfbd;
+            color: #f3d9aa;
 
             cursor: pointer;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             font-size: 1rem;
 
+            opacity: 0;
+
+            pointer-events: none;
+
             transition:
-                transform 0.3s ease,
-                background 0.3s ease;
+                opacity 0.5s ease,
+                transform 0.3s ease;
         }
 
-        .music-button:hover {
-            transform: scale(1.08);
-            background: rgba(47, 20, 24, 0.9);
+
+        .music-button.active {
+            opacity: 1;
+
+            pointer-events: auto;
         }
+
 
         .music-button.playing {
-            animation: musicPulse 1.7s ease-in-out infinite;
+            animation:
+                musicPulse 1.7s ease-in-out infinite;
         }
 
+
         @keyframes musicPulse {
-            0%, 100% {
-                box-shadow: 0 0 0 0 rgba(216, 183, 122, 0.15);
+
+            0%,
+            100% {
+                box-shadow:
+                    0
+                    0
+                    0
+                    0
+                    rgba(216,183,122,0.15);
             }
 
             50% {
-                box-shadow: 0 0 0 10px rgba(216, 183, 122, 0.05);
+                box-shadow:
+                    0
+                    0
+                    0
+                    9px
+                    rgba(216,183,122,0.05);
             }
         }
 
-        /* =========================================================
-           REVEAL ANIMATION
-        ========================================================= */
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(25px);
-
-            transition:
-                opacity 1s ease,
-                transform 1s ease;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
 
         /* =========================================================
            MOBILE
@@ -582,12 +1126,44 @@
 
         @media (max-width: 700px) {
 
-            .cover {
-                background-position:  center;
+            .opening-content {
+                width: 100vw;
+                height: 100vh;
             }
 
-            .cover-content {
-                padding-bottom: 6vh;
+            .seal-area {
+                width: 125px;
+                height: 125px;
+            }
+
+            .seal-half {
+                width: 125px;
+                height: 125px;
+            }
+
+            .seal-half::before {
+                width: 96px;
+                height: 96px;
+            }
+
+            .seal-text {
+                font-size: 1.65rem;
+            }
+
+            .tap-message {
+                top: calc(50% + 95px);
+            }
+
+            .opening.opened .seal-left {
+                transform:
+                    translateX(-100px)
+                    rotate(-22deg);
+            }
+
+            .opening.opened .seal-right {
+                transform:
+                    translateX(100px)
+                    rotate(22deg);
             }
 
             .invitation,
@@ -595,46 +1171,44 @@
             .memory,
             .ending {
                 min-height: 100svh;
-                padding: 80px 16px;
+
+                padding:
+                    85px
+                    16px;
             }
 
-            .invitation-content {
-                padding: 35px 8px;
+            .invitation-content,
+            .event-content {
+                padding:
+                    35px
+                    8px;
             }
 
             .family-details {
                 grid-template-columns: 1fr;
+
                 gap: 32px;
             }
 
             .couple-names {
                 flex-direction: column;
-                gap: 8px;
+
+                gap: 9px;
             }
 
             .ampersand {
                 line-height: 1;
             }
 
-            .event-content {
-                padding: 30px 10px;
-            }
-
-            .event-time {
-                margin-bottom: 35px;
-            }
-
-            .blessing {
-                margin-top: 40px;
-            }
-
             .music-button {
-                width: 44px;
-                height: 44px;
-                top: 16px;
-                right: 16px;
+                width: 43px;
+                height: 43px;
+
+                top: 15px;
+                right: 15px;
             }
         }
+
 
         /* =========================================================
            REDUCED MOTION
@@ -642,80 +1216,146 @@
 
         @media (prefers-reduced-motion: reduce) {
 
-            html {
-                scroll-behavior: auto;
-            }
-
             *,
             *::before,
             *::after {
                 animation-duration: 0.01ms !important;
+
                 animation-iteration-count: 1 !important;
+
                 transition-duration: 0.01ms !important;
+            }
+
+            html {
+                scroll-behavior: auto;
             }
         }
 
     </style>
 </head>
 
-<body>
+
+<body class="locked">
+
 
 <!-- =========================================================
-     MUSIC
+     BACKGROUND MUSIC
 ========================================================= -->
 
-<audio id="bgm" loop preload="auto">
-    <source src="music/bgm.mp3" type="audio/mpeg">
+<audio
+        id="bgm"
+        loop
+        preload="auto">
+
+    <source
+            src="music/bgm.mp3"
+            type="audio/mpeg">
+
 </audio>
 
+
+<!-- =========================================================
+     MUSIC BUTTON
+========================================================= -->
+
 <button
-        class="music-button"
         id="musicButton"
-        aria-label="Play background music"
+        class="music-button"
+        aria-label="Play music"
         title="Music">
+
     ♫
+
 </button>
 
 
 <!-- =========================================================
-     1. COVER
+     OPENING COVER
 ========================================================= -->
 
-<section class="page cover" id="cover">
+<div
+        id="opening"
+        class="opening">
 
-    <div class="cover-content">
+    <div class="opening-content">
 
-        <a href="#invitation" class="cover-scroll">
-            <span>Scroll to open</span>
-            <span class="scroll-arrow"></span>
-        </a>
+
+        <!-- SEAL -->
+
+        <div
+                id="seal"
+                class="seal-area"
+                role="button"
+                tabindex="0"
+                aria-label="Open invitation">
+
+            <div class="seal-half seal-left">
+            </div>
+
+            <div class="seal-half seal-right">
+            </div>
+
+            <div class="seal-dots">
+            </div>
+
+            <div class="seal-text">
+                S &amp; A
+            </div>
+
+        </div>
+
+
+        <!-- LIGHT FLASH -->
+
+        <div class="seal-flash">
+        </div>
+
+
+        <!-- TAP INSTRUCTION -->
+
+        <div class="tap-message">
+            Tap to open
+        </div>
 
     </div>
 
-</section>
+</div>
+
 
 
 <!-- =========================================================
-     2. INVITATION
+     1. INVITATION
 ========================================================= -->
 
-<section class="page invitation" id="invitation">
+<section
+        id="invitation"
+        class="page invitation">
 
     <div class="content invitation-content">
+
 
         <div class="reveal">
 
             <div class="bismillah">
-                In the name of Allah, the most gracious,
+
+                In the name of Allah,
+                the most gracious,
                 the most merciful
+
             </div>
 
-            <div class="ornament"></div>
+
+            <div class="ornament">
+            </div>
+
 
             <p class="invite-text">
-                We cordially invite your esteemed presence
-                with family for the wedding reception of
-                our beloved children.
+
+                We cordially invite your esteemed
+                presence with family for the
+                Wedding Reception of our beloved
+                children.
+
             </p>
 
         </div>
@@ -730,7 +1370,7 @@
                 </div>
 
                 <div class="ampersand">
-                    &
+                    &amp;
                 </div>
 
                 <div class="name">
@@ -742,10 +1382,12 @@
         </div>
 
 
-        <div class="ornament"></div>
+        <div class="ornament">
+        </div>
 
 
         <div class="family-details">
+
 
             <div class="family-block reveal">
 
@@ -754,17 +1396,25 @@
                 </div>
 
                 <div class="family-name">
+
                     Sirajudeen K P
+                    <br>
                     &amp;
+                    <br>
                     Shereena P
+
                 </div>
 
                 <div class="family-role">
-                    Asst Engineer, KSEB (Rtd.)<br>
+
+                    Asst Engineer, KSEB (Rtd.)
+                    <br>
                     Teacher, Govt Brennen HSS
+
                 </div>
 
             </div>
+
 
 
             <div class="family-block reveal">
@@ -774,16 +1424,23 @@
                 </div>
 
                 <div class="family-name">
+
                     Ali Ashraf
+                    <br>
                     &amp;
+                    <br>
                     Thajunissa
+
                 </div>
 
                 <div class="family-role">
+
                     Alukkal, Areekode
+
                 </div>
 
             </div>
+
 
         </div>
 
@@ -792,58 +1449,80 @@
 </section>
 
 
+
 <!-- =========================================================
-     3. EVENT DETAILS
+     2. BURGUNDY EVENT DETAILS
 ========================================================= -->
 
-<section class="page event" id="event">
+<section
+        id="event"
+        class="page event">
 
     <div class="content event-content">
 
+
         <div class="reveal">
 
-            <div class="small-caps gold">
+            <div class="event-small">
+
                 You are warmly invited
+
             </div>
+
 
             <h1 class="event-title">
+
                 Wedding Reception
+
             </h1>
 
-            <div class="ornament"></div>
 
-            <div class="event-date">
-                Sunday, 27 December 2026
+            <div class="ornament">
             </div>
 
+
+            <div class="event-date">
+
+                Sunday, 27 December 2026
+
+            </div>
+
+
             <div class="event-time">
+
                 5:00 PM – 10:00 PM
+
             </div>
 
         </div>
 
 
+
         <div class="reveal">
 
             <div class="venue-name">
+
                 Krishnapillai Memorial Auditorium
+
             </div>
 
+
             <div class="venue-address">
+
                 MLA Road, Kovoor, Calicut
+
             </div>
 
 
             <!--
-                IMPORTANT:
-                Replace VENUE_LINK_HERE with the actual
-                Google Maps link for the venue.
+                REPLACE THIS WITH THE ACTUAL
+                GOOGLE MAPS LINK.
             -->
 
             <a
-                    class="venue-button"
                     id="venueLink"
-                    href="https://share.google/rIXQio13ttwYFao2P"
+                    class="venue-button"
+                    href="https://share.google/haCW8VIf1sYF9aXHb"
                     target="_blank"
                     rel="noopener noreferrer">
 
@@ -854,88 +1533,126 @@
         </div>
 
 
+
         <div class="reveal">
 
             <p class="blessing">
-                Your presence and blessings will make this
-                joyous occasion truly special.
+
+                Your presence and blessings will make
+                this joyous occasion truly special.
+
             </p>
 
         </div>
+
 
     </div>
 
 </section>
 
 
+
 <!-- =========================================================
-     4. CHILDHOOD MEMORY
+     3. CHILDHOOD MEMORY
 ========================================================= -->
 
-<section class="page memory" id="memory">
+<section
+        id="memory"
+        class="page memory">
 
     <div class="content memory-content">
 
+
         <div class="reveal">
 
-            <div class="small-caps">
+            <div class="memory-small">
+
                 A little memory
+
             </div>
 
-            <div class="ornament"></div>
+
+            <div class="ornament">
+            </div>
+
 
             <h2 class="memory-heading">
-                And then, somehow,<br>
+
+                And then, somehow,
+                <br>
                 they grew up.
+
             </h2>
 
         </div>
+
 
 
         <div class="photo-frame reveal">
 
             <img
                     src="images/couple-childhood.jpg.jpeg"
-                    alt="Sanjeedh and Minha childhood photograph">
+                    alt="Childhood photograph">
 
         </div>
 
 
+
         <p class="memory-caption reveal">
-            These kids grew up and they’re getting married!! ❤️✨
+
+            These kids grew up and they’re
+            getting married!! ❤️✨
+
         </p>
+
 
     </div>
 
 </section>
 
 
+
 <!-- =========================================================
-     5. ENDING
+     4. ENDING
 ========================================================= -->
 
-<section class="page ending" id="ending">
+<section
+        id="ending"
+        class="page ending">
 
     <div class="content ending-content">
+
 
         <div class="reveal">
 
             <div class="ending-title">
+
                 With love &amp; blessings
+
             </div>
+
 
             <div class="ending-monogram">
+
                 S &amp; A
+
             </div>
 
-            <div class="ornament"></div>
+
+            <div class="ornament">
+            </div>
+
 
             <p class="ending-message">
-                We would be honoured to have you celebrate
-                this beautiful beginning with us.
+
+                We would be honoured to have you
+                celebrate this beautiful beginning
+                with us.
+
             </p>
 
         </div>
+
 
 
         <div class="compliments reveal">
@@ -944,15 +1661,21 @@
                 Best Compliments
             </strong>
 
-            Shedha Siraj<br>
-            Essar Associates, Calicut<br>
+            Shedha Siraj
+            <br>
+
+            Essar Associates, Calicut
+            <br>
+
             +91 9447537874
 
         </div>
 
+
     </div>
 
 </section>
+
 
 
 <!-- =========================================================
@@ -961,6 +1684,135 @@
 
 <script>
 
+
+    /* =========================================================
+       ELEMENTS
+    ========================================================= */
+
+    const opening =
+        document.getElementById("opening");
+
+    const seal =
+        document.getElementById("seal");
+
+    const musicButton =
+        document.getElementById("musicButton");
+
+    const audio =
+        document.getElementById("bgm");
+
+
+    let invitationOpened = false;
+
+
+    /* =========================================================
+       OPEN INVITATION
+    ========================================================= */
+
+    function openInvitation() {
+
+        if (invitationOpened) {
+            return;
+        }
+
+        invitationOpened = true;
+
+
+        /*
+           Trigger the seal split animation.
+        */
+
+        opening.classList.add("opened");
+
+
+        /*
+           Unlock page scrolling.
+        */
+
+        document.body.classList.remove("locked");
+
+
+        /*
+           Show music control.
+        */
+
+        musicButton.classList.add("active");
+
+
+        /*
+           Try to start music after the user's
+           tap. This satisfies browser autoplay rules.
+        */
+
+        audio.volume = 0.35;
+
+        audio.play()
+            .then(() => {
+
+                musicButton.classList.add("playing");
+
+            })
+            .catch(() => {
+
+                /*
+                   If browser blocks it, the user
+                   can press the music button.
+                */
+
+            });
+
+
+        /*
+           Begin showing the invitation shortly
+           after the seal breaks.
+        */
+
+        setTimeout(() => {
+
+            document
+                .getElementById("invitation")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+        }, 950);
+
+    }
+
+
+    /* =========================================================
+       TAP / CLICK
+    ========================================================= */
+
+    seal.addEventListener(
+        "click",
+        openInvitation
+    );
+
+
+    /* =========================================================
+       KEYBOARD ACCESSIBILITY
+    ========================================================= */
+
+    seal.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (
+                event.key === "Enter" ||
+                event.key === " "
+            ) {
+
+                event.preventDefault();
+
+                openInvitation();
+
+            }
+
+        }
+    );
+
+
     /* =========================================================
        SCROLL REVEAL
     ========================================================= */
@@ -968,19 +1820,26 @@
     const revealElements =
         document.querySelectorAll(".reveal");
 
+
     const observer =
         new IntersectionObserver(
-            (entries) => {
+            function(entries) {
 
-                entries.forEach((entry) => {
+                entries.forEach(
+                    function(entry) {
 
-                    if (entry.isIntersecting) {
+                        if (
+                            entry.isIntersecting
+                        ) {
 
-                        entry.target.classList.add("visible");
+                            entry.target
+                                .classList
+                                .add("visible");
+
+                        }
 
                     }
-
-                });
+                );
 
             },
             {
@@ -989,96 +1848,22 @@
         );
 
 
-    revealElements.forEach((element) => {
+    revealElements.forEach(
+        function(element) {
 
-        observer.observe(element);
+            observer.observe(element);
 
-    });
-
-
-    /* =========================================================
-       MUSIC
-    ========================================================= */
-
-    const audio =
-        document.getElementById("bgm");
-
-    const musicButton =
-        document.getElementById("musicButton");
-
-    let musicStarted = false;
-
-
-    function updateMusicButton() {
-
-        if (!audio.paused) {
-
-            musicButton.classList.add("playing");
-
-            musicButton.innerHTML = "♫";
-
-            musicButton.setAttribute(
-                "aria-label",
-                "Pause background music"
-            );
-
-        } else {
-
-            musicButton.classList.remove("playing");
-
-            musicButton.innerHTML = "♫";
-
-            musicButton.setAttribute(
-                "aria-label",
-                "Play background music"
-            );
-
-        }
-
-    }
-
-
-    async function startMusic() {
-
-        if (musicStarted) {
-            return;
-        }
-
-        try {
-
-            await audio.play();
-
-            musicStarted = true;
-
-            updateMusicButton();
-
-        } catch (error) {
-
-            /*
-                Browser blocked autoplay.
-                Music will start when the user presses
-                the music button.
-            */
-
-        }
-
-    }
-
-
-    document.addEventListener(
-        "click",
-        startMusic,
-        {
-            once: true
         }
     );
 
 
+    /* =========================================================
+       MUSIC BUTTON
+    ========================================================= */
+
     musicButton.addEventListener(
         "click",
-        async (event) => {
-
-            event.stopPropagation();
+        async function() {
 
             if (audio.paused) {
 
@@ -1086,12 +1871,14 @@
 
                     await audio.play();
 
-                    musicStarted = true;
+                    musicButton
+                        .classList
+                        .add("playing");
 
                 } catch (error) {
 
                     console.log(
-                        "Music could not be played."
+                        "Music playback blocked."
                     );
 
                 }
@@ -1100,9 +1887,11 @@
 
                 audio.pause();
 
-            }
+                musicButton
+                    .classList
+                    .remove("playing");
 
-            updateMusicButton();
+            }
 
         }
     );
@@ -1118,7 +1907,7 @@
 
     venueLink.addEventListener(
         "click",
-        function (event) {
+        function(event) {
 
             if (
                 this.getAttribute("href")
@@ -1129,7 +1918,7 @@
                 event.preventDefault();
 
                 alert(
-                    "The Google Maps location will be added here."
+                    "The Google Maps link has not been added yet."
                 );
 
             }
@@ -1137,46 +1926,6 @@
         }
     );
 
-
-    /* =========================================================
-       FADE COVER SLIGHTLY WHILE SCROLLING
-    ========================================================= */
-
-    const cover =
-        document.getElementById("cover");
-
-
-    window.addEventListener(
-        "scroll",
-        () => {
-
-            const scrollY =
-                window.scrollY;
-
-            const coverHeight =
-                window.innerHeight;
-
-            if (scrollY < coverHeight) {
-
-                const opacity =
-                    1 -
-                    (scrollY /
-                    coverHeight) *
-                    0.35;
-
-                cover.style.opacity =
-                    Math.max(
-                        opacity,
-                        0.65
-                    );
-
-            }
-
-        },
-        {
-            passive: true
-        }
-    );
 
 </script>
 
