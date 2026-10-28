@@ -1261,6 +1261,95 @@
             font-size: .9rem;
 
         }
+                /* =========================================================
+           COUNTDOWN
+        ========================================================= */
+
+        .countdown-wrapper {
+            margin: 35px auto 45px;
+            text-align: center;
+        }
+
+        .countdown-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: .62rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #e9cc9b;
+            margin-bottom: 20px;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .countdown-item {
+            min-width: 58px;
+            text-align: center;
+        }
+
+        .countdown-number {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            line-height: 1;
+            color: #fff0df;
+        }
+
+        .countdown-label {
+            margin-top: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: .48rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #e9cc9b;
+        }
+
+        .countdown-separator {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: #d4ae72;
+            line-height: 1;
+        }
+
+        .countdown-date {
+            margin-top: 18px;
+            font-family: 'El Messiri', serif;
+            font-size: .78rem;
+            letter-spacing: 2px;
+            color: #eadbd0;
+        }
+
+        @media (max-width: 700px) {
+
+            .countdown {
+                gap: 7px;
+            }
+
+            .countdown-item {
+                min-width: 52px;
+            }
+
+            .countdown-number {
+                font-size: 2.1rem;
+            }
+
+            .countdown-label {
+                font-size: .43rem;
+                letter-spacing: 1.5px;
+            }
+
+            .countdown-separator {
+                font-size: 1.6rem;
+            }
+
+            .countdown-date {
+                font-size: .7rem;
+            }
+
+        }
 
 
         /* =========================================================
@@ -2057,13 +2146,101 @@
                 </div>
 
 
-                <div
-                        class="gold-line">
+                <div class="gold-line">
                 </div>
 
 
-                <p
-                        class="ending-message">
+                <!-- COUNTDOWN -->
+
+                <div class="countdown-wrapper reveal">
+
+                    <div class="countdown-title">
+                        The countdown begins
+                    </div>
+
+                    <div class="countdown">
+
+                        <div class="countdown-item">
+                            <div
+                                    class="countdown-number"
+                                    id="countdown-days"
+                            >
+                                00
+                            </div>
+
+                            <div class="countdown-label">
+                                Days
+                            </div>
+                        </div>
+
+
+                        <div class="countdown-separator">
+                            :
+                        </div>
+
+
+                        <div class="countdown-item">
+                            <div
+                                    class="countdown-number"
+                                    id="countdown-hours"
+                            >
+                                00
+                            </div>
+
+                            <div class="countdown-label">
+                                Hours
+                            </div>
+                        </div>
+
+
+                        <div class="countdown-separator">
+                            :
+                        </div>
+
+
+                        <div class="countdown-item">
+                            <div
+                                    class="countdown-number"
+                                    id="countdown-minutes"
+                            >
+                                00
+                            </div>
+
+                            <div class="countdown-label">
+                                Minutes
+                            </div>
+                        </div>
+
+
+                        <div class="countdown-separator">
+                            :
+                        </div>
+
+
+                        <div class="countdown-item">
+                            <div
+                                    class="countdown-number"
+                                    id="countdown-seconds"
+                            >
+                                00
+                            </div>
+
+                            <div class="countdown-label">
+                                Seconds
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="countdown-date">
+                        27 December 2026
+                    </div>
+
+                </div>
+
+
+                <p class="ending-message">
 
                     We would be honoured to have you
                     celebrate this beautiful beginning
@@ -2832,6 +3009,114 @@
             }
 
         }
+        );
+
+
+    /* =====================================================
+       COUNTDOWN
+    ===================================================== */
+
+    const countdownTarget =
+        new Date(
+            "2026-12-27T00:00:00+05:30"
+        ).getTime();
+
+
+    function updateCountdown() {
+
+        const now =
+            new Date().getTime();
+
+        const distance =
+            countdownTarget - now;
+
+
+        if (distance <= 0) {
+
+            document.getElementById(
+                "countdown-days"
+            ).textContent = "00";
+
+            document.getElementById(
+                "countdown-hours"
+            ).textContent = "00";
+
+            document.getElementById(
+                "countdown-minutes"
+            ).textContent = "00";
+
+            document.getElementById(
+                "countdown-seconds"
+            ).textContent = "00";
+
+            return;
+
+        }
+
+
+        const days =
+            Math.floor(
+                distance /
+                (1000 * 60 * 60 * 24)
+            );
+
+
+        const hours =
+            Math.floor(
+                (distance %
+                    (1000 * 60 * 60 * 24)) /
+                (1000 * 60 * 60)
+            );
+
+
+        const minutes =
+            Math.floor(
+                (distance %
+                    (1000 * 60 * 60)) /
+                (1000 * 60)
+            );
+
+
+        const seconds =
+            Math.floor(
+                (distance %
+                    (1000 * 60)) /
+                1000
+            );
+
+
+        document.getElementById(
+            "countdown-days"
+        ).textContent =
+            String(days).padStart(2, "0");
+
+
+        document.getElementById(
+            "countdown-hours"
+        ).textContent =
+            String(hours).padStart(2, "0");
+
+
+        document.getElementById(
+            "countdown-minutes"
+        ).textContent =
+            String(minutes).padStart(2, "0");
+
+
+        document.getElementById(
+            "countdown-seconds"
+        ).textContent =
+            String(seconds).padStart(2, "0");
+
+    }
+
+
+    updateCountdown();
+
+
+    setInterval(
+        updateCountdown,
+        1000
     );
 
 
