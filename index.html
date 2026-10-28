@@ -16,15 +16,11 @@
     >
 
     <title>Sanjeedh & Minha</title>
-
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-            href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=El+Messiri:wght@400;500;600;700&family=Great+Vibes&family=Josefin+Sans:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap"
-            rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=El+Messiri:wght@400;500;600;700&family=Great+Vibes&family=Josefin+Sans:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 
     <style>
@@ -54,21 +50,6 @@
                 "Times New Roman",
                 serif;
             overflow-x: hidden;
-        }
-
-
-        /*
-            IMPORTANT:
-            Before the cover is opened, the entire document is locked.
-            This prevents the invitation pages from being scrolled
-            into view before the user touches the cover.
-        */
-
-        html.invitation-locked,
-        body.invitation-locked {
-            overflow: hidden !important;
-            height: 100% !important;
-            touch-action: none;
         }
 
 
@@ -104,6 +85,13 @@
 
             width: 100%;
 
+            /*
+                IMPORTANT FIX:
+                Use the normal viewport height instead of svh.
+                This keeps the cover at the actual visible screen
+                height on mobile browsers.
+            */
+
             height: 100vh;
 
             min-height: 100vh;
@@ -119,8 +107,6 @@
             user-select: none;
 
             -webkit-user-select: none;
-
-            z-index: 10;
 
         }
 
@@ -332,14 +318,11 @@
 
         .person-name {
 
-            font-family: 'Great Vibes';
-
-
             font-size:
                 clamp(
-                    2.5rem,
-                    8vw,
-                    5.7rem
+                    2.1rem,
+                    7vw,
+                    4.7rem
                 );
 
             font-weight: normal;
@@ -417,6 +400,16 @@
         }
 
 
+        /*
+            IMPORTANT FIX:
+
+            The old animation was continuously changing opacity,
+            so opacity: 0 alone was not enough.
+
+            animation:none + !important guarantees that
+            TOUCH TO OPEN disappears completely after opening.
+        */
+
         .cover-scene.opened
         .touch-hint {
 
@@ -493,29 +486,6 @@
 
             width: 100%;
 
-            /*
-                CRITICAL FIX:
-                The entire invitation is completely removed from
-                rendering before the cover is opened.
-
-                This prevents the second page/background from being
-                visible behind or around the cover at first glance.
-            */
-
-            display: none;
-
-        }
-
-
-        /*
-            Only after opening is the invitation flow displayed.
-        */
-
-        body.invitation-opened
-        .invitation-flow {
-
-            display: block;
-
         }
 
 
@@ -526,6 +496,11 @@
         .cream-area {
 
             position: relative;
+
+            /*
+                IMPORTANT FIX:
+                This is a complete screen, not a short section.
+            */
 
             min-height: 100vh;
 
@@ -642,48 +617,19 @@
             margin-bottom: 15px;
 
         }
-
-
         .groom-name {
 
-    font-family: 'El Messiri', serif;
+            font-size: .66rem;
 
-    font-size: 0.9rem;
+            text-transform: uppercase;
 
-    font-weight: 700;
+            letter-spacing: 3px;
 
-    text-transform: uppercase;
+            color: #98786e;
 
-    letter-spacing: 3px;
+            margin-bottom: 15px;
 
-    color: #6B1F2A;
-
-    margin-bottom: 15px;
-
-}
-        .compliments {
-    color: #e9d1c0;
-    font-size: .77rem;
-    line-height: 1.9;
-    letter-spacing: 1px;
-}
-
-.compliments strong {
-    display: block;
-    color: #efcf98;
-    margin-bottom: 6px;
-    font-size: .9rem;
-}
-
-/* Phone number */
-.compliments .phone-number {
-    display: inline-block;
-    margin-top: 8px;
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    color: #efcf98;
-}
+        }
 
 
         .family-names {
@@ -732,7 +678,7 @@
 
             background-image:
                 url(
-                    "images/background-reception.jpg.jpeg"
+                    "images/background-burgandy.jpg.jpeg"
                 );
 
             background-size: cover;
@@ -780,7 +726,7 @@
 
 
         /* =========================================================
-           BURGUNDY / RECEPTION SECTION
+           BURGUNDY SECTION
         ========================================================= */
 
         .burgundy-area {
@@ -803,16 +749,9 @@
 
             color: #fff0df;
 
-            /*
-                NEW BACKGROUND:
-                Add this file inside your images folder:
-
-                images/background-reception.jpg.jpeg
-            */
-
             background-image:
                 url(
-                    "images/background-reception.jpg.jpeg"
+                    "images/background-burgandy.jpg.jpeg"
                 );
 
             background-size: cover;
@@ -850,7 +789,6 @@
 
 
         .event-title {
-            font-family: 'El Messiri', serif;
 
             font-size:
                 clamp(
@@ -886,7 +824,6 @@
 
 
         .event-date {
-             font-family: 'Rale way', sans-serif;
 
             font-size:
                 clamp(
@@ -905,7 +842,6 @@
 
 
         .event-time {
-            font-family: 'Rale way', sans-serif;
 
             font-size: .82rem;
 
@@ -919,7 +855,6 @@
 
 
         .venue {
-            font-family: 'Montserrat', sans-serif;
 
             font-size:
                 clamp(
@@ -1059,9 +994,9 @@
 
             font-size:
                 clamp(
-                    1.5rem,
-                    4vw,
-                    3rem
+                    2.1rem,
+                    6vw,
+                    4rem
                 );
 
             font-weight: normal;
@@ -1263,6 +1198,182 @@
         }
 
 
+
+
+        /* =========================================================
+           WEDDING COUNTDOWN
+        ========================================================= */
+
+        .countdown {
+
+            margin:
+                30px auto
+                38px;
+
+            width:
+                min(560px, 100%);
+
+        }
+
+
+        .countdown-title {
+
+            font-family:
+                'Montserrat',
+                sans-serif;
+
+            font-size: .62rem;
+
+            font-weight: 500;
+
+            text-transform: uppercase;
+
+            letter-spacing: 4px;
+
+            color: #e9cc9b;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .countdown-grid {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 12px;
+
+        }
+
+
+        .countdown-item {
+
+            min-width: 72px;
+
+        }
+
+
+        .countdown-number {
+
+            display: block;
+
+            font-family:
+                'Great Vibes',
+                cursive;
+
+            font-size:
+                clamp(2rem, 6vw, 3rem);
+
+            line-height: 1;
+
+            color: #fff0df;
+
+        }
+
+
+        .countdown-label {
+
+            display: block;
+
+            margin-top: 8px;
+
+            font-family:
+                'Montserrat',
+                sans-serif;
+
+            font-size: .52rem;
+
+            font-weight: 500;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+
+            color: #d9b98a;
+
+        }
+
+
+        .countdown-separator {
+
+            font-family:
+                'Great Vibes',
+                cursive;
+
+            font-size: 1.8rem;
+
+            color: #b89560;
+
+            margin-top: -15px;
+
+        }
+
+
+        .countdown-date {
+
+            margin-top: 24px;
+
+            font-family:
+                'El Messiri',
+                serif;
+
+            font-size: .78rem;
+
+            font-weight: 500;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+
+            color: #e9d1c0;
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .countdown-grid {
+
+                gap: 5px;
+
+            }
+
+
+            .countdown-item {
+
+                min-width: 62px;
+
+            }
+
+
+            .countdown-number {
+
+                font-size: 2.25rem;
+
+            }
+
+
+            .countdown-label {
+
+                font-size: .45rem;
+
+                letter-spacing: 1.5px;
+
+            }
+
+
+            .countdown-separator {
+
+                font-size: 1.4rem;
+
+            }
+
+        }
+
         /* =========================================================
            SCROLL REVEALS
         ========================================================= */
@@ -1421,6 +1532,11 @@
 
         @media (max-width: 700px) {
 
+            /*
+                IMPORTANT FIX:
+                Do NOT use 100svh here.
+            */
+
             .cover-scene {
 
                 height: 100vh;
@@ -1429,6 +1545,11 @@
 
             }
 
+
+            /*
+                The first invitation screen must itself
+                occupy the complete display.
+            */
 
             .cream-area {
 
@@ -1557,7 +1678,7 @@
 </head>
 
 
-<body class="invitation-locked">
+<body>
 
 
 <!-- =========================================================
@@ -1678,13 +1799,6 @@
                     Minha Nourin
 
                 </div>
-                <p
-                        class="invite-copy">
-
-                    December 27th, 2026
-
-                </p>
-
 
 
             </div>
@@ -1742,6 +1856,8 @@
                 </div>
 
 
+
+
             </div>
 
 
@@ -1753,11 +1869,8 @@
 
                 <div
                         class="family-box reveal">
-
-
                     <div
                             class="groom-name">
-
                         Sanjeedh Roshan
 
                     </div>
@@ -1794,11 +1907,8 @@
 
                 <div
                         class="family-box reveal">
-
-
                     <div
                             class="groom-name">
-
                         Minha Nourin
 
                     </div>
@@ -1828,6 +1938,7 @@
                     </div>
 
 
+
                 </div>
 
 
@@ -1841,7 +1952,7 @@
 
 
     <!-- =====================================================
-         BURGUNDY / RECEPTION PAGE
+         BURGUNDY BACKGROUND
     ===================================================== -->
 
     <section
@@ -1983,9 +2094,9 @@
                 <h2
                         class="memory-title">
 
-                    "And we created you in pairs"
+                    And it all began
                     <br>
-                    [ Quran | 78:8 ]
+                    long before
 
                 </h2>
 
@@ -2062,6 +2173,125 @@
                 </div>
 
 
+
+
+                <!-- WEDDING COUNTDOWN -->
+
+                <div
+                        class="countdown reveal">
+
+
+                    <div
+                            class="countdown-title">
+
+                        The countdown begins
+
+                    </div>
+
+
+                    <div
+                            class="countdown-grid">
+
+
+                        <div
+                                class="countdown-item">
+
+                            <span
+                                    id="countdownDays"
+                                    class="countdown-number">
+                                00
+                            </span>
+
+                            <span
+                                    class="countdown-label">
+                                Days
+                            </span>
+
+                        </div>
+
+
+                        <div
+                                class="countdown-separator">
+                            :
+                        </div>
+
+
+                        <div
+                                class="countdown-item">
+
+                            <span
+                                    id="countdownHours"
+                                    class="countdown-number">
+                                00
+                            </span>
+
+                            <span
+                                    class="countdown-label">
+                                Hours
+                            </span>
+
+                        </div>
+
+
+                        <div
+                                class="countdown-separator">
+                            :
+                        </div>
+
+
+                        <div
+                                class="countdown-item">
+
+                            <span
+                                    id="countdownMinutes"
+                                    class="countdown-number">
+                                00
+                            </span>
+
+                            <span
+                                    class="countdown-label">
+                                Minutes
+                            </span>
+
+                        </div>
+
+
+                        <div
+                                class="countdown-separator">
+                            :
+                        </div>
+
+
+                        <div
+                                class="countdown-item">
+
+                            <span
+                                    id="countdownSeconds"
+                                    class="countdown-number">
+                                00
+                            </span>
+
+                            <span
+                                    class="countdown-label">
+                                Seconds
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div
+                            class="countdown-date">
+
+                        27 December 2026
+
+                    </div>
+
+
+                </div>
+
                 <p
                         class="ending-message">
 
@@ -2093,11 +2323,8 @@
                 Essar Associates, Calicut
 
                 <br>
-                <span class="phone-number">
-                    +91 9447537874
-                </span>
 
-
+                +91 9447537874
 
 
             </div>
@@ -2456,7 +2683,6 @@
                 ctx.fillStyle =
                     glow;
 
-
                 ctx.arc(
                     particle.x,
                     particle.y,
@@ -2465,12 +2691,10 @@
                     Math.PI * 2
                 );
 
-
                 ctx.fill();
 
 
                 ctx.beginPath();
-
 
                 ctx.fillStyle =
                     `rgba(
@@ -2480,7 +2704,6 @@
                         ${alpha}
                     )`;
 
-
                 ctx.arc(
                     particle.x,
                     particle.y,
@@ -2488,7 +2711,6 @@
                     0,
                     Math.PI * 2
                 );
-
 
                 ctx.fill();
 
@@ -2578,7 +2800,11 @@
 
 
         /*
-            Hide TOUCH TO OPEN permanently.
+            IMPORTANT FIX:
+
+            Explicitly disable the touch hint.
+            The CSS animation is also disabled with !important,
+            so the animation cannot bring the text back.
         */
 
         if (touchHint) {
@@ -2600,30 +2826,6 @@
 
 
         /*
-            IMPORTANT FIX:
-
-            Unlock the document only AFTER
-            the user has opened the invitation.
-
-            The invitation flow is also changed
-            from display:none to display:block
-            through the body class.
-        */
-
-        document.documentElement.classList.remove(
-            "invitation-locked"
-        );
-
-        document.body.classList.remove(
-            "invitation-locked"
-        );
-
-        document.body.classList.add(
-            "invitation-opened"
-        );
-
-
-        /*
             Show music button.
         */
 
@@ -2633,7 +2835,10 @@
 
 
         /*
-            Existing music behaviour.
+            KEEPING YOUR EXISTING MUSIC BEHAVIOUR.
+
+            Music only attempts to start because
+            this function was triggered by the user's tap.
         */
 
         audio.volume =
@@ -2663,6 +2868,11 @@
                 .catch(
                     function() {
 
+                        /*
+                            Do not break the invitation
+                            if the browser blocks autoplay.
+                        */
+
                         musicButton.classList.remove(
                             "playing"
                         );
@@ -2673,12 +2883,14 @@
         }
 
         /*
-            IMPORTANT:
+            NO AUTOMATIC SCROLL.
 
-            There is intentionally NO automatic scroll here.
+            Nothing here calls:
+            scrollIntoView()
+            scrollTo()
+            scrollBy()
 
-            The user stays at the cover position
-            and manually scrolls to the cream page.
+            The user manually scrolls.
         */
 
     }
@@ -2808,7 +3020,6 @@
                     );
 
                 }
-
                 catch (
                     error
                 ) {
@@ -2820,7 +3031,6 @@
                 }
 
             }
-
             else {
 
                 audio.pause();
@@ -2832,6 +3042,116 @@
             }
 
         }
+    );
+
+
+
+
+    /* =====================================================
+       WEDDING COUNTDOWN
+    ===================================================== */
+
+    const weddingDate =
+        new Date(
+            "2026-12-27T00:00:00+05:30"
+        ).getTime();
+
+
+    function updateCountdown() {
+
+        const now =
+            new Date().getTime();
+
+        const difference =
+            weddingDate - now;
+
+
+        if (difference <= 0) {
+
+            document.getElementById(
+                "countdownDays"
+            ).textContent = "00";
+
+            document.getElementById(
+                "countdownHours"
+            ).textContent = "00";
+
+            document.getElementById(
+                "countdownMinutes"
+            ).textContent = "00";
+
+            document.getElementById(
+                "countdownSeconds"
+            ).textContent = "00";
+
+            return;
+
+        }
+
+
+        const days =
+            Math.floor(
+                difference /
+                (1000 * 60 * 60 * 24)
+            );
+
+
+        const hours =
+            Math.floor(
+                (difference %
+                    (1000 * 60 * 60 * 24)) /
+                (1000 * 60 * 60)
+            );
+
+
+        const minutes =
+            Math.floor(
+                (difference %
+                    (1000 * 60 * 60)) /
+                (1000 * 60)
+            );
+
+
+        const seconds =
+            Math.floor(
+                (difference %
+                    (1000 * 60)) /
+                1000
+            );
+
+
+        document.getElementById(
+            "countdownDays"
+        ).textContent =
+            String(days).padStart(2, "0");
+
+
+        document.getElementById(
+            "countdownHours"
+        ).textContent =
+            String(hours).padStart(2, "0");
+
+
+        document.getElementById(
+            "countdownMinutes"
+        ).textContent =
+            String(minutes).padStart(2, "0");
+
+
+        document.getElementById(
+            "countdownSeconds"
+        ).textContent =
+            String(seconds).padStart(2, "0");
+
+    }
+
+
+    updateCountdown();
+
+
+    setInterval(
+        updateCountdown,
+        1000
     );
 
 
