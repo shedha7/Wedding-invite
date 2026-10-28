@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Makes the website work properly on phones -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Wedding Invitation</title>
+
+    <!-- Elegant Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+
+        /* =========================================
+           BASIC SETTINGS
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f8f3eb;
+            color: #3d3028;
+            overflow-x: hidden;
+        }
+
+
+        /* =========================================
+           OPENING SCREEN
+        ========================================= */
+
+        #opening-screen {
+
+            position: fixed;
+            inset: 0;
+
+            z-index: 9999;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            background-image:
+                linear-gradient(
+                    rgba(45, 30, 20, 0.45),
+                    rgba(45, 30, 20, 0.55)
+                ),
+
+                url("YOUR_BACKGROUND_IMAGE.jpg");
+                /* CHANGE THIS */
+
+            background-size: cover;
+            background-position: center;
+
+            transition: opacity 1.2s ease,
+                        visibility 1.2s ease;
+        }
+
+
+        #opening-screen.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+
+        .opening-content {
+            color: white;
+            padding: 30px;
+            animation: openingFade 2s ease;
+        }
+
+
+        .small-text {
+            font-size: 13px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+
+        .opening-names {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(50px, 12vw, 100px);
+            font-weight: 500;
+            line-height: 0.95;
+        }
+
+
+        .ampersand {
+            font-size: 45px;
+            font-family: 'Cormorant Garamond', serif;
+            margin: 15px 0;
+        }
+
+
+        .open-button {
+
+            margin-top: 40px;
+
+            padding: 15px 35px;
+
+            background: transparent;
+
+            border: 1px solid white;
+
+            color: white;
+
+            letter-spacing: 3px;
+
+            font-size: 12px;
+
+            cursor: pointer;
+
+            transition: 0.4s;
+        }
+
+
+        .open-button:hover {
+            background: white;
+            color: #3d3028;
+        }
+
+
+        /* =========================================
+           MAIN WEBSITE
+        ========================================= */
+
+        #main-content {
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+
+        #main-content.visible {
+            opacity: 1;
+        }
+
+
+        section {
+            padding: 90px 20px;
+            text-align: center;
+        }
+
+
+        /* =========================================
+           HERO
+        ========================================= */
+
+        .hero {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            position: relative;
+
+            background-image:
+                linear-gradient(
+                    rgba(248, 243, 235, 0.80),
+                    rgba(248, 243, 235, 0.88)
+                ),
+
+                url("YOUR_BACKGROUND_IMAGE.jpg");
+                /* CHANGE THIS */
+
+            background-size: cover;
+            background-position: center;
+
+        }
+
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+
+        .eyebrow {
+
+            letter-spacing: 5px;
+
+            font-size: 12px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .main-title {
+
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: clamp(60px, 12vw, 120px);
+
+            line-height: 0.9;
+
+            font-weight: 500;
+
+        }
+
+
+        .date {
+
+            margin-top: 30px;
+
+            font-size: 15px;
+
+            letter-spacing: 4px;
+
+        }
+
+
+        .scroll-text {
+
+            margin-top: 70px;
+
+            font-size: 10px;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+
+            animation: bounce 2s infinite;
+
+        }
+
+
+        /* =========================================
+           TITLES
+        ========================================= */
+
+        .section-title {
+
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: clamp(40px, 8vw, 65px);
+
+            font-weight: 500;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .section-subtitle {
+
+            font-size: 12px;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 45px;
+
+        }
+
+
+        /* =========================================
+           COUPLE
+        ========================================= */
+
+        .couple {
+
+            background: #efe6d9;
+
+        }
+
+
+        .couple-names {
+
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: clamp(45px, 8vw, 80px);
+
+            line-height: 1;
+
+        }
+
+
+        .couple-description {
+
+            max-width: 600px;
+
+            margin: 30px auto;
+
+            line-height: 2;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =========================================
+           PHOTO
+        ========================================= */
+
+        .photo-container {
+
+            max-width: 850px;
+
+            margin: 50px auto;
+
+            overflow: hidden;
+
+        }
+
+
+        .photo-container img {
+
+            width: 100%;
+
+            display: block;
+
+            transition: transform 1s ease;
+
+        }
+
+
+        .photo-container:hover img {
+
+            transform: scale(1.03);
+
+        }
+
+
+        /* =========================================
+           EVENTS
+        ========================================= */
+
+        .events {
+
+            background: #f8f3eb;
+
+        }
+
+
+        .event-grid {
+
+            max-width: 900px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 25px;
+
+        }
+
+
+        .event-card {
+
+            padding: 40px 25px;
+
+            border: 1px solid #cbbca8;
+
+            background: rgba(255,255,255,0.35);
+
+            transition: 0.5s;
+
+        }
+
+
+        .event-card:hover {
+
+            transform: translateY(-8px);
+
+        }
+
+
+        .event-date {
+
+            font-size: 12px;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .event-name {
+
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 35px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .event-details {
+
+            font-size: 13px;
+
+            line-height: 1.8;
+
+        }
+
+
+        /* =========================================
+           COUNTDOWN
+        ========================================= */
+
+        .countdown-section {
+
+            background: #3d3028;
+
+            color: white;
+
+        }
+
+
+        .countdown {
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 30px;
+
+            margin-top: 40px;
+
+        }
+
+
+        .time-box {
+
+            min-width: 90px;
+
+        }
+
+
+        .number {
+
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 55px;
+
+        }
+
+
+        .label {
+
+            font-size: 9px;
+
+            letter-spacing: 3px;
+
+        }
+
+
+        /* =========================================
+           GALLERY
+        ========================================= */
+
+        .gallery {
+
+            max-width: 1000px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+
+        }
+
+
+        .gallery img {
+
+            width: 100%;
+
+            aspect-ratio: 1 / 1;
+
+            object-fit: cover;
+
+            transition: 0.6s;
+
+        }
+
+
+        .gallery img:hover {
+
+            transform: scale(1.02);
+
+        }
+
+
+        /* =========================================
+           VENUE
+        ========================================= */
+
+        .venue {
+
+            background: #efe6d9;
+
+        }
+
+
+        .venue-name {
+
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 45px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .venue-address {
+
+            line-height: 2;
+
+            font-size: 14px;
+
+        }
+
+
+        .map-button {
+
+            display: inline-block;
+
+            margin-top: 30px;
+
+            padding: 15px 30px;
+
+            border: 1px solid #3d3028;
+
+            color: #3d3028;
+
+            text-decoration: none;
+
+            font-size: 11px;
+
+            letter-spacing: 2px;
+
+            transition: 0.4s;
+
+        }
+
+
+        .map-button:hover {
+
+            background: #3d3028;
+
+            color: white;
+
+        }
+
+
+        /* =========================================
+           RSVP
+        ========================================= */
+
+        .rsvp {
+
+            padding-bottom: 120px;
+
+        }
+
+
+        .rsvp-button {
+
+            display: inline-block;
+
+            padding: 18px 40px;
+
+            background: #3d3028;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 11px;
+
+            letter-spacing: 3px;
+
+            transition: 0.4s;
+
+        }
+
+
+        .rsvp-button:hover {
+
+            transform: translateY(-3px);
+
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        footer {
+
+            padding: 60px 20px;
+
+            background: #3d3028;
+
+            color: white;
+
+            text-align: center;
+
+        }
+
+
+        footer p {
+
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 30px;
+
+        }
+
+
+        /* =========================================
+           ANIMATIONS
+        ========================================= */
+
+        @keyframes openingFade {
+
+            from {
+
+                opacity: 0;
+
+                transform: translateY(30px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: translateY(0);
+
+            }
+
+        }
+
+
+        @keyframes bounce {
+
+            0%, 100% {
+
+                transform: translateY(0);
+
+            }
+
+            50% {
+
+                transform: translateY(10px);
+
+            }
+
+        }
+
+
+        /* Scroll animation */
+
+        .reveal {
+
+            opacity: 0;
+
+            transform: translateY(50px);
+
+            transition:
+                opacity 1s ease,
+                transform 1s ease;
+
+        }
+
+
+        .reveal.active {
+
+            opacity: 1;
+
+            transform: translateY(0);
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 600px) {
+
+            section {
+
+                padding: 70px 18px;
+
+            }
+
+            .gallery {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .countdown {
+
+                gap: 20px;
+
+            }
+
+            .number {
+
+                font-size: 45px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =================================================
+     OPENING SCREEN
+================================================= -->
+
+<div id="opening-screen">
+
+    <div class="opening-content">
+
+        <div class="small-text">
+            Together with their families
+        </div>
+
+        <div class="opening-names">
+
+            <!-- CHANGE NAMES HERE -->
+
+            NAME ONE
+
+            <div class="ampersand">&</div>
+
+            NAME TWO
+
+        </div>
+
+        <button class="open-button" onclick="openInvitation()">
+
+            OPEN INVITATION
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =================================================
+     BACKGROUND MUSIC
+================================================= -->
+
+<audio id="weddingMusic" loop>
+
+    <!-- CHANGE MUSIC FILE HERE -->
+
+    <source src="wedding-music.mp3" type="audio/mpeg">
+
+</audio>
+
+
+
+<!-- =================================================
+     MAIN CONTENT
+================================================= -->
+
+<div id="main-content">
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content reveal">
+
+        <div class="eyebrow">
+
+            WE ARE GETTING MARRIED
+
+        </div>
+
+
+        <div class="main-title">
+
+            NAME ONE
+
+            <br>
+
+            <span style="font-size:0.5em;">&</span>
+
+            <br>
+
+            NAME TWO
+
+        </div>
+
+
+        <div class="date">
+
+            <!-- CHANGE DATE -->
+
+            DECEMBER 00, 2026
+
+        </div>
+
+
+        <div class="scroll-text">
+
+            SCROLL TO EXPLORE ↓
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- COUPLE -->
+
+<section class="couple">
+
+    <div class="reveal">
+
+        <div class="section-subtitle">
+
+            A NEW BEGINNING
+
+        </div>
+
+
+        <div class="couple-names">
+
+            NAME ONE
+
+            <br>
+
+            &
+
+            <br>
+
+            NAME TWO
+
+        </div>
+
+
+        <p class="couple-description">
+
+            <!-- CHANGE THIS TEXT -->
+
+            With immense joy and happiness,
+
+            we invite you to celebrate
+
+            the beginning of our beautiful
+
+            journey together.
+
+        </p>
+
+
+        <!-- COUPLE PHOTO -->
+
+        <div class="photo-container">
+
+            <!-- CHANGE IMAGE -->
+
+            <img src="couple-photo.jpg"
+                 alt="Couple">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- EVENTS -->
+
+<section class="events">
+
+    <div class="reveal">
+
+        <div class="section-subtitle">
+
+            JOIN US
+
+        </div>
+
+
+        <div class="section-title">
+
+            Wedding Celebrations
+
+        </div>
+
+
+        <div class="event-grid">
+
+
+            <!-- EVENT 1 -->
+
+            <div class="event-card">
+
+                <div class="event-date">
+
+                    DECEMBER 00
+
+                </div>
+
+                <div class="event-name">
+
+                    EVENT ONE
+
+                </div>
+
+                <div class="event-details">
+
+                    00:00 PM
+
+                    <br>
+
+                    VENUE NAME
+
+                    <br>
+
+                    LOCATION
+
+                </div>
+
+            </div>
+
+
+
+            <!-- EVENT 2 -->
+
+            <div class="event-card">
+
+                <div class="event-date">
+
+                    DECEMBER 00
+
+                </div>
+
+                <div class="event-name">
+
+                    WEDDING
+
+                </div>
+
+                <div class="event-details">
+
+                    00:00 AM
+
+                    <br>
+
+                    VENUE NAME
+
+                    <br>
+
+                    LOCATION
+
+                </div>
+
+            </div>
+
+
+
+            <!-- EVENT 3 -->
+
+            <div class="event-card">
+
+                <div class="event-date">
+
+                    DECEMBER 00
+
+                </div>
+
+                <div class="event-name">
+
+                    RECEPTION
+
+                </div>
+
+                <div class="event-details">
+
+                    00:00 PM
+
+                    <br>
+
+                    VENUE NAME
+
+                    <br>
+
+                    LOCATION
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- COUNTDOWN -->
+
+<section class="countdown-section">
+
+    <div class="reveal">
+
+        <div class="section-subtitle">
+
+            COUNTING DOWN TO
+
+        </div>
+
+
+        <div class="section-title">
+
+            The Big Day
+
+        </div>
+
+
+        <div class="countdown">
+
+
+            <div class="time-box">
+
+                <div class="number" id="days">
+
+                    00
+
+                </div>
+
+                <div class="label">
+
+                    DAYS
+
+                </div>
+
+            </div>
+
+
+            <div class="time-box">
+
+                <div class="number" id="hours">
+
+                    00
+
+                </div>
+
+                <div class="label">
+
+                    HOURS
+
+                </div>
+
+            </div>
+
+
+            <div class="time-box">
+
+                <div class="number" id="minutes">
+
+                    00
+
+                </div>
+
+                <div class="label">
+
+                    MINUTES
+
+                </div>
+
+            </div>
+
+
+            <div class="time-box">
+
+                <div class="number" id="seconds">
+
+                    00
+
+                </div>
+
+                <div class="label">
+
+                    SECONDS
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- GALLERY -->
+
+<section>
+
+    <div class="reveal">
+
+        <div class="section-subtitle">
+
+            MEMORIES
+
+        </div>
+
+
+        <div class="section-title">
+
+            Our Moments
+
+        </div>
+
+
+        <div class="gallery">
+
+
+            <!-- CHANGE THESE IMAGES -->
+
+            <img src="photo1.jpg" alt="Photo">
+
+            <img src="photo2.jpg" alt="Photo">
+
+            <img src="photo3.jpg" alt="Photo">
+
+            <img src="photo4.jpg" alt="Photo">
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- VENUE -->
+
+<section class="venue">
+
+    <div class="reveal">
+
+        <div class="section-subtitle">
+
+            WHERE
+
+        </div>
+
+
+        <div class="venue-name">
+
+            VENUE NAME
+
+        </div>
+
+
+        <div class="venue-address">
+
+            <!-- CHANGE ADDRESS -->
+
+            Venue Address
+
+            <br>
+
+            City, Kerala
+
+            <br>
+
+            PIN CODE
+
+        </div>
+
+
+        <!-- CHANGE GOOGLE MAPS LINK -->
+
+        <a href="YOUR_GOOGLE_MAPS_LINK"
+           target="_blank"
+           class="map-button">
+
+            VIEW LOCATION
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- RSVP -->
+
+<section class="rsvp">
+
+    <div class="reveal">
+
+        <div class="section-subtitle">
+
+            KINDLY RESPOND
+
+        </div>
+
+
+        <div class="section-title">
+
+            Will You Join Us?
+
+        </div>
+
+
+        <p style="max-width:500px;margin:0 auto 35px;line-height:2;">
+
+            We would be delighted to celebrate
+
+            this special day with you.
+
+        </p>
+
+
+        <!-- CHANGE RSVP LINK -->
+
+        <a href="YOUR_RSVP_LINK"
+           target="_blank"
+           class="rsvp-button">
+
+            RSVP
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+
+        NAME ONE & NAME TWO
+
+    </p>
+
+
+    <br>
+
+
+    <small>
+
+        With love, we invite you to celebrate with us.
+
+    </small>
+
+</footer>
+
+
+</div>
+
+
+
+<!-- =================================================
+     JAVASCRIPT
+================================================= -->
+
+<script>
+
+
+/* =========================================
+   OPEN INVITATION
+========================================= */
+
+function openInvitation() {
+
+    const openingScreen =
+        document.getElementById("opening-screen");
+
+    const mainContent =
+        document.getElementById("main-content");
+
+    const music =
+        document.getElementById("weddingMusic");
+
+
+    openingScreen.classList.add("hide");
+
+    mainContent.classList.add("visible");
+
+
+    /* Music starts after user clicks */
+
+    music.play().catch(function(error) {
+
+        console.log("Music could not start:", error);
+
+    });
+
+
+    setTimeout(function() {
+
+        openingScreen.style.display = "none";
+
+    }, 1500);
+
+}
+
+
+
+/* =========================================
+   COUNTDOWN
+========================================= */
+
+
+/* CHANGE YOUR WEDDING DATE HERE */
+
+const weddingDate =
+    new Date("December 20, 2026 10:30:00").getTime();
+
+
+function updateCountdown() {
+
+
+    const now =
+        new Date().getTime();
+
+
+    const distance =
+        weddingDate - now;
+
+
+    if (distance < 0) {
+
+        document.getElementById("days").innerText = "00";
+
+        document.getElementById("hours").innerText = "00";
+
+        document.getElementById("minutes").innerText = "00";
+
+        document.getElementById("seconds").innerText = "00";
+
+        return;
+
+    }
+
+
+    const days =
+        Math.floor(
+            distance / (1000 * 60 * 60 * 24)
+        );
+
+
+    const hours =
+        Math.floor(
+            (distance % (1000 * 60 * 60 * 24))
+            / (1000 * 60 * 60)
+        );
+
+
+    const minutes =
+        Math.floor(
+            (distance % (1000 * 60 * 60))
+            / (1000 * 60)
+        );
+
+
+    const seconds =
+        Math.floor(
+            (distance % (1000 * 60))
+            / 1000
+        );
+
+
+    document.getElementById("days").innerText =
+        days.toString().padStart(2, "0");
+
+
+    document.getElementById("hours").innerText =
+        hours.toString().padStart(2, "0");
+
+
+    document.getElementById("minutes").innerText =
+        minutes.toString().padStart(2, "0");
+
+
+    document.getElementById("seconds").innerText =
+        seconds.toString().padStart(2, "0");
+
+}
+
+
+setInterval(updateCountdown, 1000);
+
+updateCountdown();
+
+
+
+/* =========================================
+   SCROLL ANIMATIONS
+========================================= */
+
+
+const reveals =
+    document.querySelectorAll(".reveal");
+
+
+function revealOnScroll() {
+
+
+    const windowHeight =
+        window.innerHeight;
+
+
+    reveals.forEach(function(element) {
+
+
+        const elementTop =
+            element.getBoundingClientRect().top;
+
+
+        if (elementTop <
+            windowHeight - 100) {
+
+            element.classList.add("active");
+
+        }
+
+    });
+
+}
+
+
+window.addEventListener(
+    "scroll",
+    revealOnScroll
+);
+
+
+revealOnScroll();
+
+
+</script>
+
+
+</body>
+
+</html>
