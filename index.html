@@ -5,27 +5,23 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <title>Sanjeedh & Minha | Wedding Invitation</title>
+    <meta
+        name="theme-color"
+        content="#3b1118"
+    >
 
-    <!-- Elegant fonts -->
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap"
-          rel="stylesheet">
+    <title>S & A | Wedding</title>
 
 
     <style>
 
         /* =====================================================
-           BASIC SETTINGS
+           RESET
         ===================================================== */
 
         * {
@@ -34,325 +30,33 @@
             box-sizing: border-box;
         }
 
+
         html {
             scroll-behavior: smooth;
         }
 
+
         body {
-            background: #26090d;
-            color: #3b1718;
-            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            background: #2d0b12;
+            color: #3a2525;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
             overflow-x: hidden;
         }
 
 
         /* =====================================================
-           OPENING SCREEN
+           PAGE
         ===================================================== */
 
-        #opening {
-
-            position: fixed;
-
-            inset: 0;
-
-            z-index: 9999;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            text-align: center;
-
-            color: #f7eee0;
-
-            background:
-                linear-gradient(
-                    rgba(49, 10, 15, 0.82),
-                    rgba(49, 10, 15, 0.92)
-                ),
-                url("background.jpg");
-
-            background-size: cover;
-
-            background-position: center;
-
-            transition:
-                opacity 1.2s ease,
-                visibility 1.2s ease;
-        }
-
-
-        #opening.hide {
-
-            opacity: 0;
-
-            visibility: hidden;
-        }
-
-
-        .opening-inner {
-
-            width: 90%;
-
-            max-width: 600px;
-
-            padding: 50px 30px;
-
-            animation: openingAppear 2s ease;
-        }
-
-
-        .opening-small {
-
-            font-size: 10px;
-
-            letter-spacing: 5px;
-
-            text-transform: uppercase;
-
-            margin-bottom: 35px;
-        }
-
-
-        .opening-title {
-
-            font-family: 'Cormorant Garamond', serif;
-
-            font-size: clamp(60px, 15vw, 110px);
-
-            line-height: 0.78;
-
-            font-weight: 500;
-        }
-
-
-        .opening-and {
-
-            font-size: 38px;
-
-            font-family: 'Cormorant Garamond', serif;
-
-            margin: 22px 0;
-        }
-
-
-        .opening-date {
-
-            margin-top: 35px;
-
-            font-family: 'Cormorant Garamond', serif;
-
-            font-size: 22px;
-
-            letter-spacing: 2px;
-        }
-
-
-        .open-button {
-
-            margin-top: 45px;
-
-            padding: 17px 38px;
-
-            background: transparent;
-
-            border: 1px solid #d8b783;
-
-            color: #f7eee0;
-
-            font-size: 10px;
-
-            letter-spacing: 4px;
-
-            cursor: pointer;
-
-            transition: all 0.5s ease;
-        }
-
-
-        .open-button:hover {
-
-            background: #d8b783;
-
-            color: #3b1718;
-        }
-
-
-        /* =====================================================
-           MAIN PAGE
-        ===================================================== */
-
-        #page {
-
-            opacity: 0;
-
-            transition: opacity 1.5s ease;
-        }
-
-
-        #page.show {
-
-            opacity: 1;
-        }
-
-
-        /* =====================================================
-           HERO
-        ===================================================== */
-
-        .hero {
-
-            min-height: 100vh;
-
+        .page {
+            width: 100%;
             position: relative;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            text-align: center;
-
-            padding: 40px 20px;
-
-            background:
-
-                linear-gradient(
-                    rgba(247, 238, 224, 0.82),
-                    rgba(247, 238, 224, 0.90)
-                ),
-
-                url("background.jpg");
-
-            background-size: cover;
-
-            background-position: center;
-
-            overflow: hidden;
-        }
-
-
-        .hero-content {
-
-            max-width: 800px;
-
-            position: relative;
-
-            z-index: 2;
-        }
-
-
-        .tiny-heading {
-
-            font-size: 10px;
-
-            letter-spacing: 5px;
-
-            text-transform: uppercase;
-
-            margin-bottom: 28px;
-
-            color: #744238;
-        }
-
-
-        .hero-title {
-
-            font-family: 'Cormorant Garamond', serif;
-
-            font-size: clamp(65px, 15vw, 130px);
-
-            line-height: 0.78;
-
-            font-weight: 500;
-
-            color: #55151b;
-        }
-
-
-        .hero-ampersand {
-
-            font-size: 45px;
-
-            margin: 18px 0;
-
-            color: #9b7041;
-        }
-
-
-        .hero-date {
-
-            margin-top: 40px;
-
-            font-family: 'Cormorant Garamond', serif;
-
-            font-size: 25px;
-
-            letter-spacing: 3px;
-
-            color: #5a2924;
-        }
-
-
-        .scroll-down {
-
-            position: absolute;
-
-            bottom: 30px;
-
-            left: 50%;
-
-            transform: translateX(-50%);
-
-            font-size: 9px;
-
-            letter-spacing: 4px;
-
-            color: #744238;
-
-            animation: floatDown 2s infinite;
-        }
-
-
-        /* =====================================================
-           GOLD DIVIDER
-        ===================================================== */
-
-        .gold-line {
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            gap: 15px;
-
-            margin: 30px auto;
-
-            max-width: 400px;
-        }
-
-
-        .gold-line span {
-
-            height: 1px;
-
-            background: #b18a58;
-
-            flex: 1;
-        }
-
-
-        .gold-symbol {
-
-            color: #a47742;
-
-            font-size: 17px;
         }
 
 
@@ -360,374 +64,575 @@
            GENERAL SECTION
         ===================================================== */
 
-        section {
+        .section {
+            position: relative;
 
-            padding: 100px 22px;
+            width: 100%;
+            min-height: 100svh;
 
-            text-align: center;
+            overflow: hidden;
         }
 
 
-        .section-label {
+        /* =====================================================
+           COVER
+        ===================================================== */
 
-            font-size: 9px;
+        .cover {
+            min-height: 100svh;
+
+            background-image:
+                url("images/cover.jpg");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        /*
+           Soft overlay so the transition into the next
+           section doesn't feel too abrupt.
+        */
+
+        .cover::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            height: 180px;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    transparent,
+                    rgba(45, 11, 18, 0.75)
+                );
+
+            pointer-events: none;
+        }
+
+
+        /* =====================================================
+           COVER CONTENT
+        ===================================================== */
+
+        .cover-content {
+            position: relative;
+            z-index: 2;
+
+            text-align: center;
+
+            opacity: 0;
+
+            animation:
+                coverFade 2s ease forwards;
+
+            animation-delay: 0.5s;
+        }
+
+
+        @keyframes coverFade {
+
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        /* =====================================================
+           SCROLL INDICATOR
+        ===================================================== */
+
+        .scroll-indicator {
+
+            position: absolute;
+
+            z-index: 5;
+
+            bottom: 28px;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            text-align: center;
+
+            color:
+                rgba(255, 255, 255, 0.88);
+
+            font-size: 10px;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            animation:
+                scrollFloat 2s ease-in-out infinite;
+
+        }
+
+
+        .scroll-arrow {
+
+            display: block;
+
+            margin-top: 8px;
+
+            font-size: 20px;
+
+            letter-spacing: 0;
+
+        }
+
+
+        @keyframes scrollFloat {
+
+            0%,
+            100% {
+                transform:
+                    translate(-50%, 0);
+            }
+
+            50% {
+                transform:
+                    translate(-50%, 8px);
+            }
+
+        }
+
+
+        /* =====================================================
+           MUSIC BUTTON
+        ===================================================== */
+
+        .music-button {
+
+            position: fixed;
+
+            z-index: 100;
+
+            top: 20px;
+            right: 20px;
+
+            width: 48px;
+            height: 48px;
+
+            border-radius: 50%;
+
+            border: 1px solid
+                rgba(255,255,255,0.45);
+
+            background:
+                rgba(55, 15, 23, 0.75);
+
+            backdrop-filter:
+                blur(10px);
+
+            -webkit-backdrop-filter:
+                blur(10px);
+
+            color: white;
+
+            font-size: 20px;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0,0,0,0.2);
+        }
+
+
+        .music-button:hover {
+
+            transform:
+                scale(1.08);
+
+            background:
+                rgba(75, 20, 30, 0.9);
+
+        }
+
+
+        .music-button.playing {
+
+            animation:
+                musicPulse 2s infinite;
+
+        }
+
+
+        @keyframes musicPulse {
+
+            0% {
+                box-shadow:
+                    0 0 0 0
+                    rgba(255,255,255,0.25);
+            }
+
+            70% {
+                box-shadow:
+                    0 0 0 12px
+                    rgba(255,255,255,0);
+            }
+
+            100% {
+                box-shadow:
+                    0 0 0 0
+                    rgba(255,255,255,0);
+            }
+
+        }
+
+
+        /* =====================================================
+           CREAM SECTION
+        ===================================================== */
+
+        .cream-section {
+
+            background-image:
+                url("images/background-cream.jpg");
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-repeat: no-repeat;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding:
+                90px 25px;
+
+        }
+
+
+        /* =====================================================
+           BURGUNDY SECTION
+        ===================================================== */
+
+        .burgundy-section {
+
+            background-image:
+                url("images/background-burgundy.jpg");
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-repeat: no-repeat;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding:
+                90px 25px;
+
+        }
+
+
+        /* =====================================================
+           SOFT OVERLAY
+        ===================================================== */
+
+        .cream-section::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(255,255,255,0.04),
+                    rgba(255,248,240,0.12)
+                );
+
+            pointer-events: none;
+
+        }
+
+
+        .burgundy-section::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(80,15,25,0.05),
+                    rgba(35,5,10,0.20)
+                );
+
+            pointer-events: none;
+
+        }
+
+
+        /* =====================================================
+           CONTENT CARD
+        ===================================================== */
+
+        .content-card {
+
+            position: relative;
+
+            z-index: 3;
+
+            width: min(
+                92vw,
+                650px
+            );
+
+            padding:
+                45px 35px;
+
+            text-align: center;
+
+            opacity: 0;
+
+            transform:
+                translateY(45px);
+
+            transition:
+                opacity 1.2s ease,
+                transform 1.2s ease;
+
+        }
+
+
+        .content-card.visible {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+
+        }
+
+
+        /* =====================================================
+           SMALL INTRO
+        ===================================================== */
+
+        .eyebrow {
+
+            font-size: 11px;
 
             letter-spacing: 5px;
 
             text-transform: uppercase;
 
-            color: #96704c;
+            margin-bottom: 22px;
 
-            margin-bottom: 20px;
-        }
+            opacity: 0.72;
 
-
-        .section-title {
-
-            font-family: 'Cormorant Garamond', serif;
-
-            font-size: clamp(45px, 9vw, 75px);
-
-            font-weight: 500;
-
-            color: #55151b;
-
-            line-height: 0.95;
-        }
-
-
-        .section-text {
-
-            max-width: 620px;
-
-            margin: 25px auto 0;
-
-            font-size: 13px;
-
-            line-height: 2;
-
-            color: #65433b;
         }
 
 
         /* =====================================================
-           STORY SECTION
+           NAMES
         ===================================================== */
 
-        .story {
+        .names {
 
-            background: #f7eee0;
+            font-family:
+                "Baskerville",
+                Georgia,
+                serif;
 
-            position: relative;
-        }
+            font-size:
+                clamp(
+                    38px,
+                    8vw,
+                    68px
+                );
 
+            font-weight: normal;
 
-        .story-card {
-
-            max-width: 850px;
-
-            margin: 50px auto 0;
-
-            padding: 15px;
-
-            background: #fffaf2;
-
-            box-shadow:
-                0 25px 70px rgba(65, 25, 20, 0.15);
-        }
-
-
-        .childhood-photo {
-
-            width: 100%;
-
-            display: block;
-
-            max-height: 750px;
-
-            object-fit: cover;
-
-            filter: grayscale(100%);
-
-            transition: filter 1s ease;
-        }
-
-
-        .story-card:hover .childhood-photo {
-
-            filter: grayscale(0%);
-        }
-
-
-        .story-caption {
-
-            padding: 45px 25px 50px;
-
-            background: #fffaf2;
-        }
-
-
-        .story-quote {
-
-            font-family: 'Cormorant Garamond', serif;
-
-            font-size: clamp(28px, 5vw, 45px);
-
-            line-height: 1.15;
-
-            color: #55151b;
-        }
-
-
-        .story-small {
-
-            margin-top: 22px;
-
-            font-size: 11px;
-
-            line-height: 2;
+            line-height: 1.05;
 
             letter-spacing: 1px;
 
-            color: #806257;
+            margin-bottom: 18px;
+
+        }
+
+
+        .ampersand {
+
+            display: block;
+
+            font-size: 28px;
+
+            font-style: italic;
+
+            margin:
+                10px 0;
+
+            opacity: 0.7;
+
         }
 
 
         /* =====================================================
-           INVITATION SECTION
+           PARENTS
         ===================================================== */
-
-        .invitation {
-
-            background: #310b10;
-
-            color: #f7eee0;
-
-            position: relative;
-        }
-
-
-        .invitation .section-label {
-
-            color: #c7a46d;
-        }
-
-
-        .invitation .section-title {
-
-            color: #f7eee0;
-        }
-
-
-        .invitation-text {
-
-            max-width: 650px;
-
-            margin: 25px auto 50px;
-
-            font-size: 13px;
-
-            line-height: 2;
-
-            color: #eadcc8;
-        }
-
 
         .parents {
 
-            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
 
-            font-size: 23px;
+            line-height: 1.9;
 
-            line-height: 1.6;
+            margin-top: 28px;
 
-            color: #d9bc8b;
+            opacity: 0.82;
+
         }
 
 
-        .parent-small {
+        .parents strong {
 
-            font-family: 'Montserrat', sans-serif;
+            display: block;
 
-            font-size: 9px;
+            font-size: 10px;
 
             letter-spacing: 3px;
 
             text-transform: uppercase;
 
-            color: #b9986d;
+            margin-bottom: 6px;
 
-            margin-bottom: 10px;
+        }
+
+
+        .divider {
+
+            width: 55px;
+
+            height: 1px;
+
+            margin:
+                30px auto;
+
+            background:
+                currentColor;
+
+            opacity: 0.35;
+
         }
 
 
         /* =====================================================
-           COUPLE NAMES
+           INVITATION TEXT
         ===================================================== */
 
-        .couple-section {
+        .invitation {
 
-            background: #f7eee0;
-        }
+            max-width: 520px;
 
+            margin:
+                0 auto 35px;
 
-        .couple-names {
-
-            margin-top: 40px;
-
-            font-family: 'Cormorant Garamond', serif;
-
-            color: #55151b;
-
-            font-size: clamp(50px, 11vw, 100px);
-
-            line-height: 0.8;
-        }
-
-
-        .couple-and {
-
-            font-size: 40px;
-
-            color: #a47742;
-
-            margin: 25px 0;
-        }
-
-
-        /* =====================================================
-           WEDDING DETAILS
-        ===================================================== */
-
-        .details {
-
-            background: #eadcc9;
-        }
-
-
-        .details-grid {
-
-            max-width: 900px;
-
-            margin: 55px auto 0;
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(auto-fit, minmax(220px, 1fr));
-
-            gap: 25px;
-        }
-
-
-        .detail-card {
-
-            padding: 40px 25px;
-
-            background: rgba(255,255,255,0.48);
-
-            border: 1px solid rgba(145,105,65,0.35);
-
-            transition: 0.5s ease;
-        }
-
-
-        .detail-card:hover {
-
-            transform: translateY(-8px);
-
-            box-shadow:
-                0 15px 35px rgba(70,30,20,0.12);
-        }
-
-
-        .detail-icon {
-
-            font-size: 22px;
-
-            color: #9b7041;
-
-            margin-bottom: 18px;
-        }
-
-
-        .detail-heading {
-
-            font-family: 'Cormorant Garamond', serif;
-
-            font-size: 30px;
-
-            color: #55151b;
-
-            margin-bottom: 15px;
-        }
-
-
-        .detail-info {
-
-            font-size: 12px;
+            font-size: 16px;
 
             line-height: 1.9;
 
-            color: #69463c;
+            font-style: italic;
+
         }
 
 
         /* =====================================================
-           COUNTDOWN
+           EVENT DETAILS
         ===================================================== */
 
-        .countdown-section {
+        .event-details {
 
-            background: #55151b;
+            margin-top: 20px;
 
-            color: #f7eee0;
         }
 
 
-        .countdown-section .section-title {
+        .event-label {
 
-            color: #f7eee0;
+            font-size: 10px;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 10px;
+
+            opacity: 0.65;
+
         }
 
 
-        .countdown {
+        .event-date {
 
-            display: flex;
+            font-size:
+                clamp(
+                    22px,
+                    5vw,
+                    34px
+                );
 
-            justify-content: center;
+            margin-bottom: 8px;
 
-            flex-wrap: wrap;
-
-            gap: 25px;
-
-            margin-top: 45px;
         }
 
 
-        .time {
+        .event-time {
 
-            min-width: 85px;
-        }
+            font-size: 15px;
 
+            letter-spacing: 1px;
 
-        .time-number {
+            margin-bottom: 25px;
 
-            font-family: 'Cormorant Garamond', serif;
-
-            font-size: 55px;
-
-            color: #d9bc8b;
-        }
-
-
-        .time-label {
-
-            font-size: 8px;
-
-            letter-spacing: 3px;
-
-            color: #eadcc8;
         }
 
 
@@ -737,71 +642,74 @@
 
         .venue {
 
-            background: #f7eee0;
-        }
-
-
-        .venue-name {
-
-            font-family: 'Cormorant Garamond', serif;
-
-            font-size: clamp(35px, 7vw, 55px);
-
-            color: #55151b;
-
-            max-width: 700px;
-
-            margin: 30px auto 15px;
-        }
-
-
-        .venue-address {
-
-            font-size: 13px;
-
-            line-height: 2;
-
-            color: #65433b;
-        }
-
-
-        .map-button {
-
             display: inline-block;
 
-            margin-top: 30px;
-
-            padding: 15px 35px;
-
-            border: 1px solid #8e633e;
-
-            color: #55151b;
+            color: inherit;
 
             text-decoration: none;
 
-            font-size: 9px;
+            border-bottom:
+                1px solid
+                currentColor;
 
-            letter-spacing: 3px;
+            padding-bottom: 4px;
 
-            transition: 0.4s;
+            font-size: 16px;
+
+            transition:
+                opacity 0.3s ease;
+
         }
 
 
-        .map-button:hover {
+        .venue:hover {
 
-            background: #55151b;
+            opacity: 0.6;
 
-            color: #f7eee0;
+        }
+
+
+        .venue-location {
+
+            margin-top: 8px;
+
+            font-size: 13px;
+
+            opacity: 0.65;
+
         }
 
 
         /* =====================================================
-           FINAL MESSAGE
+           BURGUNDY TEXT
         ===================================================== */
 
-        .final {
+        .burgundy-section {
 
-            min-height: 70vh;
+            color: #f8e8dc;
+
+        }
+
+
+        .burgundy-section .parents {
+
+            opacity: 0.9;
+
+        }
+
+
+        /* =====================================================
+           CHILDHOOD SECTION
+        ===================================================== */
+
+        .memory-section {
+
+            min-height: 100svh;
+
+            position: relative;
+
+            background:
+                #eee7df;
 
             display: flex;
 
@@ -809,169 +717,287 @@
 
             justify-content: center;
 
+            padding: 80px 25px;
+
+            overflow: hidden;
+
+        }
+
+
+        .memory-section::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
             background:
+                radial-gradient(
+                    circle at center,
+                    rgba(255,255,255,0.7),
+                    transparent 70%
+                );
 
-                linear-gradient(
-                    rgba(49,10,15,0.85),
-                    rgba(49,10,15,0.92)
-                ),
+        }
 
-                url("background.jpg");
+
+        .memory-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            text-align: center;
+
+            opacity: 0;
+
+            transform:
+                translateY(40px);
+
+            transition:
+                opacity 1.3s ease,
+                transform 1.3s ease;
+
+        }
+
+
+        .memory-content.visible {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+
+        }
+
+
+        .memory-title {
+
+            font-size: 12px;
+
+            letter-spacing: 5px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 28px;
+
+            color: #583c3c;
+
+        }
+
+
+        .childhood-photo {
+
+            width:
+                min(
+                    88vw,
+                    420px
+                );
+
+            display: block;
+
+            margin: 0 auto;
+
+            border-radius: 3px;
+
+            box-shadow:
+                0 25px 60px
+                rgba(50,25,25,0.22);
+
+        }
+
+
+        .memory-caption {
+
+            max-width: 440px;
+
+            margin:
+                28px auto 0;
+
+            font-size: 17px;
+
+            line-height: 1.8;
+
+            font-style: italic;
+
+            color: #583c3c;
+
+        }
+
+
+        /* =====================================================
+           ENDING
+        ===================================================== */
+
+        .ending {
+
+            min-height: 100svh;
+
+            position: relative;
+
+            background-image:
+                url("images/ending-frame.jpg");
 
             background-size: cover;
 
             background-position: center;
 
-            color: #f7eee0;
-        }
+            background-repeat: no-repeat;
 
+            display: flex;
 
-        .final-title {
+            align-items: center;
 
-            font-family: 'Cormorant Garamond', serif;
-
-            font-size: clamp(55px, 11vw, 100px);
-
-            line-height: 0.8;
-
-            color: #f7eee0;
-        }
-
-
-        .final-text {
-
-            margin-top: 35px;
-
-            max-width: 550px;
-
-            margin-left: auto;
-
-            margin-right: auto;
-
-            line-height: 2;
-
-            font-size: 12px;
-
-            color: #eadcc8;
-        }
-
-
-        /* =====================================================
-           FOOTER
-        ===================================================== */
-
-        footer {
-
-            padding: 45px 20px;
+            justify-content: center;
 
             text-align: center;
 
-            background: #1d070a;
+            padding: 60px 25px;
 
-            color: #cbb18e;
-
-            font-size: 9px;
-
-            letter-spacing: 2px;
         }
 
 
-        /* =====================================================
-           MUSIC BUTTON
-        ===================================================== */
+        .ending::after {
 
-        #music-button {
+            content: "";
 
-            position: fixed;
+            position: absolute;
 
-            right: 20px;
+            inset: 0;
 
-            bottom: 20px;
+            background:
+                radial-gradient(
+                    circle at center,
+                    transparent 20%,
+                    rgba(35,5,12,0.25)
+                );
 
-            width: 48px;
-
-            height: 48px;
-
-            border-radius: 50%;
-
-            border: 1px solid #d5b47c;
-
-            background: #55151b;
-
-            color: #f7eee0;
-
-            z-index: 1000;
-
-            cursor: pointer;
-
-            font-size: 18px;
-
-            box-shadow:
-                0 5px 20px rgba(0,0,0,0.25);
-
-            display: none;
         }
 
 
-        /* =====================================================
-           SCROLL ANIMATION
-        ===================================================== */
+        .ending-content {
 
-        .reveal {
+            position: relative;
+
+            z-index: 3;
+
+            color: #f7e6d1;
 
             opacity: 0;
 
-            transform: translateY(45px);
+            transform:
+                translateY(35px);
 
             transition:
-                opacity 1s ease,
-                transform 1s ease;
+                opacity 1.5s ease,
+                transform 1.5s ease;
+
         }
 
 
-        .reveal.visible {
+        .ending-content.visible {
 
             opacity: 1;
 
-            transform: translateY(0);
+            transform:
+                translateY(0);
+
+        }
+
+
+        .ending-small {
+
+            font-size: 10px;
+
+            letter-spacing: 5px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 20px;
+
+            opacity: 0.8;
+
+        }
+
+
+        .ending-title {
+
+            font-size:
+                clamp(
+                    42px,
+                    10vw,
+                    78px
+                );
+
+            font-weight: normal;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .ending-message {
+
+            max-width: 440px;
+
+            margin: 0 auto;
+
+            font-size: 16px;
+
+            line-height: 1.9;
+
+            font-style: italic;
+
+            opacity: 0.9;
+
+        }
+
+
+        .compliments {
+
+            margin-top: 38px;
+
+            font-size: 13px;
+
+            line-height: 1.8;
+
+            opacity: 0.85;
+
         }
 
 
         /* =====================================================
-           ANIMATIONS
+           BACK TO TOP
         ===================================================== */
 
-        @keyframes openingAppear {
+        .back-to-top {
 
-            from {
+            display: inline-block;
 
-                opacity: 0;
+            margin-top: 35px;
 
-                transform: translateY(35px);
-            }
+            color: #f7e6d1;
 
-            to {
+            text-decoration: none;
 
-                opacity: 1;
+            font-size: 10px;
 
-                transform: translateY(0);
-            }
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            opacity: 0.75;
+
         }
 
 
-        @keyframes floatDown {
+        .back-to-top:hover {
 
-            0%,100% {
+            opacity: 1;
 
-                transform:
-                    translate(-50%,0);
-            }
-
-            50% {
-
-                transform:
-                    translate(-50%,10px);
-            }
         }
 
 
@@ -979,43 +1005,72 @@
            MOBILE
         ===================================================== */
 
-        @media(max-width:600px) {
+        @media (max-width: 600px) {
 
-            section {
+            .music-button {
 
-                padding: 80px 18px;
+                top: 15px;
+                right: 15px;
+
+                width: 43px;
+                height: 43px;
+
+                font-size: 17px;
+
             }
 
-            .hero {
 
-                min-height: 100svh;
+            .content-card {
+
+                padding:
+                    35px 18px;
+
             }
 
-            .story-card {
 
-                margin-top: 35px;
+            .invitation {
+
+                font-size: 14px;
+
             }
 
-            .childhood-photo {
 
-                max-height: none;
+            .parents {
 
-                object-fit: contain;
+                font-size: 13px;
+
             }
 
-            .details-grid {
 
-                grid-template-columns: 1fr;
+            .event-time {
+
+                font-size: 14px;
+
             }
 
-            .time {
 
-                min-width: 65px;
+            .memory-caption {
+
+                font-size: 15px;
+
             }
 
-            .time-number {
+        }
 
-                font-size: 45px;
+
+        /* =====================================================
+           REDUCED MOTION
+        ===================================================== */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            html {
+                scroll-behavior: auto;
+            }
+
+            * {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
             }
 
         }
@@ -1028,993 +1083,541 @@
 <body>
 
 
-<!-- =====================================================
-     OPENING SCREEN
-===================================================== -->
+    <!-- =====================================================
+         BACKGROUND MUSIC
+    ====================================================== -->
 
-<div id="opening">
+    <audio
+        id="bgm"
+        loop
+        preload="auto"
+    >
 
-    <div class="opening-inner">
+        <source
+            src="music/bgm.mp3"
+            type="audio/mpeg"
+        >
 
-        <div class="opening-small">
-
-            In the name of Allah
-
-        </div>
+    </audio>
 
 
-        <div class="opening-title">
+    <!-- =====================================================
+         MUSIC CONTROL
+    ====================================================== -->
 
-            Sanjeedh
+    <button
+        class="music-button"
+        id="musicButton"
+        aria-label="Play music"
+        title="Play music"
+    >
+        ♫
+    </button>
 
-            <div class="opening-and">
 
-                &
+
+    <main class="page">
+
+
+        <!-- =================================================
+             1. COVER
+        ================================================== -->
+
+        <section
+            class="section cover"
+            id="home"
+        >
+
+            <div class="cover-content">
+            </div>
+
+
+            <div class="scroll-indicator">
+
+                Scroll
+
+                <span class="scroll-arrow">
+                    ↓
+                </span>
 
             </div>
 
-            Minha
+        </section>
 
-        </div>
 
 
-        <div class="opening-date">
+        <!-- =================================================
+             2. CREAM / BRIDE & GROOM
+        ================================================== -->
 
-            27 · 12 · 2026
+        <section
+            class="section cream-section"
+            id="invitation"
+        >
 
-        </div>
+            <div class="content-card">
 
 
-        <button class="open-button"
-                onclick="openInvitation()">
+                <div class="eyebrow">
+                    Together with their families
+                </div>
 
-            OPEN INVITATION
 
-        </button>
+                <div class="names">
 
-    </div>
+                    Sanjeedh Roshan
 
-</div>
+                    <span class="ampersand">
+                        &
+                    </span>
 
-
-
-<!-- =====================================================
-     MUSIC
-===================================================== -->
-
-<audio id="weddingMusic"
-       loop>
-
-    <!--
-        UPLOAD YOUR MUSIC FILE TO GITHUB
-        AND NAME IT:
-
-        wedding-music.mp3
-    -->
-
-    <source src="wedding-music.mp3"
-            type="audio/mpeg">
-
-</audio>
-
-
-<button id="music-button"
-        onclick="toggleMusic()">
-
-    ♫
-
-</button>
-
-
-
-<!-- =====================================================
-     MAIN PAGE
-===================================================== -->
-
-<div id="page">
-
-
-<!-- =====================================================
-     HERO
-===================================================== -->
-
-<section class="hero">
-
-    <div class="hero-content reveal">
-
-        <div class="tiny-heading">
-
-            We're getting married
-
-        </div>
-
-
-        <div class="hero-title">
-
-            Sanjeedh
-
-            <div class="hero-ampersand">
-
-                &
-
-            </div>
-
-            Minha
-
-        </div>
-
-
-        <div class="gold-line">
-
-            <span></span>
-
-            <div class="gold-symbol">✦</div>
-
-            <span></span>
-
-        </div>
-
-
-        <div class="hero-date">
-
-            Sunday · 27 December 2026
-
-        </div>
-
-    </div>
-
-
-    <div class="scroll-down">
-
-        SCROLL TO EXPLORE
-
-        <br>
-
-        ↓
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     INVITATION / FAMILY
-===================================================== -->
-
-<section class="invitation">
-
-    <div class="reveal">
-
-        <div class="section-label">
-
-            With the blessings of our families
-
-        </div>
-
-
-        <div class="section-title">
-
-            You are<br>
-
-            invited
-
-        </div>
-
-
-        <div class="gold-line">
-
-            <span></span>
-
-            <div class="gold-symbol">✦</div>
-
-            <span></span>
-
-        </div>
-
-
-        <div class="invitation-text">
-
-            With immense joy and happiness,
-
-            we invite you and your family
-
-            to join us as we celebrate
-
-            the beginning of a beautiful
-
-            new chapter together.
-
-        </div>
-
-
-        <div class="parent-small">
-
-            With the blessings of
-
-        </div>
-
-
-        <div class="parents">
-
-            Sirajudeen K P
-
-            <br>
-
-            &
-
-            <br>
-
-            Shereena Siraj
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     COUPLE
-===================================================== -->
-
-<section class="couple-section">
-
-    <div class="reveal">
-
-        <div class="section-label">
-
-            Two hearts · One beautiful beginning
-
-        </div>
-
-
-        <div class="couple-names">
-
-            Sanjeedh
-
-            <div class="couple-and">
-
-                &
-
-            </div>
-
-            Minha
-
-        </div>
-
-
-        <p class="section-text">
-
-            Two people, two stories,
-
-            and a lifetime waiting to be written.
-
-            We would be honoured to have you
-
-            with us as we begin this journey together.
-
-        </p>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     CHILDHOOD STORY
-===================================================== -->
-
-<section class="story">
-
-    <div class="reveal">
-
-        <div class="section-label">
-
-            From then to forever
-
-        </div>
-
-
-        <div class="section-title">
-
-            Our Story
-
-        </div>
-
-
-        <div class="story-card">
-
-
-            <!--
-                UPLOAD YOUR CHILDHOOD PHOTO
-                TO GITHUB WITH THIS NAME:
-
-                childhood.jpg
-            -->
-
-            <img src="childhood.jpg"
-                 alt="Sanjeedh and Minha as children"
-                 class="childhood-photo">
-
-
-            <div class="story-caption">
-
-
-                <div class="story-quote">
-
-                    “We grew up side by side,
-
-                    never knowing that one day
-
-                    these little memories
-
-                    would become the beginning
-
-                    of our forever.”
+                    Minha Nourin
 
                 </div>
 
 
-                <div class="gold-line">
+                <div class="divider"></div>
 
-                    <span></span>
 
-                    <div class="gold-symbol">✦</div>
+                <p class="invitation">
 
-                    <span></span>
+                    We cordially invite your esteemed presence
+                    with family for the wedding reception of
+                    our beloved children.
+
+                </p>
+
+
+                <div class="parents">
+
+                    <strong>
+                        Son of
+                    </strong>
+
+                    Sirajudeen K P
+                    &
+                    Shereena P
 
                 </div>
 
 
-                <div class="story-small">
+                <div class="parents">
 
-                    From childhood smiles and
+                    <strong>
+                        Daughter of
+                    </strong>
 
-                    innocent little moments...
+                    Ali Ashraf
+                    &
+                    Thajunissa
 
-                    to growing up and finding
+                </div>
 
-                    our way to each other.
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             3. BURGUNDY / EVENT DETAILS
+        ================================================== -->
+
+        <section
+            class="section burgundy-section"
+            id="details"
+        >
+
+            <div class="content-card">
+
+
+                <div class="eyebrow">
+                    Wedding Reception
+                </div>
+
+
+                <div class="event-details">
+
+
+                    <div class="event-label">
+                        Date
+                    </div>
+
+
+                    <div class="event-date">
+                        Sunday, 27 December 2026
+                    </div>
+
+
+                    <div class="event-label">
+                        Time
+                    </div>
+
+
+                    <div class="event-time">
+                        5:00 PM – 10:00 PM
+                    </div>
+
+
+                    <div class="divider"></div>
+
+
+                    <div class="event-label">
+                        Venue
+                    </div>
+
+
+                    <!--
+                        REPLACE VENUE_LINK_HERE
+                        WITH THE ACTUAL GOOGLE MAPS LINK
+                    -->
+
+                    <a
+                        class="venue"
+                        href="VENUE_LINK_HERE"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Krishnapillai Memorial Auditorium
+                    </a>
+
+
+                    <div class="venue-location">
+                        MLA Road, Kovoor, Calicut
+                    </div>
+
+
+                </div>
+
+
+                <div class="divider"></div>
+
+
+                <p class="invitation">
+
+                    Your presence and blessings will make
+                    this joyous occasion truly special.
+
+                </p>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             4. CHILDHOOD MEMORY
+        ================================================== -->
+
+        <section
+            class="section memory-section"
+            id="memory"
+        >
+
+            <div class="memory-content">
+
+
+                <div class="memory-title">
+                    And it all began long before
+                </div>
+
+
+                <img
+                    src="images/couple-childhood.jpg"
+                    alt="A childhood memory"
+                    class="childhood-photo"
+                >
+
+
+                <p class="memory-caption">
+
+                    From little moments and childhood memories
+                    to a beautiful new chapter together.
+
+                </p>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             5. ENDING
+        ================================================== -->
+
+        <section
+            class="section ending"
+            id="ending"
+        >
+
+            <div class="ending-content">
+
+
+                <div class="ending-small">
+                    With love & blessings
+                </div>
+
+
+                <div class="ending-title">
+                    S & A
+                </div>
+
+
+                <p class="ending-message">
+
+                    We would be honoured to have you
+                    celebrate this beautiful beginning
+                    with us.
+
+                </p>
+
+
+                <div class="compliments">
+
+                    With best compliments
 
                     <br><br>
 
-                    And now, after all these years,
-
-                    we are getting married.
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     WEDDING DETAILS
-===================================================== -->
-
-<section class="details">
-
-    <div class="reveal">
-
-        <div class="section-label">
-
-            Save the date
-
-        </div>
-
-
-        <div class="section-title">
-
-            The Celebration
-
-        </div>
-
-
-        <div class="details-grid">
-
-
-            <!-- DATE -->
-
-            <div class="detail-card">
-
-                <div class="detail-icon">
-
-                    ✦
-
-                </div>
-
-
-                <div class="detail-heading">
-
-                    Date
-
-                </div>
-
-
-                <div class="detail-info">
-
-                    Sunday
+                    <strong>
+                        Shedha Siraj
+                    </strong>
 
                     <br>
 
-                    27 December 2026
-
-                </div>
-
-            </div>
-
-
-
-            <!-- TIME -->
-
-            <div class="detail-card">
-
-                <div class="detail-icon">
-
-                    ◷
-
-                </div>
-
-
-                <div class="detail-heading">
-
-                    Time
-
-                </div>
-
-
-                <div class="detail-info">
-
-                    5:00 PM
+                    &
 
                     <br>
 
-                    to
+                    Essar Associates, Calicut
 
                     <br>
 
-                    10:00 PM
+                    +91 9447537874
 
                 </div>
+
+
+                <a
+                    href="#home"
+                    class="back-to-top"
+                >
+                    Back to beginning ↑
+                </a>
+
 
             </div>
 
+        </section>
 
 
-            <!-- VENUE -->
+    </main>
 
-            <div class="detail-card">
 
-                <div class="detail-icon">
 
-                    ♢
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
 
-                </div>
+    <script>
 
 
-                <div class="detail-heading">
+        /* =================================================
+           MUSIC
+        ================================================= */
 
-                    Venue
+        const music =
+            document.getElementById("bgm");
 
-                </div>
+        const musicButton =
+            document.getElementById("musicButton");
 
 
-                <div class="detail-info">
+        let musicPlaying = false;
 
-                    Krishnapillai
 
-                    Memorial Auditorium
+        async function startMusic() {
 
-                    <br><br>
+            try {
 
-                    MLA Road, Kovoor,
+                await music.play();
 
-                    Calicut
+                musicPlaying = true;
 
-                </div>
+                musicButton.classList.add(
+                    "playing"
+                );
 
-            </div>
+                musicButton.innerHTML = "♫";
 
+                musicButton.setAttribute(
+                    "aria-label",
+                    "Pause music"
+                );
 
-        </div>
+            }
 
-    </div>
+            catch (error) {
 
-</section>
+                console.log(
+                    "Music could not autoplay yet."
+                );
 
+            }
 
+        }
 
-<!-- =====================================================
-     COUNTDOWN
-===================================================== -->
 
-<section class="countdown-section">
+        function pauseMusic() {
 
-    <div class="reveal">
+            music.pause();
 
-        <div class="section-label">
+            musicPlaying = false;
 
-            Counting down to forever
-
-        </div>
-
-
-        <div class="section-title">
-
-            Until the big day
-
-        </div>
-
-
-        <div class="countdown">
-
-
-            <div class="time">
-
-                <div class="time-number"
-                     id="days">
-
-                    00
-
-                </div>
-
-                <div class="time-label">
-
-                    DAYS
-
-                </div>
-
-            </div>
-
-
-            <div class="time">
-
-                <div class="time-number"
-                     id="hours">
-
-                    00
-
-                </div>
-
-                <div class="time-label">
-
-                    HOURS
-
-                </div>
-
-            </div>
-
-
-            <div class="time">
-
-                <div class="time-number"
-                     id="minutes">
-
-                    00
-
-                </div>
-
-                <div class="time-label">
-
-                    MINUTES
-
-                </div>
-
-            </div>
-
-
-            <div class="time">
-
-                <div class="time-number"
-                     id="seconds">
-
-                    00
-
-                </div>
-
-                <div class="time-label">
-
-                    SECONDS
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     VENUE
-===================================================== -->
-
-<section class="venue">
-
-    <div class="reveal">
-
-        <div class="section-label">
-
-            Join us here
-
-        </div>
-
-
-        <div class="section-title">
-
-            The Venue
-
-        </div>
-
-
-        <div class="venue-name">
-
-            Krishnapillai
-
-            Memorial Auditorium
-
-        </div>
-
-
-        <div class="venue-address">
-
-            MLA Road, Kovoor
-
-            <br>
-
-            Calicut, Kerala
-
-        </div>
-
-
-        <!--
-            REPLACE THE LINK BELOW
-            WITH THE GOOGLE MAPS LINK
-        -->
-
-        <a href="YOUR_GOOGLE_MAPS_LINK_HERE"
-           target="_blank"
-           class="map-button">
-
-            VIEW LOCATION
-
-        </a>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     FINAL MESSAGE
-===================================================== -->
-
-<section class="final">
-
-    <div class="reveal">
-
-        <div class="section-label">
-
-            With love
-
-        </div>
-
-
-        <div class="final-title">
-
-            Sanjeedh
-
-            <br>
-
-            &
-
-            <br>
-
-            Minha
-
-        </div>
-
-
-        <div class="final-text">
-
-            Your presence, your blessings,
-
-            and your love will make our
-
-            celebration even more special.
-
-            <br><br>
-
-            We can't wait to celebrate
-
-            this beautiful beginning
-
-            with you.
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer>
-
-    SANJEEDH & MINHA
-
-    <br><br>
-
-    27 · 12 · 2026
-
-</footer>
-
-
-</div>
-
-
-
-<script>
-
-
-/* =====================================================
-   OPEN INVITATION
-===================================================== */
-
-function openInvitation() {
-
-    const opening =
-        document.getElementById("opening");
-
-    const page =
-        document.getElementById("page");
-
-    const music =
-        document.getElementById("weddingMusic");
-
-    const musicButton =
-        document.getElementById("music-button");
-
-
-    opening.classList.add("hide");
-
-    page.classList.add("show");
-
-
-    /*
-        Music starts because this function
-        is triggered by the user's button tap.
-    */
-
-    music.play()
-        .then(function() {
-
-            musicButton.style.display = "block";
-
-        })
-        .catch(function() {
-
-            console.log(
-                "Music could not autoplay."
+            musicButton.classList.remove(
+                "playing"
             );
 
-            musicButton.style.display = "block";
-
-        });
-
-
-    setTimeout(function() {
-
-        opening.style.display = "none";
-
-    }, 1300);
-
-}
-
-
-
-/* =====================================================
-   MUSIC ON / OFF
-===================================================== */
-
-function toggleMusic() {
-
-    const music =
-        document.getElementById("weddingMusic");
-
-    const button =
-        document.getElementById("music-button");
-
-
-    if (music.paused) {
-
-        music.play();
-
-        button.innerHTML = "♫";
-
-    }
-
-    else {
-
-        music.pause();
-
-        button.innerHTML = "🔇";
-
-    }
-
-}
-
-
-
-/* =====================================================
-   COUNTDOWN
-===================================================== */
-
-const weddingDate =
-    new Date(
-        "December 27, 2026 17:00:00"
-    ).getTime();
-
-
-function updateCountdown() {
-
-    const now =
-        new Date().getTime();
-
-
-    const distance =
-        weddingDate - now;
-
-
-    if (distance <= 0) {
-
-        document.getElementById("days")
-            .innerText = "00";
-
-        document.getElementById("hours")
-            .innerText = "00";
-
-        document.getElementById("minutes")
-            .innerText = "00";
-
-        document.getElementById("seconds")
-            .innerText = "00";
-
-        return;
-
-    }
-
-
-    const days =
-        Math.floor(
-            distance /
-            (1000 * 60 * 60 * 24)
-        );
-
-
-    const hours =
-        Math.floor(
-            (distance %
-            (1000 * 60 * 60 * 24))
-            /
-            (1000 * 60 * 60)
-        );
-
-
-    const minutes =
-        Math.floor(
-            (distance %
-            (1000 * 60 * 60))
-            /
-            (1000 * 60)
-        );
-
-
-    const seconds =
-        Math.floor(
-            (distance %
-            (1000 * 60))
-            /
-            1000
-        );
-
-
-    document.getElementById("days")
-        .innerText =
-        String(days).padStart(2, "0");
-
-
-    document.getElementById("hours")
-        .innerText =
-        String(hours).padStart(2, "0");
-
-
-    document.getElementById("minutes")
-        .innerText =
-        String(minutes).padStart(2, "0");
-
-
-    document.getElementById("seconds")
-        .innerText =
-        String(seconds).padStart(2, "0");
-
-}
-
-
-setInterval(
-    updateCountdown,
-    1000
-);
-
-
-updateCountdown();
-
-
-
-/* =====================================================
-   SCROLL REVEAL
-===================================================== */
-
-const revealElements =
-    document.querySelectorAll(".reveal");
-
-
-function revealOnScroll() {
-
-    const screenHeight =
-        window.innerHeight;
-
-
-    revealElements.forEach(function(element) {
-
-        const elementTop =
-            element.getBoundingClientRect().top;
-
-
-        if (
-            elementTop <
-            screenHeight - 100
-        ) {
-
-            element.classList.add(
-                "visible"
+            musicButton.innerHTML = "♫";
+
+            musicButton.setAttribute(
+                "aria-label",
+                "Play music"
             );
 
         }
 
-    });
 
-}
+        musicButton.addEventListener(
+            "click",
+            function () {
+
+                if (musicPlaying) {
+
+                    pauseMusic();
+
+                }
+
+                else {
+
+                    startMusic();
+
+                }
+
+            }
+        );
 
 
-window.addEventListener(
-    "scroll",
-    revealOnScroll
-);
+        /*
+           Start music after the visitor first interacts
+           with the invitation.
+        */
+
+        document.addEventListener(
+            "click",
+            function firstInteraction() {
+
+                if (!musicPlaying) {
+
+                    startMusic();
+
+                }
+
+                document.removeEventListener(
+                    "click",
+                    firstInteraction
+                );
+
+            },
+            { once: true }
+        );
 
 
-revealOnScroll();
+
+        /* =================================================
+           SCROLL REVEAL
+        ================================================= */
+
+        const revealElements =
+            document.querySelectorAll(
+                ".content-card, .memory-content, .ending-content"
+            );
 
 
-</script>
+        const observer =
+            new IntersectionObserver(
+                function (entries) {
+
+                    entries.forEach(
+                        function (entry) {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target.classList.add(
+                                    "visible"
+                                );
+
+                            }
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.18
+                }
+            );
+
+
+        revealElements.forEach(
+            function (element) {
+
+                observer.observe(element);
+
+            }
+        );
+
+
+
+        /* =================================================
+           PREVENT BROKEN VENUE LINK FROM LOOKING LIKE
+           A REAL LINK UNTIL USER ADDS IT
+        ================================================= */
+
+        const venueLink =
+            document.querySelector(
+                ".venue"
+            );
+
+
+        venueLink.addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    venueLink.getAttribute("href") ===
+                    "VENUE_LINK_HERE"
+                ) {
+
+                    event.preventDefault();
+
+                    alert(
+                        "The venue Google Maps link will be added soon."
+                    );
+
+                }
+
+            }
+        );
+
+
+    </script>
 
 
 </body>
