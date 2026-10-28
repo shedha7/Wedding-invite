@@ -935,6 +935,211 @@
             margin-bottom: 10px;
 
         }
+        /* =========================================================
+   ELEGANT VENUE CARD
+========================================================= */
+
+.venue-card {
+    width: min(88%, 420px);
+    margin: 0 auto;
+    text-align: center;
+}
+
+.venue-heading {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .62rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #e9cc9b;
+    margin-bottom: 15px;
+}
+
+.venue-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #d4ae72;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1rem;
+    margin-bottom: 22px;
+}
+
+.venue-divider span {
+    width: 45px;
+    height: 1px;
+    background: rgba(212, 174, 114, .6);
+}
+
+.venue-name {
+    font-family: 'El Messiri', serif;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff0df;
+}
+
+.venue-address {
+    margin-top: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: .58rem;
+    line-height: 1.8;
+    letter-spacing: 1.5px;
+    color: #eadbd0;
+}
+
+
+/* MAP CARD */
+
+.map-card {
+    width: 100%;
+    margin: 28px auto 0;
+    border: 1px solid rgba(212, 174, 114, .55);
+    background: rgba(40, 10, 18, .28);
+}
+
+
+/* MAP PATTERN */
+
+.map-pattern {
+    height: 145px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(212, 174, 114, .4);
+    background:
+        linear-gradient(
+            135deg,
+            transparent 48%,
+            rgba(233, 204, 155, .12) 49%,
+            transparent 50%
+        ),
+        linear-gradient(
+            45deg,
+            transparent 48%,
+            rgba(233, 204, 155, .09) 49%,
+            transparent 50%
+        );
+    background-size: 55px 55px;
+}
+
+
+/* subtle map roads */
+
+.map-line {
+    position: absolute;
+    height: 1px;
+    background: rgba(233, 204, 155, .25);
+    transform-origin: left center;
+}
+
+.line-one {
+    width: 130%;
+    top: 35%;
+    left: -15%;
+    transform: rotate(18deg);
+}
+
+.line-two {
+    width: 120%;
+    top: 65%;
+    left: -5%;
+    transform: rotate(-12deg);
+}
+
+.line-three {
+    width: 100%;
+    top: 50%;
+    left: 5%;
+    transform: rotate(65deg);
+}
+
+
+/* PIN */
+
+.map-pin {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.55rem;
+    filter: grayscale(.2);
+}
+
+
+/* MAP INFORMATION */
+
+.map-info {
+    padding: 18px 18px 20px;
+    text-align: left;
+}
+
+.map-place {
+    font-family: 'El Messiri', serif;
+    font-size: .72rem;
+    line-height: 1.55;
+    letter-spacing: 1px;
+    color: #fff0df;
+}
+
+.map-location {
+    margin-top: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: .48rem;
+    letter-spacing: 1.5px;
+    color: #d8c2b3;
+    text-transform: uppercase;
+}
+
+.directions-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    float: right;
+    margin-top: -25px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: .45rem;
+    letter-spacing: 2px;
+    color: #e9cc9b;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(233, 204, 155, .5);
+    padding-bottom: 4px;
+}
+
+.directions-button span {
+    font-size: .8rem;
+    transition: transform .3s ease;
+}
+
+.directions-button:hover span {
+    transform: translateX(4px);
+}
+
+
+@media (max-width: 700px) {
+
+    .venue-card {
+        width: 88%;
+    }
+
+    .venue-heading {
+        font-size: .55rem;
+        letter-spacing: 3px;
+    }
+
+    .venue-name {
+        font-size: .9rem;
+    }
+
+    .venue-address {
+        font-size: .5rem;
+    }
+
+    .map-pattern {
+        height: 125px;
+    }
+
+}
 
 
         .address {
@@ -1984,41 +2189,81 @@
 
             </div>
 
-
             <!-- VENUE -->
 
-            <div
-                    class="reveal">
+            <div class="venue-card reveal">
 
+                <div class="venue-heading">
+                    WHERE TO FIND US
+                </div>
 
-                <div
-                        class="venue">
+                <div class="venue-divider">
+                    <span></span>
+                    ✦
+                    <span></span>
+                </div>
 
-                    Krishnapillai Memorial Auditorium
+                <div class="venue-main">
+
+                    <div class="venue-name">
+                        KRISHNAPILLAI
+                        <br>
+                        MEMORIAL AUDITORIUM
+                    </div>
+
+                    <div class="venue-address">
+                        MLA Road, Kovoor
+                        <br>
+                        Calicut, Kerala
+                    </div>
 
                 </div>
 
 
-                <div
-                        class="address">
+                <div class="map-card">
 
-                    MLA Road, Kovoor, Calicut
+                    <div class="map-pattern">
+
+                        <div class="map-line line-one"></div>
+                        <div class="map-line line-two"></div>
+                        <div class="map-line line-three"></div>
+
+                        <div class="map-pin">
+                            📍
+                        </div>
+
+                    </div>
+
+
+                    <div class="map-info">
+
+                        <div class="map-place">
+                            Krishnapillai Memorial
+                            <br>
+                            Auditorium
+                        </div>
+
+                        <div class="map-location">
+                            Kovoor, Calicut
+                        </div>
+
+                        <a
+                                href="https://share.google/haCW8VIf1sYF9aXHb"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="directions-button">
+
+                            DIRECTIONS
+                            <span>→</span>
+
+                        </a>
+
+                    </div>
 
                 </div>
-
-
-                <a
-                        class="map-button"
-                        href="https://share.google/haCW8VIf1sYF9aXHb"
-                        target="_blank"
-                        rel="noopener noreferrer">
-
-                    View Location
-
-                </a>
-
 
             </div>
+
 
 
             <!-- BLESSING -->
