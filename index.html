@@ -16,11 +16,15 @@
     >
 
     <title>Sanjeedh & Minha</title>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=El+Messiri:wght@400;500;600;700&family=Great+Vibes&family=Josefin+Sans:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+            href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=El+Messiri:wght@400;500;600;700&family=Great+Vibes&family=Josefin+Sans:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+    >
 
 
     <style>
@@ -50,6 +54,21 @@
                 "Times New Roman",
                 serif;
             overflow-x: hidden;
+        }
+
+
+        /*
+            IMPORTANT:
+            Before the cover is opened, the entire document is locked.
+            This prevents the invitation pages from being scrolled
+            into view before the user touches the cover.
+        */
+
+        html.invitation-locked,
+        body.invitation-locked {
+            overflow: hidden !important;
+            height: 100% !important;
+            touch-action: none;
         }
 
 
@@ -85,13 +104,6 @@
 
             width: 100%;
 
-            /*
-                IMPORTANT FIX:
-                Use the normal viewport height instead of svh.
-                This keeps the cover at the actual visible screen
-                height on mobile browsers.
-            */
-
             height: 100vh;
 
             min-height: 100vh;
@@ -107,6 +119,8 @@
             user-select: none;
 
             -webkit-user-select: none;
+
+            z-index: 10;
 
         }
 
@@ -400,16 +414,6 @@
         }
 
 
-        /*
-            IMPORTANT FIX:
-
-            The old animation was continuously changing opacity,
-            so opacity: 0 alone was not enough.
-
-            animation:none + !important guarantees that
-            TOUCH TO OPEN disappears completely after opening.
-        */
-
         .cover-scene.opened
         .touch-hint {
 
@@ -486,6 +490,29 @@
 
             width: 100%;
 
+            /*
+                CRITICAL FIX:
+                The entire invitation is completely removed from
+                rendering before the cover is opened.
+
+                This prevents the second page/background from being
+                visible behind or around the cover at first glance.
+            */
+
+            display: none;
+
+        }
+
+
+        /*
+            Only after opening is the invitation flow displayed.
+        */
+
+        body.invitation-opened
+        .invitation-flow {
+
+            display: block;
+
         }
 
 
@@ -496,11 +523,6 @@
         .cream-area {
 
             position: relative;
-
-            /*
-                IMPORTANT FIX:
-                This is a complete screen, not a short section.
-            */
 
             min-height: 100vh;
 
@@ -520,7 +542,7 @@
 
             background-image:
                 url(
-                    "images/background-transition.jpg.jpeg"
+                    "images/background-cream.jpg.jpeg"
                 );
 
             background-size: cover;
@@ -617,6 +639,8 @@
             margin-bottom: 15px;
 
         }
+
+
         .groom-name {
 
             font-size: .66rem;
@@ -678,7 +702,7 @@
 
             background-image:
                 url(
-                    "images/background-burgandy.jpg.jpeg"
+                    "images/background-reception.jpg.jpeg"
                 );
 
             background-size: cover;
@@ -726,7 +750,7 @@
 
 
         /* =========================================================
-           BURGUNDY SECTION
+           BURGUNDY / RECEPTION SECTION
         ========================================================= */
 
         .burgundy-area {
@@ -749,9 +773,16 @@
 
             color: #fff0df;
 
+            /*
+                NEW BACKGROUND:
+                Add this file inside your images folder:
+
+                images/background-reception.jpg.jpeg
+            */
+
             background-image:
                 url(
-                    "images/background-burgandy.jpg.jpeg"
+                    "images/background-reception.jpg.jpeg"
                 );
 
             background-size: cover;
@@ -1356,11 +1387,6 @@
 
         @media (max-width: 700px) {
 
-            /*
-                IMPORTANT FIX:
-                Do NOT use 100svh here.
-            */
-
             .cover-scene {
 
                 height: 100vh;
@@ -1369,11 +1395,6 @@
 
             }
 
-
-            /*
-                The first invitation screen must itself
-                occupy the complete display.
-            */
 
             .cream-area {
 
@@ -1502,7 +1523,7 @@
 </head>
 
 
-<body>
+<body class="invitation-locked">
 
 
 <!-- =========================================================
@@ -1680,8 +1701,6 @@
                 </div>
 
 
-
-
             </div>
 
 
@@ -1693,8 +1712,11 @@
 
                 <div
                         class="family-box reveal">
+
+
                     <div
-                    class="groom-name">
+                            class="groom-name">
+
                         Sanjeedh Roshan
 
                     </div>
@@ -1724,18 +1746,6 @@
                     </div>
 
 
-                    <div
-                            class="family-role">
-
-                        Asst Engineer, KSEB (Rtd.)
-
-                        <br>
-
-                        Teacher, Govt Brennen HSS
-
-                    </div>
-
-
                 </div>
 
 
@@ -1743,8 +1753,11 @@
 
                 <div
                         class="family-box reveal">
+
+
                     <div
                             class="groom-name">
+
                         Minha Nourin
 
                     </div>
@@ -1774,14 +1787,6 @@
                     </div>
 
 
-                    <div
-                            class="family-role">
-
-                        Alukkal, Areekode
-
-                    </div>
-
-
                 </div>
 
 
@@ -1795,7 +1800,7 @@
 
 
     <!-- =====================================================
-         BURGUNDY BACKGROUND
+         BURGUNDY / RECEPTION PAGE
     ===================================================== -->
 
     <section
@@ -2407,6 +2412,7 @@
                 ctx.fillStyle =
                     glow;
 
+
                 ctx.arc(
                     particle.x,
                     particle.y,
@@ -2415,10 +2421,12 @@
                     Math.PI * 2
                 );
 
+
                 ctx.fill();
 
 
                 ctx.beginPath();
+
 
                 ctx.fillStyle =
                     `rgba(
@@ -2428,6 +2436,7 @@
                         ${alpha}
                     )`;
 
+
                 ctx.arc(
                     particle.x,
                     particle.y,
@@ -2435,6 +2444,7 @@
                     0,
                     Math.PI * 2
                 );
+
 
                 ctx.fill();
 
@@ -2524,11 +2534,7 @@
 
 
         /*
-            IMPORTANT FIX:
-
-            Explicitly disable the touch hint.
-            The CSS animation is also disabled with !important,
-            so the animation cannot bring the text back.
+            Hide TOUCH TO OPEN permanently.
         */
 
         if (touchHint) {
@@ -2550,6 +2556,30 @@
 
 
         /*
+            IMPORTANT FIX:
+
+            Unlock the document only AFTER
+            the user has opened the invitation.
+
+            The invitation flow is also changed
+            from display:none to display:block
+            through the body class.
+        */
+
+        document.documentElement.classList.remove(
+            "invitation-locked"
+        );
+
+        document.body.classList.remove(
+            "invitation-locked"
+        );
+
+        document.body.classList.add(
+            "invitation-opened"
+        );
+
+
+        /*
             Show music button.
         */
 
@@ -2559,10 +2589,7 @@
 
 
         /*
-            KEEPING YOUR EXISTING MUSIC BEHAVIOUR.
-
-            Music only attempts to start because
-            this function was triggered by the user's tap.
+            Existing music behaviour.
         */
 
         audio.volume =
@@ -2592,11 +2619,6 @@
                 .catch(
                     function() {
 
-                        /*
-                            Do not break the invitation
-                            if the browser blocks autoplay.
-                        */
-
                         musicButton.classList.remove(
                             "playing"
                         );
@@ -2607,14 +2629,12 @@
         }
 
         /*
-            NO AUTOMATIC SCROLL.
+            IMPORTANT:
 
-            Nothing here calls:
-            scrollIntoView()
-            scrollTo()
-            scrollBy()
+            There is intentionally NO automatic scroll here.
 
-            The user manually scrolls.
+            The user stays at the cover position
+            and manually scrolls to the cream page.
         */
 
     }
@@ -2744,6 +2764,7 @@
                     );
 
                 }
+
                 catch (
                     error
                 ) {
@@ -2755,6 +2776,7 @@
                 }
 
             }
+
             else {
 
                 audio.pause();
