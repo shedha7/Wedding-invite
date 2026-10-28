@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
 
     <meta
             name="viewport"
-            content="width=device-width, initial-scale=1.0"
+            content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     >
 
-    <meta name="theme-color" content="#3a171b">
+    <meta
+            name="theme-color"
+            content="#35171c"
+    >
 
     <title>Sanjeedh & Minha</title>
 
+
     <style>
 
-        /* =====================================================
+        /* =========================================================
            RESET
-        ===================================================== */
+        ========================================================= */
 
         * {
             margin: 0;
@@ -24,21 +30,38 @@
             box-sizing: border-box;
         }
 
+
         html {
             scroll-behavior: smooth;
         }
 
+
         body {
-            background: #2e1418;
-            color: #3f2527;
-            font-family: Georgia, "Times New Roman", serif;
+            margin: 0;
+            background: #35171c;
+            color: #432529;
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
             overflow-x: hidden;
         }
 
 
-        /* =====================================================
-           GLOBAL
-        ===================================================== */
+        img {
+            max-width: 100%;
+        }
+
+
+        button,
+        a {
+            font-family: inherit;
+        }
+
+
+        /* =========================================================
+           GENERAL SCENE
+        ========================================================= */
 
         .scene {
             position: relative;
@@ -46,53 +69,100 @@
             overflow: hidden;
         }
 
-        .gold {
-            color: #c9a264;
-        }
 
-
-        /* =====================================================
-           COVER EXPERIENCE
+        /* =========================================================
+           COVER
 
            IMPORTANT:
-           The actual cover image is NOT modified.
-        ===================================================== */
+           The original cover image is displayed as-is.
+        ========================================================= */
 
         .cover-scene {
-            position: relative;
-            height: 100svh;
-            min-height: 650px;
-            background: #241013;
-        }
 
-        .cover-image {
-            position: absolute;
-            inset: 0;
+            position: relative;
 
             width: 100%;
-            height: 100%;
 
-            object-fit: cover;
-            object-position: center;
+            height: 100svh;
 
-            z-index: 2;
+            min-height: 600px;
 
-            transition:
-                opacity 1.8s cubic-bezier(.22,.61,.36,1),
-                transform 2s cubic-bezier(.22,.61,.36,1),
-                filter 1.5s ease;
+            background: #281115;
+
+            overflow: hidden;
+
+            cursor: pointer;
+
+            /*
+                Makes touch interaction responsive.
+            */
+
+            touch-action: manipulation;
+
+            user-select: none;
+
+            -webkit-user-select: none;
+
         }
 
 
         /*
-           This layer sits underneath the cover.
+            ORIGINAL COVER IMAGE
 
-           So the next invitation scene is already there,
-           rather than being loaded after the cover.
+            Nothing is drawn into this image.
+            The seal remains exactly as it exists
+            in the uploaded image.
+        */
+
+        .cover-image {
+
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            object-position: center;
+
+            z-index: 2;
+
+            display: block;
+
+            pointer-events: none;
+
+            opacity: 1;
+
+            transform: scale(1);
+
+            filter: brightness(1);
+
+            transition:
+                opacity 1.7s
+                cubic-bezier(.22,.61,.36,1),
+
+                transform 2.1s
+                cubic-bezier(.22,.61,.36,1),
+
+                filter 1.5s ease;
+
+        }
+
+
+        /*
+            Underlay.
+
+            This is already behind the cover.
+            When the cover fades, the invitation is revealed.
         */
 
         .cover-underlay {
+
             position: absolute;
+
             inset: 0;
 
             z-index: 1;
@@ -101,238 +171,319 @@
                 url("images/background-cream.jpg.jpeg");
 
             background-size: cover;
+
             background-position: center;
 
+            background-repeat: no-repeat;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             text-align: center;
 
             padding: 30px;
+
         }
 
 
         /*
-           The cover slowly reveals the cream invitation.
+            When opened:
+
+            cover does NOT scroll away.
+
+            It simply dissolves.
         */
 
-        .cover-scene.opened .cover-image {
+        .cover-scene.opened
+        .cover-image {
+
             opacity: 0;
 
-            transform:
-                scale(1.035);
+            transform: scale(1.025);
 
             filter:
-                brightness(1.08);
+                brightness(1.08)
+                blur(.3px);
+
         }
 
 
-        /* =====================================================
-           COVER TOUCH HINT
-        ===================================================== */
+        /* =========================================================
+           COVER INTRO CONTENT
+        ========================================================= */
+
+        .intro-content {
+
+            width:
+                min(850px, 92vw);
+
+            color: #4c292c;
+
+            text-align: center;
+
+            opacity: 0;
+
+            transform:
+                translateY(24px);
+
+            transition:
+                opacity 1.4s ease .25s,
+
+                transform 1.5s
+                cubic-bezier(.22,.61,.36,1) .25s;
+
+        }
+
+
+        .cover-scene.opened
+        .intro-content {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+
+        }
+
+
+        .bismillah {
+
+            font-size:
+                clamp(
+                    .8rem,
+                    2.2vw,
+                    1rem
+                );
+
+            line-height: 1.9;
+
+            font-style: italic;
+
+            color: #6b5050;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .intro-line {
+
+            width: 70px;
+
+            height: 1px;
+
+            background: #b89560;
+
+            margin:
+                20px
+                auto
+                24px;
+
+        }
+
+
+        .invite-copy {
+
+            max-width: 600px;
+
+            margin: 0 auto;
+
+            font-size:
+                clamp(
+                    .86rem,
+                    2.3vw,
+                    1rem
+                );
+
+            line-height: 2;
+
+            color: #604447;
+
+        }
+
+
+        .names {
+
+            margin-top: 38px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 24px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .person-name {
+
+            font-size:
+                clamp(
+                    2.1rem,
+                    7vw,
+                    4.7rem
+                );
+
+            font-weight: normal;
+
+            line-height: 1.05;
+
+            color: #472126;
+
+        }
+
+
+        .and {
+
+            color: #aa7f47;
+
+            font-size:
+                clamp(
+                    1.5rem,
+                    4vw,
+                    2.5rem
+                );
+
+            font-style: italic;
+
+        }
+
+
+        /* =========================================================
+           TOUCH TO OPEN
+        ========================================================= */
 
         .touch-hint {
+
             position: absolute;
 
             left: 50%;
-            bottom: 35px;
 
-            transform: translateX(-50%);
+            bottom:
+                max(
+                    28px,
+                    env(safe-area-inset-bottom)
+                );
 
-            z-index: 5;
+            transform:
+                translateX(-50%);
 
-            color: rgba(255, 245, 228, 0.85);
+            z-index: 8;
 
-            font-size: 0.64rem;
+            color:
+                rgba(
+                    255,
+                    244,
+                    225,
+                    .9
+                );
+
+            font-size: .62rem;
 
             letter-spacing: 4px;
 
             text-transform: uppercase;
 
+            white-space: nowrap;
+
             pointer-events: none;
 
             animation:
-                hintPulse 2.4s ease-in-out infinite;
+                touchPulse 2.2s
+                ease-in-out infinite;
 
             transition:
                 opacity .5s ease;
+
         }
 
-        .cover-scene.opened .touch-hint {
+
+        .cover-scene.opened
+        .touch-hint {
+
             opacity: 0;
+
         }
 
-        @keyframes hintPulse {
+
+        @keyframes touchPulse {
 
             0%,
             100% {
-                opacity: .35;
+                opacity: .4;
+                transform:
+                    translateX(-50%)
+                    translateY(0);
             }
 
             50% {
                 opacity: 1;
+                transform:
+                    translateX(-50%)
+                    translateY(-4px);
             }
+
         }
 
 
-        /* =====================================================
+        /* =========================================================
            SPARKLE CANVAS
-        ===================================================== */
+
+           Soft luxury dust.
+           No cartoon stars.
+        ========================================================= */
 
         #sparkleCanvas {
+
             position: fixed;
 
             inset: 0;
 
             width: 100%;
+
             height: 100%;
 
-            z-index: 100;
+            z-index: 200;
 
             pointer-events: none;
 
             opacity: 0;
-        }
-
-
-        /* =====================================================
-           FIRST INVITATION CONTENT
-        ===================================================== */
-
-        .intro-content {
-            width: min(900px, 92vw);
-
-            text-align: center;
-
-            color: #4b292b;
-
-            opacity: 0;
-
-            transform:
-                translateY(25px);
 
             transition:
-                opacity 1.5s ease,
-                transform 1.5s ease;
-        }
+                opacity .8s ease;
 
-        .cover-scene.opened .intro-content {
-            opacity: 1;
-
-            transform:
-                translateY(0);
         }
 
 
-        .bismillah {
-            font-size: 0.95rem;
-
-            line-height: 1.8;
-
-            font-style: italic;
-
-            margin-bottom: 25px;
-        }
-
-
-        .intro-line {
-            width: 75px;
-
-            height: 1px;
-
-            background: #b58a55;
-
-            margin: 22px auto;
-        }
-
-
-        .invite-copy {
-            max-width: 580px;
-
-            margin: 0 auto;
-
-            font-size: 0.95rem;
-
-            line-height: 2;
-
-            color: #64484a;
-        }
-
-
-        /* =====================================================
-           NAMES
-        ===================================================== */
-
-        .names {
-            margin-top: 35px;
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            gap: 22px;
-
-            flex-wrap: wrap;
-        }
-
-        .person-name {
-            font-size:
-                clamp(
-                    2.2rem,
-                    7vw,
-                    4.8rem
-                );
-
-            font-weight: normal;
-
-            color: #481f24;
-
-            line-height: 1.1;
-        }
-
-        .and {
-            font-size:
-                clamp(
-                    1.7rem,
-                    5vw,
-                    2.8rem
-                );
-
-            color: #aa7e45;
-
-            font-style: italic;
-        }
-
-
-        /* =====================================================
-           CONTINUOUS INVITATION AREA
-        ===================================================== */
+        /* =========================================================
+           MAIN INVITATION FLOW
+        ========================================================= */
 
         .invitation-flow {
+
             position: relative;
+
+            width: 100%;
+
         }
 
 
-        /* =====================================================
-           CREAM AREA
-        ===================================================== */
+        /* =========================================================
+           CREAM SECTION
+        ========================================================= */
 
         .cream-area {
+
             position: relative;
 
-            min-height: 110vh;
-
-            background-image:
-                url("background-cream.jpg.jpeg");
-
-            background-size: cover;
-
-            background-position: center;
-
-            background-attachment: fixed;
+            min-height: 115svh;
 
             display: flex;
 
@@ -343,29 +494,50 @@
             text-align: center;
 
             padding:
-                120px
+                110px
                 24px;
+
+            background-image:
+                url(
+                    "images/background-cream.jpg.jpeg"
+                );
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-repeat: no-repeat;
+
+            background-attachment: fixed;
+
         }
 
+
         .cream-content {
-            width: min(900px, 92vw);
+
+            width:
+                min(900px, 92vw);
+
         }
 
 
         .section-small {
-            font-size: 0.67rem;
 
-            text-transform: uppercase;
+            font-size: .64rem;
 
             letter-spacing: 4px;
 
-            color: #96766b;
+            text-transform: uppercase;
+
+            color: #96756b;
 
             margin-bottom: 22px;
+
         }
 
 
         .section-heading {
+
             font-size:
                 clamp(
                     2rem,
@@ -375,15 +547,25 @@
 
             font-weight: normal;
 
-            color: #4a2529;
-
             line-height: 1.2;
 
-            margin-bottom: 25px;
+            color: #4a2529;
+
+            margin-bottom: 28px;
+
         }
 
 
         .family-grid {
+
+            width:
+                min(760px, 100%);
+
+            margin:
+                60px
+                auto
+                0;
+
             display: grid;
 
             grid-template-columns:
@@ -391,19 +573,19 @@
 
             gap: 70px;
 
-            max-width: 750px;
-
-            margin: 60px auto 0;
         }
 
 
         .family-box {
+
             color: #4c292d;
+
         }
 
 
         .family-title {
-            font-size: 0.65rem;
+
+            font-size: .63rem;
 
             text-transform: uppercase;
 
@@ -412,71 +594,44 @@
             color: #98786e;
 
             margin-bottom: 15px;
+
         }
 
 
         .family-names {
+
             font-size: 1rem;
 
             line-height: 1.8;
+
         }
 
 
         .family-role {
-            margin-top: 8px;
 
-            font-size: 0.74rem;
+            margin-top: 9px;
+
+            font-size: .73rem;
 
             line-height: 1.7;
 
             color: #765b58;
+
         }
 
 
-        /* =====================================================
-           TRANSITION BETWEEN CREAM AND BURGUNDY
-        ===================================================== */
+        /* =========================================================
+           USER-CONTROLLED TRANSITION BACKGROUND
 
-        .transition-space {
+           NEW IMAGE:
+           images/background-transition.jpg.jpeg
+        ========================================================= */
+
+        .transition-area {
+
             position: relative;
 
-            height: 32vh;
-
-            margin-top: -12vh;
-
-            z-index: 4;
-
-            background:
-                linear-gradient(
-                    to bottom,
-                    rgba(0,0,0,0),
-                    rgba(52,19,24,.55),
-                    #39171d
-                );
-
-            pointer-events: none;
-        }
-
-
-        /* =====================================================
-           BURGUNDY
-        ===================================================== */
-
-        .burgundy-area {
-            position: relative;
-
-            min-height: 115vh;
-
-            margin-top: -1px;
-
-            background-image:
-                url("images/background-burgundy.jpg.jpeg");
-
-            background-size: cover;
-
-            background-position: center;
-
-            background-attachment: fixed;
+            min-height: 78svh;
 
             display: flex;
 
@@ -487,32 +642,123 @@
             text-align: center;
 
             padding:
-                120px
+                100px
+                24px;
+
+            background-image:
+                url(
+                    "images/background-transition.jpg.jpeg"
+                );
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-repeat: no-repeat;
+
+        }
+
+
+        .transition-content {
+
+            color: #f4e5d4;
+
+        }
+
+
+        .transition-small {
+
+            font-size: .64rem;
+
+            text-transform: uppercase;
+
+            letter-spacing: 5px;
+
+            opacity: .9;
+
+        }
+
+
+        .transition-line {
+
+            width: 65px;
+
+            height: 1px;
+
+            background: #d4ae72;
+
+            margin:
+                22px
+                auto;
+
+        }
+
+
+        /* =========================================================
+           BURGUNDY SECTION
+        ========================================================= */
+
+        .burgundy-area {
+
+            position: relative;
+
+            min-height: 120svh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            padding:
+                110px
                 24px;
 
             color: #fff0df;
+
+            background-image:
+                url(
+                    "images/background-burgundy.jpg.jpeg"
+                );
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-repeat: no-repeat;
+
+            background-attachment: fixed;
+
         }
 
 
         .burgundy-content {
-            width: min(850px, 92vw);
+
+            width:
+                min(850px, 92vw);
+
         }
 
 
         .burgundy-small {
-            font-size: 0.67rem;
+
+            font-size: .64rem;
 
             text-transform: uppercase;
 
             letter-spacing: 4px;
 
-            color: #ddc083;
+            color: #dfc283;
 
             margin-bottom: 25px;
+
         }
 
 
         .event-title {
+
             font-size:
                 clamp(
                     2.4rem,
@@ -522,29 +768,35 @@
 
             font-weight: normal;
 
-            color: #fff0df;
-
             line-height: 1.1;
 
-            margin-bottom: 30px;
+            color: #fff0df;
+
+            margin-bottom: 28px;
+
         }
 
 
         .gold-line {
+
             width: 85px;
 
             height: 1px;
 
             background: #d0a96a;
 
-            margin: 25px auto;
+            margin:
+                24px
+                auto;
+
         }
 
 
         .event-date {
+
             font-size:
                 clamp(
-                    1.2rem,
+                    1.15rem,
                     3.5vw,
                     1.65rem
                 );
@@ -553,25 +805,29 @@
 
             letter-spacing: 2px;
 
-            margin-bottom: 13px;
+            margin-bottom: 14px;
+
         }
 
 
         .event-time {
-            font-size: 0.85rem;
+
+            font-size: .82rem;
 
             letter-spacing: 4px;
 
             color: #f0ddd0;
 
-            margin-bottom: 55px;
+            margin-bottom: 52px;
+
         }
 
 
         .venue {
+
             font-size:
                 clamp(
-                    1.25rem,
+                    1.2rem,
                     4vw,
                     2rem
                 );
@@ -581,21 +837,25 @@
             line-height: 1.4;
 
             margin-bottom: 10px;
+
         }
 
 
         .address {
-            font-size: 0.88rem;
+
+            font-size: .87rem;
 
             color: #e6d0c3;
 
             line-height: 1.7;
 
-            margin-bottom: 32px;
+            margin-bottom: 30px;
+
         }
 
 
         .map-button {
+
             display: inline-block;
 
             text-decoration: none;
@@ -604,7 +864,12 @@
 
             border:
                 1px solid
-                rgba(228, 190, 117, .8);
+                rgba(
+                    228,
+                    190,
+                    117,
+                    .8
+                );
 
             padding:
                 13px
@@ -612,7 +877,7 @@
 
             text-transform: uppercase;
 
-            font-size: 0.64rem;
+            font-size: .62rem;
 
             letter-spacing: 3px;
 
@@ -620,42 +885,51 @@
                 background .3s ease,
                 color .3s ease,
                 transform .3s ease;
+
         }
 
 
         .map-button:hover {
+
             background: #dfbd79;
 
             color: #351419;
 
-            transform: translateY(-2px);
+            transform:
+                translateY(-2px);
+
         }
 
 
         .blessing {
+
             max-width: 520px;
 
-            margin: 55px auto 0;
+            margin:
+                52px
+                auto
+                0;
 
             color: #eadbd0;
 
-            font-size: 0.98rem;
+            font-size: .96rem;
 
             line-height: 1.9;
 
             font-style: italic;
+
         }
 
 
-        /* =====================================================
-           MEMORY AREA
-        ===================================================== */
+        /* =========================================================
+           MEMORY SECTION
+        ========================================================= */
 
         .memory-area {
-            min-height: 120vh;
 
-            background:
-                #eee1d1;
+            position: relative;
+
+            min-height: 120svh;
 
             display: flex;
 
@@ -669,16 +943,24 @@
                 120px
                 24px;
 
+            background:
+                #eee1d1;
+
             color: #432528;
+
         }
 
 
         .memory-content {
-            width: min(800px, 92vw);
+
+            width:
+                min(800px, 92vw);
+
         }
 
 
         .memory-title {
+
             font-size:
                 clamp(
                     2.1rem,
@@ -691,11 +973,14 @@
             line-height: 1.2;
 
             margin-bottom: 45px;
+
         }
 
 
         .photo-wrapper {
-            width: min(590px, 100%);
+
+            width:
+                min(590px, 100%);
 
             margin: 0 auto;
 
@@ -705,38 +990,49 @@
 
             box-shadow:
                 0 25px 55px
-                rgba(62, 31, 31, .17);
+                rgba(
+                    62,
+                    31,
+                    31,
+                    .17
+                );
 
             transform:
                 rotate(-.7deg);
 
             transition:
                 transform 1s ease;
+
         }
 
 
         .photo-wrapper:hover {
+
             transform:
                 rotate(0deg)
                 scale(1.015);
+
         }
 
 
         .photo-wrapper img {
+
             display: block;
 
             width: 100%;
 
             height: auto;
+
         }
 
 
         .memory-caption {
+
             margin-top: 40px;
 
             font-size:
                 clamp(
-                    1.1rem,
+                    1.05rem,
                     3vw,
                     1.5rem
                 );
@@ -744,22 +1040,19 @@
             line-height: 1.6;
 
             color: #5b3336;
+
         }
 
 
-        /* =====================================================
+        /* =========================================================
            ENDING
-        ===================================================== */
+        ========================================================= */
 
         .ending-area {
-            min-height: 115vh;
 
-            background-image:
-                url("images/ending.jpg.jpeg");
+            position: relative;
 
-            background-size: cover;
-
-            background-position: center;
+            min-height: 115svh;
 
             display: flex;
 
@@ -774,28 +1067,46 @@
                 24px;
 
             color: #fff0df;
+
+            background-image:
+                url(
+                    "images/ending.jpg.jpeg"
+                );
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-repeat: no-repeat;
+
         }
 
 
         .ending-content {
-            width: min(700px, 92vw);
+
+            width:
+                min(700px, 92vw);
+
         }
 
 
         .ending-small {
+
             text-transform: uppercase;
 
             letter-spacing: 5px;
 
-            font-size: 0.7rem;
+            font-size: .68rem;
 
             color: #e9cc9b;
 
             margin-bottom: 25px;
+
         }
 
 
         .monogram {
+
             font-size:
                 clamp(
                     4rem,
@@ -808,36 +1119,43 @@
             letter-spacing: 5px;
 
             color: #fff0df;
+
         }
 
 
         .ending-message {
+
             max-width: 520px;
 
             margin:
-                35px auto
+                35px
+                auto
                 50px;
 
             color: #f2dfd2;
 
-            font-size: 1rem;
+            font-size: .98rem;
 
             line-height: 1.9;
+
         }
 
 
         .compliments {
+
             color: #e9d1c0;
 
-            font-size: 0.78rem;
+            font-size: .77rem;
 
             line-height: 1.9;
 
             letter-spacing: 1px;
+
         }
 
 
         .compliments strong {
+
             display: block;
 
             color: #efcf98;
@@ -845,80 +1163,127 @@
             margin-bottom: 6px;
 
             font-size: .9rem;
+
         }
 
 
-        /* =====================================================
-           SCROLL REVEAL
-        ===================================================== */
+        /* =========================================================
+           SCROLL REVEALS
+        ========================================================= */
 
         .reveal {
+
             opacity: 0;
 
             transform:
                 translateY(35px);
 
             transition:
-                opacity 1s ease,
-                transform 1.1s cubic-bezier(.22,.61,.36,1);
+                opacity 1.1s ease,
+
+                transform 1.1s
+                cubic-bezier(
+                    .22,
+                    .61,
+                    .36,
+                    1
+                );
+
         }
 
 
         .reveal.show {
+
             opacity: 1;
 
             transform:
                 translateY(0);
+
         }
 
 
-        /* =====================================================
-           MUSIC
-        ===================================================== */
+        /* =========================================================
+           MUSIC BUTTON
+        ========================================================= */
 
         .music-button {
+
             position: fixed;
 
             top: 20px;
+
             right: 20px;
 
             z-index: 150;
 
             width: 45px;
+
             height: 45px;
 
             border-radius: 50%;
 
             border:
                 1px solid
-                rgba(236, 209, 164, .75);
+                rgba(
+                    236,
+                    209,
+                    164,
+                    .75
+                );
 
             background:
-                rgba(45, 18, 23, .68);
+                rgba(
+                    45,
+                    18,
+                    23,
+                    .68
+                );
 
             color: #efd29b;
 
-            backdrop-filter: blur(8px);
+            backdrop-filter:
+                blur(8px);
+
+            -webkit-backdrop-filter:
+                blur(8px);
 
             cursor: pointer;
 
             display: none;
 
             align-items: center;
+
             justify-content: center;
 
             font-size: 1rem;
+
+            transition:
+                transform .3s ease;
+
         }
 
 
         .music-button.visible {
+
             display: flex;
+
+        }
+
+
+        .music-button:hover {
+
+            transform:
+                scale(1.06);
+
         }
 
 
         .music-button.playing {
+
             animation:
-                musicPulse 1.8s ease-in-out infinite;
+                musicPulse 1.8s
+                ease-in-out infinite;
+
         }
 
 
@@ -926,112 +1291,168 @@
 
             0%,
             100% {
+
                 box-shadow:
                     0 0 0 0
-                    rgba(216,183,122,.08);
+                    rgba(
+                        216,
+                        183,
+                        122,
+                        .08
+                    );
+
             }
 
             50% {
+
                 box-shadow:
                     0 0 0 8px
-                    rgba(216,183,122,.03);
+                    rgba(
+                        216,
+                        183,
+                        122,
+                        .03
+                    );
+
             }
+
         }
 
 
-        /* =====================================================
+        /* =========================================================
            MOBILE
-        ===================================================== */
+        ========================================================= */
 
         @media (max-width: 700px) {
 
             .cover-scene {
+
                 min-height: 100svh;
+
             }
 
+
             .cream-area,
+            .transition-area,
             .burgundy-area,
             .memory-area,
             .ending-area {
+
                 min-height: 100svh;
 
                 padding:
                     90px
                     18px;
+
             }
+
 
             .cream-area,
             .burgundy-area {
-                background-attachment: scroll;
+
+                background-attachment:
+                    scroll;
+
             }
+
 
             .family-grid {
-                grid-template-columns: 1fr;
 
-                gap: 35px;
+                grid-template-columns:
+                    1fr;
+
+                gap: 38px;
 
                 margin-top: 45px;
+
             }
+
 
             .names {
-                flex-direction: column;
+
+                flex-direction:
+                    column;
 
                 gap: 10px;
+
             }
+
 
             .and {
+
                 line-height: 1;
+
             }
 
-            .transition-space {
-                height: 18vh;
 
-                margin-top: -7vh;
+            .touch-hint {
+
+                font-size: .57rem;
+
+                letter-spacing: 3px;
+
             }
+
 
             .music-button {
+
                 top: 15px;
+
                 right: 15px;
 
                 width: 42px;
+
                 height: 42px;
+
             }
 
         }
 
 
-        /* =====================================================
+        /* =========================================================
            REDUCED MOTION
-        ===================================================== */
+        ========================================================= */
 
-        @media (prefers-reduced-motion: reduce) {
+        @media (
+            prefers-reduced-motion: reduce
+        ) {
 
             *,
             *::before,
             *::after {
-                animation-duration: .01ms !important;
 
-                animation-iteration-count: 1 !important;
+                animation-duration:
+                    .01ms !important;
 
-                transition-duration: .01ms !important;
+                animation-iteration-count:
+                    1 !important;
+
+                transition-duration:
+                    .01ms !important;
+
             }
 
+
             html {
-                scroll-behavior: auto;
+
+                scroll-behavior:
+                    auto;
+
             }
 
         }
 
     </style>
+
 </head>
 
 
 <body>
 
 
-<!-- =====================================================
-     MUSIC
-===================================================== -->
+<!-- =========================================================
+     BACKGROUND MUSIC
+========================================================= -->
 
 <audio
         id="bgm"
@@ -1045,51 +1466,65 @@
 </audio>
 
 
+<!-- =========================================================
+     MUSIC CONTROL
+========================================================= -->
+
 <button
         id="musicButton"
         class="music-button"
-        aria-label="Toggle music">
+        type="button"
+        aria-label="Toggle background music">
 
     ♫
 
 </button>
 
 
-<!-- =====================================================
+<!-- =========================================================
      SPARKLE CANVAS
-===================================================== -->
+========================================================= -->
 
-<canvas id="sparkleCanvas"></canvas>
+<canvas
+        id="sparkleCanvas">
+</canvas>
 
 
-<!-- =====================================================
+<!-- =========================================================
      COVER
 
-     YOUR ORIGINAL IMAGE IS USED DIRECTLY.
-     NOTHING IS DRAWN OVER THE SEAL.
-===================================================== -->
+     IMPORTANT:
+     The cover is your actual uploaded image.
+     The seal is part of this image and remains untouched.
+========================================================= -->
 
 <section
         id="coverScene"
-        class="scene cover-scene">
+        class="scene cover-scene"
+        aria-label="Wedding invitation cover">
 
+
+    <!-- ORIGINAL COVER -->
 
     <img
             class="cover-image"
             src="images/cover.jpg.jpeg"
-            alt="Wedding invitation cover">
+            alt="Sanjeedh and Minha wedding invitation cover"
+    >
 
 
-    <!--
-        This is already underneath the cover.
-        When the cover fades, this content is revealed.
-    -->
+    <!-- CONTENT UNDER THE COVER -->
 
-    <div class="cover-underlay">
+    <div
+            class="cover-underlay">
 
-        <div class="intro-content">
 
-            <div class="bismillah">
+        <div
+                class="intro-content">
+
+
+            <div
+                    class="bismillah">
 
                 In the name of Allah,
                 the most gracious,
@@ -1097,9 +1532,14 @@
 
             </div>
 
-            <div class="intro-line"></div>
 
-            <p class="invite-copy">
+            <div
+                    class="intro-line">
+            </div>
+
+
+            <p
+                    class="invite-copy">
 
                 We cordially invite your esteemed
                 presence with family for the Wedding
@@ -1107,199 +1547,313 @@
 
             </p>
 
-            <div class="names">
 
-                <div class="person-name">
+            <div
+                    class="names">
+
+
+                <div
+                        class="person-name">
+
                     Sanjeedh Roshan
+
                 </div>
 
-                <div class="and">
+
+                <div
+                        class="and">
+
                     &
+
                 </div>
 
-                <div class="person-name">
+
+                <div
+                        class="person-name">
+
                     Minha Nourin
+
                 </div>
+
 
             </div>
 
+
         </div>
+
 
     </div>
 
 
-    <div class="touch-hint">
+    <!-- TOUCH HINT -->
+
+    <div
+            class="touch-hint">
 
         Touch to open
 
     </div>
 
+
 </section>
 
 
 
-<!-- =====================================================
-     MAIN INVITATION FLOW
-===================================================== -->
+<!-- =========================================================
+     MAIN INVITATION
+
+     IMPORTANT:
+     There is NO automatic scrolling.
+     The visitor controls the scroll.
+========================================================= -->
 
 <main
         id="invitationFlow"
         class="invitation-flow">
 
 
-    <!-- =================================================
-         CREAM FAMILY SECTION
-    ================================================= -->
+    <!-- =====================================================
+         CREAM BACKGROUND
+    ===================================================== -->
 
     <section
             class="scene cream-area">
 
-        <div class="cream-content">
+
+        <div
+                class="cream-content">
 
 
-            <div class="reveal">
+            <div
+                    class="reveal">
 
-                <div class="section-small">
+
+                <div
+                        class="section-small">
+
                     Together with their families
+
                 </div>
 
-                <h2 class="section-heading">
+
+                <h2
+                        class="section-heading">
 
                     A beautiful beginning
 
                 </h2>
 
+
             </div>
 
 
-            <div class="family-grid">
+            <div
+                    class="family-grid">
 
 
-                <div class="family-box reveal">
+                <!-- GROOM FAMILY -->
 
-                    <div class="family-title">
+                <div
+                        class="family-box reveal">
+
+
+                    <div
+                            class="family-title">
+
                         Son of
+
                     </div>
 
-                    <div class="family-names">
+
+                    <div
+                            class="family-names">
 
                         Sirajudeen K P
+
                         <br>
+
                         &amp;
+
                         <br>
+
                         Shereena P
 
                     </div>
 
-                    <div class="family-role">
+
+                    <div
+                            class="family-role">
 
                         Asst Engineer, KSEB (Rtd.)
+
                         <br>
+
                         Teacher, Govt Brennen HSS
 
                     </div>
 
+
                 </div>
 
 
+                <!-- BRIDE FAMILY -->
 
-                <div class="family-box reveal">
+                <div
+                        class="family-box reveal">
 
-                    <div class="family-title">
+
+                    <div
+                            class="family-title">
+
                         Daughter of
+
                     </div>
 
-                    <div class="family-names">
+
+                    <div
+                            class="family-names">
 
                         Ali Ashraf
+
                         <br>
+
                         &amp;
+
                         <br>
+
                         Thajunissa
 
                     </div>
 
-                    <div class="family-role">
+
+                    <div
+                            class="family-role">
 
                         Alukkal, Areekode
 
                     </div>
 
+
                 </div>
 
 
             </div>
 
+
         </div>
+
 
     </section>
 
 
 
-    <!-- =================================================
-         TRANSITION
-    ================================================= -->
+    <!-- =====================================================
+         TRANSITION BACKGROUND
 
-    <div class="transition-space"></div>
+         YOU ADD:
+         images/background-transition.jpg.jpeg
+    ===================================================== -->
+
+    <section
+            class="scene transition-area">
+
+
+        <div
+                class="transition-content reveal">
+
+
+            <div
+                    class="transition-small">
+
+                A beautiful beginning
+
+            </div>
+
+
+            <div
+                    class="transition-line">
+            </div>
+
+
+        </div>
+
+
+    </section>
 
 
 
-    <!-- =================================================
-         BURGUNDY EVENT SECTION
-    ================================================= -->
+    <!-- =====================================================
+         BURGUNDY BACKGROUND
+    ===================================================== -->
 
     <section
             class="scene burgundy-area">
 
-        <div class="burgundy-content">
+
+        <div
+                class="burgundy-content">
 
 
-            <div class="reveal">
+            <div
+                    class="reveal">
 
-                <div class="burgundy-small">
+
+                <div
+                        class="burgundy-small">
 
                     You are warmly invited
 
                 </div>
 
 
-                <h2 class="event-title">
+                <h2
+                        class="event-title">
 
                     Wedding Reception
 
                 </h2>
 
 
-                <div class="gold-line"></div>
+                <div
+                        class="gold-line">
+                </div>
 
 
-                <div class="event-date">
+                <div
+                        class="event-date">
 
                     Sunday, 27 December 2026
 
                 </div>
 
 
-                <div class="event-time">
+                <div
+                        class="event-time">
 
                     5:00 PM – 10:00 PM
 
                 </div>
 
+
             </div>
 
 
+            <!-- VENUE -->
 
-            <div class="reveal">
+            <div
+                    class="reveal">
 
-                <div class="venue">
+
+                <div
+                        class="venue">
 
                     Krishnapillai Memorial Auditorium
 
                 </div>
 
 
-                <div class="address">
+                <div
+                        class="address">
 
                     MLA Road, Kovoor, Calicut
 
@@ -1316,48 +1870,61 @@
 
                 </a>
 
+
             </div>
 
 
+            <!-- BLESSING -->
 
-            <div class="reveal">
+            <div
+                    class="reveal">
 
-                <p class="blessing">
+
+                <p
+                        class="blessing">
 
                     Your presence and blessings will make
                     this joyous occasion truly special.
 
                 </p>
 
+
             </div>
 
 
         </div>
 
+
     </section>
 
 
 
-    <!-- =================================================
+    <!-- =====================================================
          CHILDHOOD MEMORY
-    ================================================= -->
+    ===================================================== -->
 
     <section
             class="scene memory-area">
 
-        <div class="memory-content">
+
+        <div
+                class="memory-content">
 
 
-            <div class="reveal">
+            <div
+                    class="reveal">
 
-                <div class="section-small">
+
+                <div
+                        class="section-small">
 
                     A little memory
 
                 </div>
 
 
-                <h2 class="memory-title">
+                <h2
+                        class="memory-title">
 
                     And it all began
                     <br>
@@ -1365,19 +1932,29 @@
 
                 </h2>
 
+
             </div>
 
 
-            <div class="photo-wrapper reveal">
+            <!-- CHILDHOOD PHOTO -->
+
+            <div
+                    class="photo-wrapper reveal">
+
 
                 <img
                         src="images/couple-childhood.jpg.jpeg"
-                        alt="Childhood photograph">
+                        alt="Childhood photograph of Sanjeedh and Minha"
+                >
+
 
             </div>
 
 
-            <div class="memory-caption reveal">
+            <!-- EXACT CAPTION -->
+
+            <div
+                    class="memory-caption reveal">
 
                 These kids grew up and they’re
                 getting married!! ❤️✨
@@ -1387,40 +1964,50 @@
 
         </div>
 
+
     </section>
 
 
 
-    <!-- =================================================
+    <!-- =====================================================
          ENDING
-    ================================================= -->
+    ===================================================== -->
 
     <section
             class="scene ending-area">
 
-        <div class="ending-content">
+
+        <div
+                class="ending-content">
 
 
-            <div class="reveal">
+            <div
+                    class="reveal">
 
-                <div class="ending-small">
+
+                <div
+                        class="ending-small">
 
                     With love &amp; blessings
 
                 </div>
 
 
-                <div class="monogram">
+                <div
+                        class="monogram">
 
                     S &amp; A
 
                 </div>
 
 
-                <div class="gold-line"></div>
+                <div
+                        class="gold-line">
+                </div>
 
 
-                <p class="ending-message">
+                <p
+                        class="ending-message">
 
                     We would be honoured to have you
                     celebrate this beautiful beginning
@@ -1428,27 +2015,37 @@
 
                 </p>
 
+
             </div>
 
 
-            <div class="compliments reveal">
+            <div
+                    class="compliments reveal">
+
 
                 <strong>
+
                     Best Compliments
+
                 </strong>
 
+
                 Shedha Siraj
+
                 <br>
 
                 Essar Associates, Calicut
+
                 <br>
 
                 +91 9447537874
+
 
             </div>
 
 
         </div>
+
 
     </section>
 
@@ -1457,70 +2054,99 @@
 
 
 
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
 <script>
 
+
     /* =====================================================
-       ELEMENTS
+       GET ELEMENTS
     ===================================================== */
 
     const coverScene =
-        document.getElementById("coverScene");
+        document.getElementById(
+            "coverScene"
+        );
 
-    const coverImage =
-        document.querySelector(".cover-image");
 
-    const canvas =
-        document.getElementById("sparkleCanvas");
+    const sparkleCanvas =
+        document.getElementById(
+            "sparkleCanvas"
+        );
+
 
     const ctx =
-        canvas.getContext("2d");
+        sparkleCanvas.getContext(
+            "2d"
+        );
+
 
     const musicButton =
-        document.getElementById("musicButton");
+        document.getElementById(
+            "musicButton"
+        );
+
 
     const audio =
-        document.getElementById("bgm");
+        document.getElementById(
+            "bgm"
+        );
 
 
-    let opened = false;
+    let invitationOpened =
+        false;
+
 
     let particles = [];
 
-    let animationRunning = false;
-
 
     /* =====================================================
-       CANVAS
+       CANVAS SIZE
     ===================================================== */
 
     function resizeCanvas() {
 
-        canvas.width =
+        const ratio =
+            window.devicePixelRatio ||
+            1;
+
+
+        sparkleCanvas.width =
             window.innerWidth *
-            window.devicePixelRatio;
+            ratio;
 
-        canvas.height =
+
+        sparkleCanvas.height =
             window.innerHeight *
-            window.devicePixelRatio;
+            ratio;
 
-        canvas.style.width =
-            window.innerWidth + "px";
 
-        canvas.style.height =
-            window.innerHeight + "px";
+        sparkleCanvas.style.width =
+            window.innerWidth +
+            "px";
+
+
+        sparkleCanvas.style.height =
+            window.innerHeight +
+            "px";
+
 
         ctx.setTransform(
-            window.devicePixelRatio,
+            ratio,
             0,
             0,
-            window.devicePixelRatio,
+            ratio,
             0,
             0
         );
+
     }
 
 
     resizeCanvas();
+
 
     window.addEventListener(
         "resize",
@@ -1529,191 +2155,316 @@
 
 
     /* =====================================================
-       CREATE LUXURY SPARKLES
+       CREATE SOFT GOLDEN DUST
     ===================================================== */
 
-    function createSparkles(x, y) {
-
-    particles = [];
-
-    /*
-       Soft luxury dust instead of cartoon stars.
-       Small particles + a few larger glowing particles.
-    */
-
-    const count = 95;
-
-    for (let i = 0; i < count; i++) {
-
-        const angle =
-            Math.random() * Math.PI * 2;
-
-        const distance =
-            Math.random() * 180 + 20;
-
-        particles.push({
-
-            x: x,
-            y: y,
-
-            targetX:
-                x + Math.cos(angle) * distance,
-
-            targetY:
-                y + Math.sin(angle) * distance,
-
-            size:
-                Math.random() * 1.7 + 0.35,
-
-            life: 1,
-
-            delay:
-                Math.random() * 0.35,
-
-            speed:
-                Math.random() * 0.018 + 0.012
-
-        });
-    }
-
-    canvas.style.opacity = "1";
-
-    animationRunning = true;
-
-    requestAnimationFrame(animateSparkles);
-}
+    function createSparkles(
+        x,
+        y
+    ) {
 
 
-function animateSparkles() {
+        particles = [];
 
-    ctx.clearRect(
-        0,
-        0,
-        window.innerWidth,
-        window.innerHeight
-    );
 
-    let alive = false;
+        /*
+            Small particles are deliberately
+            subtle.
 
-    particles.forEach(particle => {
+            No stars.
+            No cartoon shapes.
+        */
 
-        if (particle.delay > 0) {
+        const particleCount =
+            110;
 
-            particle.delay -= 0.016;
 
-            alive = true;
+        for (
+            let i = 0;
+            i < particleCount;
+            i++
+        ) {
 
-            return;
+
+            const angle =
+                Math.random() *
+                Math.PI *
+                2;
+
+
+            const distance =
+                40 +
+                Math.random() *
+                230;
+
+
+            const startRadius =
+                Math.random() *
+                18;
+
+
+            const startX =
+                x +
+                Math.cos(angle) *
+                startRadius;
+
+
+            const startY =
+                y +
+                Math.sin(angle) *
+                startRadius;
+
+
+            const targetX =
+                x +
+                Math.cos(angle) *
+                distance;
+
+
+            const targetY =
+                y +
+                Math.sin(angle) *
+                distance;
+
+
+            particles.push({
+
+                x: startX,
+
+                y: startY,
+
+                targetX:
+                    targetX,
+
+                targetY:
+                    targetY,
+
+                size:
+                    .35 +
+                    Math.random() *
+                    1.35,
+
+                opacity:
+                    .25 +
+                    Math.random() *
+                    .7,
+
+                life: 1,
+
+                delay:
+                    Math.random() *
+                    .3,
+
+                speed:
+                    .008 +
+                    Math.random() *
+                    .012
+
+            });
+
         }
 
-        if (particle.life <= 0) {
-            return;
-        }
 
-        alive = true;
+        sparkleCanvas.style.opacity =
+            "1";
 
-        /*
-           Smooth movement outward.
-        */
-
-        particle.x +=
-            (particle.targetX - particle.x) * 0.025;
-
-        particle.y +=
-            (particle.targetY - particle.y) * 0.025;
-
-        particle.life -=
-            particle.speed;
-
-
-        /*
-           Soft glow.
-        */
-
-        const gradient =
-            ctx.createRadialGradient(
-                particle.x,
-                particle.y,
-                0,
-                particle.x,
-                particle.y,
-                particle.size * 7
-            );
-
-        gradient.addColorStop(
-            0,
-            `rgba(255,235,190,${particle.life * 0.8})`
-        );
-
-        gradient.addColorStop(
-            0.35,
-            `rgba(222,187,125,${particle.life * 0.35})`
-        );
-
-        gradient.addColorStop(
-            1,
-            "rgba(222,187,125,0)"
-        );
-
-
-        ctx.beginPath();
-
-        ctx.fillStyle = gradient;
-
-        ctx.arc(
-            particle.x,
-            particle.y,
-            particle.size * 7,
-            0,
-            Math.PI * 2
-        );
-
-        ctx.fill();
-
-
-        /*
-           Tiny central point.
-        */
-
-        ctx.beginPath();
-
-        ctx.fillStyle =
-            `rgba(
-                255,
-                239,
-                205,
-                ${particle.life * 0.85}
-            )`;
-
-        ctx.arc(
-            particle.x,
-            particle.y,
-            particle.size,
-            0,
-            Math.PI * 2
-        );
-
-        ctx.fill();
-
-    });
-
-
-    if (alive) {
 
         requestAnimationFrame(
             animateSparkles
         );
 
-    } else {
-
-        canvas.style.opacity = "0";
-
-        animationRunning = false;
-
     }
-}
 
-        if (alive) {
+
+    /* =====================================================
+       ANIMATE GOLDEN DUST
+    ===================================================== */
+
+    function animateSparkles() {
+
+
+        ctx.clearRect(
+            0,
+            0,
+            window.innerWidth,
+            window.innerHeight
+        );
+
+
+        let particlesAlive =
+            false;
+
+
+        particles.forEach(
+            particle => {
+
+
+                if (
+                    particle.delay > 0
+                ) {
+
+                    particle.delay -=
+                        .016;
+
+                    particlesAlive =
+                        true;
+
+                    return;
+
+                }
+
+
+                if (
+                    particle.life <= 0
+                ) {
+
+                    return;
+
+                }
+
+
+                particlesAlive =
+                    true;
+
+
+                /*
+                    Smooth outward movement.
+                */
+
+                particle.x +=
+                    (
+                        particle.targetX -
+                        particle.x
+                    ) *
+                    .026;
+
+
+                particle.y +=
+                    (
+                        particle.targetY -
+                        particle.y
+                    ) *
+                    .026;
+
+
+                /*
+                    Very slight floating motion.
+                */
+
+                particle.y +=
+                    Math.sin(
+                        particle.life *
+                        12
+                    ) *
+                    .08;
+
+
+                particle.life -=
+                    particle.speed;
+
+
+                const alpha =
+                    particle.opacity *
+                    particle.life;
+
+
+                /*
+                    Soft glow.
+                */
+
+                const glow =
+                    ctx.createRadialGradient(
+                        particle.x,
+                        particle.y,
+                        0,
+                        particle.x,
+                        particle.y,
+                        particle.size * 9
+                    );
+
+
+                glow.addColorStop(
+                    0,
+                    `rgba(
+                        255,
+                        239,
+                        205,
+                        ${alpha * .8}
+                    )`
+                );
+
+
+                glow.addColorStop(
+                    .25,
+                    `rgba(
+                        226,
+                        193,
+                        132,
+                        ${alpha * .3}
+                    )`
+                );
+
+
+                glow.addColorStop(
+                    1,
+                    "rgba(226,193,132,0)"
+                );
+
+
+                ctx.beginPath();
+
+
+                ctx.fillStyle =
+                    glow;
+
+
+                ctx.arc(
+                    particle.x,
+                    particle.y,
+                    particle.size * 9,
+                    0,
+                    Math.PI * 2
+                );
+
+
+                ctx.fill();
+
+
+                /*
+                    Tiny central point.
+                */
+
+                ctx.beginPath();
+
+
+                ctx.fillStyle =
+                    `rgba(
+                        255,
+                        239,
+                        205,
+                        ${alpha}
+                    )`;
+
+
+                ctx.arc(
+                    particle.x,
+                    particle.y,
+                    particle.size,
+                    0,
+                    Math.PI * 2
+                );
+
+
+                ctx.fill();
+
+
+            }
+        );
+
+
+        if (
+            particlesAlive
+        ) {
 
             requestAnimationFrame(
                 animateSparkles
@@ -1721,9 +2472,8 @@ function animateSparkles() {
 
         } else {
 
-            canvas.style.opacity = "0";
-
-            animationRunning = false;
+            sparkleCanvas.style.opacity =
+                "0";
 
         }
 
@@ -1731,24 +2481,42 @@ function animateSparkles() {
 
 
     /* =====================================================
-       OPEN COVER
+       OPEN INVITATION
+
+       IMPORTANT:
+       There is NO scrollIntoView() here.
+
+       Therefore:
+       Touch → animation → stop.
+
+       The visitor controls the scroll.
     ===================================================== */
 
-    function openInvitation(event) {
+    function openInvitation(
+        event
+    ) {
 
-        if (opened) {
+
+        if (
+            invitationOpened
+        ) {
+
             return;
+
         }
 
-        opened = true;
+
+        invitationOpened =
+            true;
 
 
         /*
-           Find touch/click position.
+            Determine where the visitor touched.
         */
 
         let x =
             window.innerWidth / 2;
+
 
         let y =
             window.innerHeight / 2;
@@ -1756,26 +2524,31 @@ function animateSparkles() {
 
         if (
             event &&
-            event.clientX !== undefined
+            typeof event.clientX ===
+                "number"
         ) {
 
-            x = event.clientX;
+            x =
+                event.clientX;
 
-            y = event.clientY;
+            y =
+                event.clientY;
 
         }
 
 
         /*
-           Start sparkle effect exactly
-           where the visitor touched.
+            Start elegant golden dust.
         */
 
-        createSparkles(x, y);
+        createSparkles(
+            x,
+            y
+        );
 
 
         /*
-           Cover dissolves.
+            Dissolve the cover.
         */
 
         coverScene.classList.add(
@@ -1784,7 +2557,7 @@ function animateSparkles() {
 
 
         /*
-           Show music button.
+            Show music control.
         */
 
         musicButton.classList.add(
@@ -1793,84 +2566,126 @@ function animateSparkles() {
 
 
         /*
-           Browser allows music because
-           this happened after user interaction.
+            Start music after user interaction.
+
+            Browser autoplay restrictions
+            allow this because this function
+            was triggered by the visitor.
         */
 
-        audio.volume = 0.32;
+        audio.volume =
+            .32;
 
 
-        audio.play()
-            .then(() => {
+        const musicPromise =
+            audio.play();
 
-                musicButton.classList.add(
-                    "playing"
+
+        if (
+            musicPromise !== undefined
+        ) {
+
+            musicPromise
+                .then(
+                    () => {
+
+                        musicButton.classList.add(
+                            "playing"
+                        );
+
+                    }
+                )
+                .catch(
+                    () => {
+
+                        /*
+                            If browser still blocks
+                            playback, the visitor can
+                            use the music button.
+                        */
+
+                    }
                 );
 
-            })
-            .catch(() => {
-
-                /*
-                   User can manually start music.
-                */
-
-            });
-
+        }
 
         /*
-           Once the cover has mostly
-           dissolved, gently continue into
-           the invitation.
+            VERY IMPORTANT:
+
+            No automatic scrolling.
+
+            We deliberately do NOT call:
+
+            scrollIntoView()
+            window.scrollTo()
+            window.scrollBy()
+
+            The visitor decides when to scroll.
         */
-
-
 
     }
 
 
     /* =====================================================
-       TOUCH / CLICK ANYWHERE ON COVER
+       COVER INTERACTION
+
+       POINTER EVENT WORKS FOR:
+       - Mouse
+       - Touch
+       - Stylus
+       - Trackpad
     ===================================================== */
 
     coverScene.addEventListener(
-        "click",
-        openInvitation
+        "pointerup",
+        function(event) {
+
+            openInvitation(
+                event
+            );
+
+        }
+    );
+
+
+    /*
+        Keyboard accessibility.
+
+        Enter or Space while the cover
+        is focused can also open it.
+    */
+
+    coverScene.setAttribute(
+        "tabindex",
+        "0"
     );
 
 
     coverScene.addEventListener(
-        "touchstart",
+        "keydown",
         function(event) {
 
-            /*
-               Prevent duplicate handling
-               on some mobile browsers.
-            */
+            if (
+                event.key ===
+                "Enter" ||
+                event.key ===
+                " "
+            ) {
 
-            if (!opened) {
+                event.preventDefault();
 
-                const touch =
-                    event.touches[0];
-
-                openInvitation({
-                    clientX:
-                        touch.clientX,
-
-                    clientY:
-                        touch.clientY
-                });
+                openInvitation(
+                    event
+                );
 
             }
 
-        },
-        {
-            passive: true
         }
     );
 
 
     /* =====================================================
-       SCROLL REVEALS
+       SCROLL REVEAL
     ===================================================== */
 
     const revealElements =
@@ -1881,18 +2696,18 @@ function animateSparkles() {
 
     const revealObserver =
         new IntersectionObserver(
-            entries => {
+            function(entries) {
 
                 entries.forEach(
-                    entry => {
+                    function(entry) {
 
                         if (
                             entry.isIntersecting
                         ) {
 
-                            entry.target
-                                .classList
-                                .add("show");
+                            entry.target.classList.add(
+                                "show"
+                            );
 
                         }
 
@@ -1907,7 +2722,7 @@ function animateSparkles() {
 
 
     revealElements.forEach(
-        element => {
+        function(element) {
 
             revealObserver.observe(
                 element
@@ -1923,19 +2738,27 @@ function animateSparkles() {
 
     musicButton.addEventListener(
         "click",
-        async () => {
+        async function() {
 
-            if (audio.paused) {
+
+            if (
+                audio.paused
+            ) {
+
 
                 try {
 
                     await audio.play();
 
+
                     musicButton.classList.add(
                         "playing"
                     );
 
-                } catch (error) {
+
+                } catch (
+                    error
+                ) {
 
                     console.log(
                         "Music could not be played."
@@ -1943,13 +2766,17 @@ function animateSparkles() {
 
                 }
 
+
             } else {
 
+
                 audio.pause();
+
 
                 musicButton.classList.remove(
                     "playing"
                 );
+
 
             }
 
@@ -1959,5 +2786,7 @@ function animateSparkles() {
 
 </script>
 
+
 </body>
+
 </html>
