@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
 
-    <!-- Makes the website work properly on phones -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>Wedding Invitation</title>
+    <title>Sanjeedh & Minha | Wedding Invitation</title>
 
-    <!-- Elegant Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Elegant fonts -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
 
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap"
+          rel="stylesheet">
+
 
     <style>
 
-        /* =========================================
+        /* =====================================================
            BASIC SETTINGS
-        ========================================= */
+        ===================================================== */
 
         * {
             margin: 0;
@@ -31,139 +39,175 @@
         }
 
         body {
+            background: #26090d;
+            color: #3b1718;
             font-family: 'Montserrat', sans-serif;
-            background: #f8f3eb;
-            color: #3d3028;
             overflow-x: hidden;
         }
 
 
-        /* =========================================
+        /* =====================================================
            OPENING SCREEN
-        ========================================= */
+        ===================================================== */
 
-        #opening-screen {
+        #opening {
 
             position: fixed;
+
             inset: 0;
 
             z-index: 9999;
 
             display: flex;
-            justify-content: center;
+
             align-items: center;
+
+            justify-content: center;
 
             text-align: center;
 
-            background-image:
-                linear-gradient(
-                    rgba(45, 30, 20, 0.45),
-                    rgba(45, 30, 20, 0.55)
-                ),
+            color: #f7eee0;
 
-                url("YOUR_BACKGROUND_IMAGE.jpg");
-                /* CHANGE THIS */
+            background:
+                linear-gradient(
+                    rgba(49, 10, 15, 0.82),
+                    rgba(49, 10, 15, 0.92)
+                ),
+                url("background.jpg");
 
             background-size: cover;
+
             background-position: center;
 
-            transition: opacity 1.2s ease,
-                        visibility 1.2s ease;
+            transition:
+                opacity 1.2s ease,
+                visibility 1.2s ease;
         }
 
 
-        #opening-screen.hide {
+        #opening.hide {
+
             opacity: 0;
+
             visibility: hidden;
         }
 
 
-        .opening-content {
-            color: white;
-            padding: 30px;
-            animation: openingFade 2s ease;
+        .opening-inner {
+
+            width: 90%;
+
+            max-width: 600px;
+
+            padding: 50px 30px;
+
+            animation: openingAppear 2s ease;
         }
 
 
-        .small-text {
-            font-size: 13px;
-            letter-spacing: 4px;
+        .opening-small {
+
+            font-size: 10px;
+
+            letter-spacing: 5px;
+
             text-transform: uppercase;
-            margin-bottom: 25px;
+
+            margin-bottom: 35px;
         }
 
 
-        .opening-names {
+        .opening-title {
+
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(50px, 12vw, 100px);
+
+            font-size: clamp(60px, 15vw, 110px);
+
+            line-height: 0.78;
+
             font-weight: 500;
-            line-height: 0.95;
         }
 
 
-        .ampersand {
-            font-size: 45px;
+        .opening-and {
+
+            font-size: 38px;
+
             font-family: 'Cormorant Garamond', serif;
-            margin: 15px 0;
+
+            margin: 22px 0;
+        }
+
+
+        .opening-date {
+
+            margin-top: 35px;
+
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 22px;
+
+            letter-spacing: 2px;
         }
 
 
         .open-button {
 
-            margin-top: 40px;
+            margin-top: 45px;
 
-            padding: 15px 35px;
+            padding: 17px 38px;
 
             background: transparent;
 
-            border: 1px solid white;
+            border: 1px solid #d8b783;
 
-            color: white;
+            color: #f7eee0;
 
-            letter-spacing: 3px;
+            font-size: 10px;
 
-            font-size: 12px;
+            letter-spacing: 4px;
 
             cursor: pointer;
 
-            transition: 0.4s;
+            transition: all 0.5s ease;
         }
 
 
         .open-button:hover {
-            background: white;
-            color: #3d3028;
+
+            background: #d8b783;
+
+            color: #3b1718;
         }
 
 
-        /* =========================================
-           MAIN WEBSITE
-        ========================================= */
+        /* =====================================================
+           MAIN PAGE
+        ===================================================== */
 
-        #main-content {
+        #page {
+
             opacity: 0;
+
             transition: opacity 1.5s ease;
         }
 
 
-        #main-content.visible {
+        #page.show {
+
             opacity: 1;
         }
 
 
-        section {
-            padding: 90px 20px;
-            text-align: center;
-        }
-
-
-        /* =========================================
+        /* =====================================================
            HERO
-        ========================================= */
+        ===================================================== */
 
         .hero {
 
             min-height: 100vh;
+
+            position: relative;
 
             display: flex;
 
@@ -171,194 +215,401 @@
 
             justify-content: center;
 
-            position: relative;
+            text-align: center;
 
-            background-image:
+            padding: 40px 20px;
+
+            background:
+
                 linear-gradient(
-                    rgba(248, 243, 235, 0.80),
-                    rgba(248, 243, 235, 0.88)
+                    rgba(247, 238, 224, 0.82),
+                    rgba(247, 238, 224, 0.90)
                 ),
 
-                url("YOUR_BACKGROUND_IMAGE.jpg");
-                /* CHANGE THIS */
+                url("background.jpg");
 
             background-size: cover;
+
             background-position: center;
 
+            overflow: hidden;
         }
 
 
         .hero-content {
+
             max-width: 800px;
+
+            position: relative;
+
+            z-index: 2;
         }
 
 
-        .eyebrow {
-
-            letter-spacing: 5px;
-
-            font-size: 12px;
-
-            text-transform: uppercase;
-
-            margin-bottom: 25px;
-
-        }
-
-
-        .main-title {
-
-            font-family: 'Cormorant Garamond', serif;
-
-            font-size: clamp(60px, 12vw, 120px);
-
-            line-height: 0.9;
-
-            font-weight: 500;
-
-        }
-
-
-        .date {
-
-            margin-top: 30px;
-
-            font-size: 15px;
-
-            letter-spacing: 4px;
-
-        }
-
-
-        .scroll-text {
-
-            margin-top: 70px;
+        .tiny-heading {
 
             font-size: 10px;
 
-            letter-spacing: 3px;
+            letter-spacing: 5px;
 
             text-transform: uppercase;
 
-            animation: bounce 2s infinite;
+            margin-bottom: 28px;
 
+            color: #744238;
         }
 
 
-        /* =========================================
-           TITLES
-        ========================================= */
+        .hero-title {
+
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: clamp(65px, 15vw, 130px);
+
+            line-height: 0.78;
+
+            font-weight: 500;
+
+            color: #55151b;
+        }
+
+
+        .hero-ampersand {
+
+            font-size: 45px;
+
+            margin: 18px 0;
+
+            color: #9b7041;
+        }
+
+
+        .hero-date {
+
+            margin-top: 40px;
+
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 25px;
+
+            letter-spacing: 3px;
+
+            color: #5a2924;
+        }
+
+
+        .scroll-down {
+
+            position: absolute;
+
+            bottom: 30px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            font-size: 9px;
+
+            letter-spacing: 4px;
+
+            color: #744238;
+
+            animation: floatDown 2s infinite;
+        }
+
+
+        /* =====================================================
+           GOLD DIVIDER
+        ===================================================== */
+
+        .gold-line {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            margin: 30px auto;
+
+            max-width: 400px;
+        }
+
+
+        .gold-line span {
+
+            height: 1px;
+
+            background: #b18a58;
+
+            flex: 1;
+        }
+
+
+        .gold-symbol {
+
+            color: #a47742;
+
+            font-size: 17px;
+        }
+
+
+        /* =====================================================
+           GENERAL SECTION
+        ===================================================== */
+
+        section {
+
+            padding: 100px 22px;
+
+            text-align: center;
+        }
+
+
+        .section-label {
+
+            font-size: 9px;
+
+            letter-spacing: 5px;
+
+            text-transform: uppercase;
+
+            color: #96704c;
+
+            margin-bottom: 20px;
+        }
+
 
         .section-title {
 
             font-family: 'Cormorant Garamond', serif;
 
-            font-size: clamp(40px, 8vw, 65px);
+            font-size: clamp(45px, 9vw, 75px);
 
             font-weight: 500;
 
-            margin-bottom: 20px;
+            color: #55151b;
 
+            line-height: 0.95;
         }
 
 
-        .section-subtitle {
+        .section-text {
 
-            font-size: 12px;
+            max-width: 620px;
 
-            letter-spacing: 3px;
+            margin: 25px auto 0;
 
-            text-transform: uppercase;
-
-            margin-bottom: 45px;
-
-        }
-
-
-        /* =========================================
-           COUPLE
-        ========================================= */
-
-        .couple {
-
-            background: #efe6d9;
-
-        }
-
-
-        .couple-names {
-
-            font-family: 'Cormorant Garamond', serif;
-
-            font-size: clamp(45px, 8vw, 80px);
-
-            line-height: 1;
-
-        }
-
-
-        .couple-description {
-
-            max-width: 600px;
-
-            margin: 30px auto;
+            font-size: 13px;
 
             line-height: 2;
 
-            font-size: 14px;
-
+            color: #65433b;
         }
 
 
-        /* =========================================
-           PHOTO
-        ========================================= */
+        /* =====================================================
+           STORY SECTION
+        ===================================================== */
 
-        .photo-container {
+        .story {
+
+            background: #f7eee0;
+
+            position: relative;
+        }
+
+
+        .story-card {
 
             max-width: 850px;
 
-            margin: 50px auto;
+            margin: 50px auto 0;
 
-            overflow: hidden;
+            padding: 15px;
 
+            background: #fffaf2;
+
+            box-shadow:
+                0 25px 70px rgba(65, 25, 20, 0.15);
         }
 
 
-        .photo-container img {
+        .childhood-photo {
 
             width: 100%;
 
             display: block;
 
-            transition: transform 1s ease;
+            max-height: 750px;
 
+            object-fit: cover;
+
+            filter: grayscale(100%);
+
+            transition: filter 1s ease;
         }
 
 
-        .photo-container:hover img {
+        .story-card:hover .childhood-photo {
 
-            transform: scale(1.03);
-
+            filter: grayscale(0%);
         }
 
 
-        /* =========================================
-           EVENTS
-        ========================================= */
+        .story-caption {
 
-        .events {
+            padding: 45px 25px 50px;
 
-            background: #f8f3eb;
-
+            background: #fffaf2;
         }
 
 
-        .event-grid {
+        .story-quote {
+
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: clamp(28px, 5vw, 45px);
+
+            line-height: 1.15;
+
+            color: #55151b;
+        }
+
+
+        .story-small {
+
+            margin-top: 22px;
+
+            font-size: 11px;
+
+            line-height: 2;
+
+            letter-spacing: 1px;
+
+            color: #806257;
+        }
+
+
+        /* =====================================================
+           INVITATION SECTION
+        ===================================================== */
+
+        .invitation {
+
+            background: #310b10;
+
+            color: #f7eee0;
+
+            position: relative;
+        }
+
+
+        .invitation .section-label {
+
+            color: #c7a46d;
+        }
+
+
+        .invitation .section-title {
+
+            color: #f7eee0;
+        }
+
+
+        .invitation-text {
+
+            max-width: 650px;
+
+            margin: 25px auto 50px;
+
+            font-size: 13px;
+
+            line-height: 2;
+
+            color: #eadcc8;
+        }
+
+
+        .parents {
+
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 23px;
+
+            line-height: 1.6;
+
+            color: #d9bc8b;
+        }
+
+
+        .parent-small {
+
+            font-family: 'Montserrat', sans-serif;
+
+            font-size: 9px;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+
+            color: #b9986d;
+
+            margin-bottom: 10px;
+        }
+
+
+        /* =====================================================
+           COUPLE NAMES
+        ===================================================== */
+
+        .couple-section {
+
+            background: #f7eee0;
+        }
+
+
+        .couple-names {
+
+            margin-top: 40px;
+
+            font-family: 'Cormorant Garamond', serif;
+
+            color: #55151b;
+
+            font-size: clamp(50px, 11vw, 100px);
+
+            line-height: 0.8;
+        }
+
+
+        .couple-and {
+
+            font-size: 40px;
+
+            color: #a47742;
+
+            margin: 25px 0;
+        }
+
+
+        /* =====================================================
+           WEDDING DETAILS
+        ===================================================== */
+
+        .details {
+
+            background: #eadcc9;
+        }
+
+
+        .details-grid {
 
             max-width: 900px;
 
-            margin: auto;
+            margin: 55px auto 0;
 
             display: grid;
 
@@ -366,71 +617,77 @@
                 repeat(auto-fit, minmax(220px, 1fr));
 
             gap: 25px;
-
         }
 
 
-        .event-card {
+        .detail-card {
 
             padding: 40px 25px;
 
-            border: 1px solid #cbbca8;
+            background: rgba(255,255,255,0.48);
 
-            background: rgba(255,255,255,0.35);
+            border: 1px solid rgba(145,105,65,0.35);
 
-            transition: 0.5s;
-
+            transition: 0.5s ease;
         }
 
 
-        .event-card:hover {
+        .detail-card:hover {
 
             transform: translateY(-8px);
 
+            box-shadow:
+                0 15px 35px rgba(70,30,20,0.12);
         }
 
 
-        .event-date {
+        .detail-icon {
 
-            font-size: 12px;
+            font-size: 22px;
 
-            letter-spacing: 3px;
+            color: #9b7041;
 
-            margin-bottom: 20px;
-
+            margin-bottom: 18px;
         }
 
 
-        .event-name {
+        .detail-heading {
 
             font-family: 'Cormorant Garamond', serif;
 
-            font-size: 35px;
+            font-size: 30px;
+
+            color: #55151b;
 
             margin-bottom: 15px;
-
         }
 
 
-        .event-details {
+        .detail-info {
 
-            font-size: 13px;
+            font-size: 12px;
 
-            line-height: 1.8;
+            line-height: 1.9;
 
+            color: #69463c;
         }
 
 
-        /* =========================================
+        /* =====================================================
            COUNTDOWN
-        ========================================= */
+        ===================================================== */
 
         .countdown-section {
 
-            background: #3d3028;
+            background: #55151b;
 
-            color: white;
+            color: #f7eee0;
+        }
 
+
+        .countdown-section .section-title {
+
+            color: #f7eee0;
         }
 
 
@@ -442,86 +699,45 @@
 
             flex-wrap: wrap;
 
-            gap: 30px;
+            gap: 25px;
 
-            margin-top: 40px;
-
+            margin-top: 45px;
         }
 
 
-        .time-box {
+        .time {
 
-            min-width: 90px;
-
+            min-width: 85px;
         }
 
 
-        .number {
+        .time-number {
 
             font-family: 'Cormorant Garamond', serif;
 
             font-size: 55px;
 
+            color: #d9bc8b;
         }
 
 
-        .label {
+        .time-label {
 
-            font-size: 9px;
+            font-size: 8px;
 
             letter-spacing: 3px;
 
+            color: #eadcc8;
         }
 
 
-        /* =========================================
-           GALLERY
-        ========================================= */
-
-        .gallery {
-
-            max-width: 1000px;
-
-            margin: auto;
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(2, 1fr);
-
-            gap: 12px;
-
-        }
-
-
-        .gallery img {
-
-            width: 100%;
-
-            aspect-ratio: 1 / 1;
-
-            object-fit: cover;
-
-            transition: 0.6s;
-
-        }
-
-
-        .gallery img:hover {
-
-            transform: scale(1.02);
-
-        }
-
-
-        /* =========================================
+        /* =====================================================
            VENUE
-        ========================================= */
+        ===================================================== */
 
         .venue {
 
-            background: #efe6d9;
-
+            background: #f7eee0;
         }
 
 
@@ -529,19 +745,23 @@
 
             font-family: 'Cormorant Garamond', serif;
 
-            font-size: 45px;
+            font-size: clamp(35px, 7vw, 55px);
 
-            margin-bottom: 20px;
+            color: #55151b;
 
+            max-width: 700px;
+
+            margin: 30px auto 15px;
         }
 
 
         .venue-address {
 
+            font-size: 13px;
+
             line-height: 2;
 
-            font-size: 14px;
-
+            color: #65433b;
         }
 
 
@@ -551,109 +771,183 @@
 
             margin-top: 30px;
 
-            padding: 15px 30px;
+            padding: 15px 35px;
 
-            border: 1px solid #3d3028;
+            border: 1px solid #8e633e;
 
-            color: #3d3028;
+            color: #55151b;
 
             text-decoration: none;
 
-            font-size: 11px;
+            font-size: 9px;
 
-            letter-spacing: 2px;
+            letter-spacing: 3px;
 
             transition: 0.4s;
-
         }
 
 
         .map-button:hover {
 
-            background: #3d3028;
+            background: #55151b;
 
-            color: white;
-
+            color: #f7eee0;
         }
 
 
-        /* =========================================
-           RSVP
-        ========================================= */
+        /* =====================================================
+           FINAL MESSAGE
+        ===================================================== */
 
-        .rsvp {
+        .final {
 
-            padding-bottom: 120px;
+            min-height: 70vh;
 
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+
+                linear-gradient(
+                    rgba(49,10,15,0.85),
+                    rgba(49,10,15,0.92)
+                ),
+
+                url("background.jpg");
+
+            background-size: cover;
+
+            background-position: center;
+
+            color: #f7eee0;
         }
 
 
-        .rsvp-button {
-
-            display: inline-block;
-
-            padding: 18px 40px;
-
-            background: #3d3028;
-
-            color: white;
-
-            text-decoration: none;
-
-            font-size: 11px;
-
-            letter-spacing: 3px;
-
-            transition: 0.4s;
-
-        }
-
-
-        .rsvp-button:hover {
-
-            transform: translateY(-3px);
-
-        }
-
-
-        /* =========================================
-           FOOTER
-        ========================================= */
-
-        footer {
-
-            padding: 60px 20px;
-
-            background: #3d3028;
-
-            color: white;
-
-            text-align: center;
-
-        }
-
-
-        footer p {
+        .final-title {
 
             font-family: 'Cormorant Garamond', serif;
 
-            font-size: 30px;
+            font-size: clamp(55px, 11vw, 100px);
 
+            line-height: 0.8;
+
+            color: #f7eee0;
         }
 
 
-        /* =========================================
-           ANIMATIONS
-        ========================================= */
+        .final-text {
 
-        @keyframes openingFade {
+            margin-top: 35px;
+
+            max-width: 550px;
+
+            margin-left: auto;
+
+            margin-right: auto;
+
+            line-height: 2;
+
+            font-size: 12px;
+
+            color: #eadcc8;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+
+            padding: 45px 20px;
+
+            text-align: center;
+
+            background: #1d070a;
+
+            color: #cbb18e;
+
+            font-size: 9px;
+
+            letter-spacing: 2px;
+        }
+
+
+        /* =====================================================
+           MUSIC BUTTON
+        ===================================================== */
+
+        #music-button {
+
+            position: fixed;
+
+            right: 20px;
+
+            bottom: 20px;
+
+            width: 48px;
+
+            height: 48px;
+
+            border-radius: 50%;
+
+            border: 1px solid #d5b47c;
+
+            background: #55151b;
+
+            color: #f7eee0;
+
+            z-index: 1000;
+
+            cursor: pointer;
+
+            font-size: 18px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.25);
+
+            display: none;
+        }
+
+
+        /* =====================================================
+           SCROLL ANIMATION
+        ===================================================== */
+
+        .reveal {
+
+            opacity: 0;
+
+            transform: translateY(45px);
+
+            transition:
+                opacity 1s ease,
+                transform 1s ease;
+        }
+
+
+        .reveal.visible {
+
+            opacity: 1;
+
+            transform: translateY(0);
+        }
+
+
+        /* =====================================================
+           ANIMATIONS
+        ===================================================== */
+
+        @keyframes openingAppear {
 
             from {
 
                 opacity: 0;
 
-                transform: translateY(30px);
-
+                transform: translateY(35px);
             }
 
             to {
@@ -661,81 +955,67 @@
                 opacity: 1;
 
                 transform: translateY(0);
-
             }
-
         }
 
 
-        @keyframes bounce {
+        @keyframes floatDown {
 
-            0%, 100% {
+            0%,100% {
 
-                transform: translateY(0);
-
+                transform:
+                    translate(-50%,0);
             }
 
             50% {
 
-                transform: translateY(10px);
-
+                transform:
+                    translate(-50%,10px);
             }
-
         }
 
 
-        /* Scroll animation */
-
-        .reveal {
-
-            opacity: 0;
-
-            transform: translateY(50px);
-
-            transition:
-                opacity 1s ease,
-                transform 1s ease;
-
-        }
-
-
-        .reveal.active {
-
-            opacity: 1;
-
-            transform: translateY(0);
-
-        }
-
-
-        /* =========================================
+        /* =====================================================
            MOBILE
-        ========================================= */
+        ===================================================== */
 
-        @media (max-width: 600px) {
+        @media(max-width:600px) {
 
             section {
 
-                padding: 70px 18px;
-
+                padding: 80px 18px;
             }
 
-            .gallery {
+            .hero {
+
+                min-height: 100svh;
+            }
+
+            .story-card {
+
+                margin-top: 35px;
+            }
+
+            .childhood-photo {
+
+                max-height: none;
+
+                object-fit: contain;
+            }
+
+            .details-grid {
 
                 grid-template-columns: 1fr;
-
             }
 
-            .countdown {
+            .time {
 
-                gap: 20px;
-
+                min-width: 65px;
             }
 
-            .number {
+            .time-number {
 
                 font-size: 45px;
-
             }
 
         }
@@ -748,31 +1028,45 @@
 <body>
 
 
-<!-- =================================================
+<!-- =====================================================
      OPENING SCREEN
-================================================= -->
+===================================================== -->
 
-<div id="opening-screen">
+<div id="opening">
 
-    <div class="opening-content">
+    <div class="opening-inner">
 
-        <div class="small-text">
-            Together with their families
-        </div>
+        <div class="opening-small">
 
-        <div class="opening-names">
-
-            <!-- CHANGE NAMES HERE -->
-
-            NAME ONE
-
-            <div class="ampersand">&</div>
-
-            NAME TWO
+            In the name of Allah
 
         </div>
 
-        <button class="open-button" onclick="openInvitation()">
+
+        <div class="opening-title">
+
+            Sanjeedh
+
+            <div class="opening-and">
+
+                &
+
+            </div>
+
+            Minha
+
+        </div>
+
+
+        <div class="opening-date">
+
+            27 · 12 · 2026
+
+        </div>
+
+
+        <button class="open-button"
+                onclick="openInvitation()">
 
             OPEN INVITATION
 
@@ -784,69 +1078,99 @@
 
 
 
-<!-- =================================================
-     BACKGROUND MUSIC
-================================================= -->
+<!-- =====================================================
+     MUSIC
+===================================================== -->
 
-<audio id="weddingMusic" loop>
+<audio id="weddingMusic"
+       loop>
 
-    <!-- CHANGE MUSIC FILE HERE -->
+    <!--
+        UPLOAD YOUR MUSIC FILE TO GITHUB
+        AND NAME IT:
 
-    <source src="wedding-music.mp3" type="audio/mpeg">
+        wedding-music.mp3
+    -->
+
+    <source src="wedding-music.mp3"
+            type="audio/mpeg">
 
 </audio>
 
 
+<button id="music-button"
+        onclick="toggleMusic()">
 
-<!-- =================================================
-     MAIN CONTENT
-================================================= -->
+    ♫
 
-<div id="main-content">
+</button>
 
 
-<!-- HERO -->
+
+<!-- =====================================================
+     MAIN PAGE
+===================================================== -->
+
+<div id="page">
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
 
 <section class="hero">
 
     <div class="hero-content reveal">
 
-        <div class="eyebrow">
+        <div class="tiny-heading">
 
-            WE ARE GETTING MARRIED
-
-        </div>
-
-
-        <div class="main-title">
-
-            NAME ONE
-
-            <br>
-
-            <span style="font-size:0.5em;">&</span>
-
-            <br>
-
-            NAME TWO
+            We're getting married
 
         </div>
 
 
-        <div class="date">
+        <div class="hero-title">
 
-            <!-- CHANGE DATE -->
+            Sanjeedh
 
-            DECEMBER 00, 2026
+            <div class="hero-ampersand">
+
+                &
+
+            </div>
+
+            Minha
 
         </div>
 
 
-        <div class="scroll-text">
+        <div class="gold-line">
 
-            SCROLL TO EXPLORE ↓
+            <span></span>
+
+            <div class="gold-symbol">✦</div>
+
+            <span></span>
 
         </div>
+
+
+        <div class="hero-date">
+
+            Sunday · 27 December 2026
+
+        </div>
+
+    </div>
+
+
+    <div class="scroll-down">
+
+        SCROLL TO EXPLORE
+
+        <br>
+
+        ↓
 
     </div>
 
@@ -854,22 +1178,66 @@
 
 
 
-<!-- COUPLE -->
+<!-- =====================================================
+     INVITATION / FAMILY
+===================================================== -->
 
-<section class="couple">
+<section class="invitation">
 
     <div class="reveal">
 
-        <div class="section-subtitle">
+        <div class="section-label">
 
-            A NEW BEGINNING
+            With the blessings of our families
 
         </div>
 
 
-        <div class="couple-names">
+        <div class="section-title">
 
-            NAME ONE
+            You are<br>
+
+            invited
+
+        </div>
+
+
+        <div class="gold-line">
+
+            <span></span>
+
+            <div class="gold-symbol">✦</div>
+
+            <span></span>
+
+        </div>
+
+
+        <div class="invitation-text">
+
+            With immense joy and happiness,
+
+            we invite you and your family
+
+            to join us as we celebrate
+
+            the beginning of a beautiful
+
+            new chapter together.
+
+        </div>
+
+
+        <div class="parent-small">
+
+            With the blessings of
+
+        </div>
+
+
+        <div class="parents">
+
+            Sirajudeen K P
 
             <br>
 
@@ -877,34 +1245,7 @@
 
             <br>
 
-            NAME TWO
-
-        </div>
-
-
-        <p class="couple-description">
-
-            <!-- CHANGE THIS TEXT -->
-
-            With immense joy and happiness,
-
-            we invite you to celebrate
-
-            the beginning of our beautiful
-
-            journey together.
-
-        </p>
-
-
-        <!-- COUPLE PHOTO -->
-
-        <div class="photo-container">
-
-            <!-- CHANGE IMAGE -->
-
-            <img src="couple-photo.jpg"
-                 alt="Couple">
+            Shereena Siraj
 
         </div>
 
@@ -914,56 +1255,198 @@
 
 
 
-<!-- EVENTS -->
+<!-- =====================================================
+     COUPLE
+===================================================== -->
 
-<section class="events">
+<section class="couple-section">
 
     <div class="reveal">
 
-        <div class="section-subtitle">
+        <div class="section-label">
 
-            JOIN US
+            Two hearts · One beautiful beginning
+
+        </div>
+
+
+        <div class="couple-names">
+
+            Sanjeedh
+
+            <div class="couple-and">
+
+                &
+
+            </div>
+
+            Minha
+
+        </div>
+
+
+        <p class="section-text">
+
+            Two people, two stories,
+
+            and a lifetime waiting to be written.
+
+            We would be honoured to have you
+
+            with us as we begin this journey together.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CHILDHOOD STORY
+===================================================== -->
+
+<section class="story">
+
+    <div class="reveal">
+
+        <div class="section-label">
+
+            From then to forever
 
         </div>
 
 
         <div class="section-title">
 
-            Wedding Celebrations
+            Our Story
 
         </div>
 
 
-        <div class="event-grid">
+        <div class="story-card">
 
 
-            <!-- EVENT 1 -->
+            <!--
+                UPLOAD YOUR CHILDHOOD PHOTO
+                TO GITHUB WITH THIS NAME:
 
-            <div class="event-card">
+                childhood.jpg
+            -->
 
-                <div class="event-date">
+            <img src="childhood.jpg"
+                 alt="Sanjeedh and Minha as children"
+                 class="childhood-photo">
 
-                    DECEMBER 00
+
+            <div class="story-caption">
+
+
+                <div class="story-quote">
+
+                    “We grew up side by side,
+
+                    never knowing that one day
+
+                    these little memories
+
+                    would become the beginning
+
+                    of our forever.”
 
                 </div>
 
-                <div class="event-name">
 
-                    EVENT ONE
+                <div class="gold-line">
+
+                    <span></span>
+
+                    <div class="gold-symbol">✦</div>
+
+                    <span></span>
 
                 </div>
 
-                <div class="event-details">
 
-                    00:00 PM
+                <div class="story-small">
+
+                    From childhood smiles and
+
+                    innocent little moments...
+
+                    to growing up and finding
+
+                    our way to each other.
+
+                    <br><br>
+
+                    And now, after all these years,
+
+                    we are getting married.
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     WEDDING DETAILS
+===================================================== -->
+
+<section class="details">
+
+    <div class="reveal">
+
+        <div class="section-label">
+
+            Save the date
+
+        </div>
+
+
+        <div class="section-title">
+
+            The Celebration
+
+        </div>
+
+
+        <div class="details-grid">
+
+
+            <!-- DATE -->
+
+            <div class="detail-card">
+
+                <div class="detail-icon">
+
+                    ✦
+
+                </div>
+
+
+                <div class="detail-heading">
+
+                    Date
+
+                </div>
+
+
+                <div class="detail-info">
+
+                    Sunday
 
                     <br>
 
-                    VENUE NAME
-
-                    <br>
-
-                    LOCATION
+                    27 December 2026
 
                 </div>
 
@@ -971,33 +1454,35 @@
 
 
 
-            <!-- EVENT 2 -->
+            <!-- TIME -->
 
-            <div class="event-card">
+            <div class="detail-card">
 
-                <div class="event-date">
+                <div class="detail-icon">
 
-                    DECEMBER 00
-
-                </div>
-
-                <div class="event-name">
-
-                    WEDDING
+                    ◷
 
                 </div>
 
-                <div class="event-details">
 
-                    00:00 AM
+                <div class="detail-heading">
+
+                    Time
+
+                </div>
+
+
+                <div class="detail-info">
+
+                    5:00 PM
 
                     <br>
 
-                    VENUE NAME
+                    to
 
                     <br>
 
-                    LOCATION
+                    10:00 PM
 
                 </div>
 
@@ -1005,33 +1490,35 @@
 
 
 
-            <!-- EVENT 3 -->
+            <!-- VENUE -->
 
-            <div class="event-card">
+            <div class="detail-card">
 
-                <div class="event-date">
+                <div class="detail-icon">
 
-                    DECEMBER 00
-
-                </div>
-
-                <div class="event-name">
-
-                    RECEPTION
+                    ♢
 
                 </div>
 
-                <div class="event-details">
 
-                    00:00 PM
+                <div class="detail-heading">
 
-                    <br>
+                    Venue
 
-                    VENUE NAME
+                </div>
 
-                    <br>
 
-                    LOCATION
+                <div class="detail-info">
+
+                    Krishnapillai
+
+                    Memorial Auditorium
+
+                    <br><br>
+
+                    MLA Road, Kovoor,
+
+                    Calicut
 
                 </div>
 
@@ -1046,22 +1533,24 @@
 
 
 
-<!-- COUNTDOWN -->
+<!-- =====================================================
+     COUNTDOWN
+===================================================== -->
 
 <section class="countdown-section">
 
     <div class="reveal">
 
-        <div class="section-subtitle">
+        <div class="section-label">
 
-            COUNTING DOWN TO
+            Counting down to forever
 
         </div>
 
 
         <div class="section-title">
 
-            The Big Day
+            Until the big day
 
         </div>
 
@@ -1069,15 +1558,16 @@
         <div class="countdown">
 
 
-            <div class="time-box">
+            <div class="time">
 
-                <div class="number" id="days">
+                <div class="time-number"
+                     id="days">
 
                     00
 
                 </div>
 
-                <div class="label">
+                <div class="time-label">
 
                     DAYS
 
@@ -1086,15 +1576,16 @@
             </div>
 
 
-            <div class="time-box">
+            <div class="time">
 
-                <div class="number" id="hours">
+                <div class="time-number"
+                     id="hours">
 
                     00
 
                 </div>
 
-                <div class="label">
+                <div class="time-label">
 
                     HOURS
 
@@ -1103,15 +1594,16 @@
             </div>
 
 
-            <div class="time-box">
+            <div class="time">
 
-                <div class="number" id="minutes">
+                <div class="time-number"
+                     id="minutes">
 
                     00
 
                 </div>
 
-                <div class="label">
+                <div class="time-label">
 
                     MINUTES
 
@@ -1120,15 +1612,16 @@
             </div>
 
 
-            <div class="time-box">
+            <div class="time">
 
-                <div class="number" id="seconds">
+                <div class="time-number"
+                     id="seconds">
 
                     00
 
                 </div>
 
-                <div class="label">
+                <div class="time-label">
 
                     SECONDS
 
@@ -1145,88 +1638,54 @@
 
 
 
-<!-- GALLERY -->
+<!-- =====================================================
+     VENUE
+===================================================== -->
 
-<section>
+<section class="venue">
 
     <div class="reveal">
 
-        <div class="section-subtitle">
+        <div class="section-label">
 
-            MEMORIES
+            Join us here
 
         </div>
 
 
         <div class="section-title">
 
-            Our Moments
-
-        </div>
-
-
-        <div class="gallery">
-
-
-            <!-- CHANGE THESE IMAGES -->
-
-            <img src="photo1.jpg" alt="Photo">
-
-            <img src="photo2.jpg" alt="Photo">
-
-            <img src="photo3.jpg" alt="Photo">
-
-            <img src="photo4.jpg" alt="Photo">
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- VENUE -->
-
-<section class="venue">
-
-    <div class="reveal">
-
-        <div class="section-subtitle">
-
-            WHERE
+            The Venue
 
         </div>
 
 
         <div class="venue-name">
 
-            VENUE NAME
+            Krishnapillai
+
+            Memorial Auditorium
 
         </div>
 
 
         <div class="venue-address">
 
-            <!-- CHANGE ADDRESS -->
-
-            Venue Address
+            MLA Road, Kovoor
 
             <br>
 
-            City, Kerala
-
-            <br>
-
-            PIN CODE
+            Calicut, Kerala
 
         </div>
 
 
-        <!-- CHANGE GOOGLE MAPS LINK -->
+        <!--
+            REPLACE THE LINK BELOW
+            WITH THE GOOGLE MAPS LINK
+        -->
 
-        <a href="YOUR_GOOGLE_MAPS_LINK"
+        <a href="YOUR_GOOGLE_MAPS_LINK_HERE"
            target="_blank"
            class="map-button">
 
@@ -1240,44 +1699,53 @@
 
 
 
-<!-- RSVP -->
+<!-- =====================================================
+     FINAL MESSAGE
+===================================================== -->
 
-<section class="rsvp">
+<section class="final">
 
     <div class="reveal">
 
-        <div class="section-subtitle">
+        <div class="section-label">
 
-            KINDLY RESPOND
-
-        </div>
-
-
-        <div class="section-title">
-
-            Will You Join Us?
+            With love
 
         </div>
 
 
-        <p style="max-width:500px;margin:0 auto 35px;line-height:2;">
+        <div class="final-title">
 
-            We would be delighted to celebrate
+            Sanjeedh
 
-            this special day with you.
+            <br>
 
-        </p>
+            &
+
+            <br>
+
+            Minha
+
+        </div>
 
 
-        <!-- CHANGE RSVP LINK -->
+        <div class="final-text">
 
-        <a href="YOUR_RSVP_LINK"
-           target="_blank"
-           class="rsvp-button">
+            Your presence, your blessings,
 
-            RSVP
+            and your love will make our
 
-        </a>
+            celebration even more special.
+
+            <br><br>
+
+            We can't wait to celebrate
+
+            this beautiful beginning
+
+            with you.
+
+        </div>
 
     </div>
 
@@ -1285,25 +1753,17 @@
 
 
 
-<!-- FOOTER -->
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
-    <p>
+    SANJEEDH & MINHA
 
-        NAME ONE & NAME TWO
+    <br><br>
 
-    </p>
-
-
-    <br>
-
-
-    <small>
-
-        With love, we invite you to celebrate with us.
-
-    </small>
+    27 · 12 · 2026
 
 </footer>
 
@@ -1312,66 +1772,109 @@
 
 
 
-<!-- =================================================
-     JAVASCRIPT
-================================================= -->
-
 <script>
 
 
-/* =========================================
+/* =====================================================
    OPEN INVITATION
-========================================= */
+===================================================== */
 
 function openInvitation() {
 
-    const openingScreen =
-        document.getElementById("opening-screen");
+    const opening =
+        document.getElementById("opening");
 
-    const mainContent =
-        document.getElementById("main-content");
+    const page =
+        document.getElementById("page");
 
     const music =
         document.getElementById("weddingMusic");
 
-
-    openingScreen.classList.add("hide");
-
-    mainContent.classList.add("visible");
+    const musicButton =
+        document.getElementById("music-button");
 
 
-    /* Music starts after user clicks */
+    opening.classList.add("hide");
 
-    music.play().catch(function(error) {
+    page.classList.add("show");
 
-        console.log("Music could not start:", error);
 
-    });
+    /*
+        Music starts because this function
+        is triggered by the user's button tap.
+    */
+
+    music.play()
+        .then(function() {
+
+            musicButton.style.display = "block";
+
+        })
+        .catch(function() {
+
+            console.log(
+                "Music could not autoplay."
+            );
+
+            musicButton.style.display = "block";
+
+        });
 
 
     setTimeout(function() {
 
-        openingScreen.style.display = "none";
+        opening.style.display = "none";
 
-    }, 1500);
+    }, 1300);
 
 }
 
 
 
-/* =========================================
+/* =====================================================
+   MUSIC ON / OFF
+===================================================== */
+
+function toggleMusic() {
+
+    const music =
+        document.getElementById("weddingMusic");
+
+    const button =
+        document.getElementById("music-button");
+
+
+    if (music.paused) {
+
+        music.play();
+
+        button.innerHTML = "♫";
+
+    }
+
+    else {
+
+        music.pause();
+
+        button.innerHTML = "🔇";
+
+    }
+
+}
+
+
+
+/* =====================================================
    COUNTDOWN
-========================================= */
-
-
-/* CHANGE YOUR WEDDING DATE HERE */
+===================================================== */
 
 const weddingDate =
-    new Date("December 20, 2026 10:30:00").getTime();
+    new Date(
+        "December 27, 2026 17:00:00"
+    ).getTime();
 
 
 function updateCountdown() {
-
 
     const now =
         new Date().getTime();
@@ -1381,15 +1884,19 @@ function updateCountdown() {
         weddingDate - now;
 
 
-    if (distance < 0) {
+    if (distance <= 0) {
 
-        document.getElementById("days").innerText = "00";
+        document.getElementById("days")
+            .innerText = "00";
 
-        document.getElementById("hours").innerText = "00";
+        document.getElementById("hours")
+            .innerText = "00";
 
-        document.getElementById("minutes").innerText = "00";
+        document.getElementById("minutes")
+            .innerText = "00";
 
-        document.getElementById("seconds").innerText = "00";
+        document.getElementById("seconds")
+            .innerText = "00";
 
         return;
 
@@ -1398,82 +1905,98 @@ function updateCountdown() {
 
     const days =
         Math.floor(
-            distance / (1000 * 60 * 60 * 24)
+            distance /
+            (1000 * 60 * 60 * 24)
         );
 
 
     const hours =
         Math.floor(
-            (distance % (1000 * 60 * 60 * 24))
-            / (1000 * 60 * 60)
+            (distance %
+            (1000 * 60 * 60 * 24))
+            /
+            (1000 * 60 * 60)
         );
 
 
     const minutes =
         Math.floor(
-            (distance % (1000 * 60 * 60))
-            / (1000 * 60)
+            (distance %
+            (1000 * 60 * 60))
+            /
+            (1000 * 60)
         );
 
 
     const seconds =
         Math.floor(
-            (distance % (1000 * 60))
-            / 1000
+            (distance %
+            (1000 * 60))
+            /
+            1000
         );
 
 
-    document.getElementById("days").innerText =
-        days.toString().padStart(2, "0");
+    document.getElementById("days")
+        .innerText =
+        String(days).padStart(2, "0");
 
 
-    document.getElementById("hours").innerText =
-        hours.toString().padStart(2, "0");
+    document.getElementById("hours")
+        .innerText =
+        String(hours).padStart(2, "0");
 
 
-    document.getElementById("minutes").innerText =
-        minutes.toString().padStart(2, "0");
+    document.getElementById("minutes")
+        .innerText =
+        String(minutes).padStart(2, "0");
 
 
-    document.getElementById("seconds").innerText =
-        seconds.toString().padStart(2, "0");
+    document.getElementById("seconds")
+        .innerText =
+        String(seconds).padStart(2, "0");
 
 }
 
 
-setInterval(updateCountdown, 1000);
+setInterval(
+    updateCountdown,
+    1000
+);
+
 
 updateCountdown();
 
 
 
-/* =========================================
-   SCROLL ANIMATIONS
-========================================= */
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
 
-
-const reveals =
+const revealElements =
     document.querySelectorAll(".reveal");
 
 
 function revealOnScroll() {
 
-
-    const windowHeight =
+    const screenHeight =
         window.innerHeight;
 
 
-    reveals.forEach(function(element) {
-
+    revealElements.forEach(function(element) {
 
         const elementTop =
             element.getBoundingClientRect().top;
 
 
-        if (elementTop <
-            windowHeight - 100) {
+        if (
+            elementTop <
+            screenHeight - 100
+        ) {
 
-            element.classList.add("active");
+            element.classList.add(
+                "visible"
+            );
 
         }
 
